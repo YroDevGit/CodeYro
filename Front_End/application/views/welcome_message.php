@@ -10,7 +10,7 @@
 </svg>
 <div class="message-box">
   <h1>CodeYRO</h1>
-  <p>BUILD WEB APPLICATION USING THIS FRAMEWORK</p>
+  <p>BUILD WEB APPLICATIONS USING THIS FRAMEWORK</p>
   <div class="buttons-con">
     <div class="action-link-wrap">
       <a onclick="history.back(-1)" class="link-button link-back-button">DISCOVER</a>

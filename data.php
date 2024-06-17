@@ -2,21 +2,34 @@
 
 /** 
  * 
- * @package	CodeIgniter
+ * @package	CodeYRO
  * @author	Tyrone Lee Emz
  * @copyright	Copyright (c) 2024 - Tyrone Lee Emz
- * @copyright	Copyright (c) 2019 - 2022, CodeIgniter Foundation (https://codeigniter.com/)
- * @link	https://codeigniter.com
  * @since	Version 1.0.0
  * @filesource
  * 
 */
 
-$APP_TITLE = "";
-$APP_DESCRIPTION = "";
-$YEAR = date("Y-m-d");
+//Change app details
+$APP_TITLE = ""; // Optional
+$APP_DESCRIPTION = ""; // Optional
+$YEAR = date("Y-m-d"); // Optional
 
-$APP_NAME = "project";
-$SERVER_NAME = "http://localhost/";
+
+
+//When using apache, might need to use the default http://localhost/, might need to rename when server is changed
+$SERVER_NAME = "http://localhost/"; //Mandatory//this is the first thing you need to rename
+$APP_NAME = "project"; //Mandatory//this is the second thing you need to rename
+
+
+/**
+ * $MAIN_PAGE
+ * Welcome is found at application\controllers\Welcome.php 
+ * Open Welcome.php inside controllers folder to modify view, if you want to change the main page, you can create new controller and rename the MAIN_PAGE value
+ */
+$MAIN_PAGE = "Welcome";
+/**END OF MAIN_PAGE */
+ 
+
 ?>
 
