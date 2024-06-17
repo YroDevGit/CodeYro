@@ -29,7 +29,7 @@ EOT;
 
 // Write the content to the .htaccess file
 if (file_put_contents($htaccessFile, $htaccessContent) !== false) {
-    echo ".htaccess file has been created successfully.";
+    
 } else {
     echo "There was an error creating the .htaccess file.";
 }
@@ -56,7 +56,7 @@ $htaccessContent = <<<EOT
 EOT;
 
 if (file_put_contents($htaccessFile, $htaccessContent) !== false) {
-    echo ".htaccess file has been created successfully.";
+    
 } else {
     echo "There was an error creating the .htaccess file.";
 }
@@ -99,7 +99,8 @@ EOT;
 
 // Write the content to the PHP file
 if (file_put_contents($phpFile, $phpContent) !== false) {
-    echo "$phpFile has been created successfully.";
+    echo "File successfully generated";
+    header("Refresh: 1; url=../");
 } else {
     echo "There was an error creating the $phpFile file.";
 }
