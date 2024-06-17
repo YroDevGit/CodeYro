@@ -1,3 +1,8 @@
+<?php 
+
+$htaccessFile = '../.htaccess';
+
+$htaccessContent = <<<EOT
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /project/
@@ -12,3 +17,14 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ index.php/$1 [L]
 </IfModule>
+
+EOT;
+
+// Write the content to the .htaccess file
+if (file_put_contents($htaccessFile, $htaccessContent) !== false) {
+    echo ".htaccess file has been created successfully.";
+} else {
+    echo "There was an error creating the .htaccess file.";
+}
+
+?>
