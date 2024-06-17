@@ -27,7 +27,6 @@ $htaccessContent = <<<EOT
 EOT;
 
 
-// Write the content to the .htaccess file
 if (file_put_contents($htaccessFile, $htaccessContent) !== false) {
     
 } else {
@@ -97,7 +96,6 @@ $phpContent = <<<EOT
 ?>
 EOT;
 
-// Write the content to the PHP file
 if (file_put_contents($phpFile, $phpContent) !== false) {
     echo "File successfully generated";
     header("Refresh: 1; url=../");
