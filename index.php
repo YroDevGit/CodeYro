@@ -1,5 +1,6 @@
 <?php
-// Define application paths
+try{
+    // Define application paths
 // Please don't change value below.
 $front_end_path = 'Front_End/';
 $back_end_path = 'Back_End/';
@@ -46,5 +47,9 @@ if ($is_backend) {
     define('API', SERVERNAME.APPNAME."/back_end/index.php/");
     
     require_once BASEPATH . 'core/CodeIgniter.php';
+}
+}
+catch(Exception $e){
+    header("Refresh: 0; url=generate");
 }
 ?>

@@ -90,6 +90,8 @@ class CI_Controller {
 
 		//Auto load url_helper
 		$this->load->helper("back_end_helper");
+		$this->load->helper("form_helper");
+		$this->load->helper("yro_helper");
 	}
 
 	// --------------------------------------------------------------------
