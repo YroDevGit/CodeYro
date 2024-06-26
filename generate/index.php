@@ -121,11 +121,19 @@ function getProjectRootFolderName() {
     <head>
         <title>CodeYRO</title>
     </head>
-<div class="rw"><span class="makesure">Please make sure you already generate APP DATA before opening links below:</span></div>
+<?php if(file_exists("../data.php")): ?>    
+<div class="rw"><span class="makesure">Welcome to CodeYRO:</span></div>
 <div class="rw"><a href="../" target="_blank">Open Homepage</a></div>
 <div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="Controller/FE/" target="_blank">Add Front End controller</a></div>
 <div class="rw"><a onclick="return confirm('Are you assigned to Back End?')" href="Controller/BE/" target="_blank">Add Back End controller</a></div>
-
+<?php endif; ?>
+<?php if(file_exists("../data.php")): ?> 
+<div align='center' style="padding:10px 0px 10px 0px">
+    <div>
+        <span style="color:red;">Warning: File is already generated,<br>You don't need to submit the project details again unless you made some changes in parent folder name and server name.</span>
+    </div>
+</div>
+<?php endif; ?>
 <div align="center" class="starting">
     <div class="card-form">
         <div>
@@ -160,9 +168,78 @@ function getProjectRootFolderName() {
         </div>
     </div>
 </div>
+<footer>
+    <div align='center'>
+        <div style="padding-top: 20px;">
+            <span style="color:gray;">CodeYRO <?= date('Y') ?></span>
+        </div>
+    </div>
+</footer>
 </html>
 
+
+
+<?php if($OK != ""): ?>
+    <div id="modax" align='center'>
+    <div class="modax-body">
+        <div>
+            <div class="rrw">
+                <h3 class="success">SUCCESS</h3>
+            </div>
+            <div class="rrw">
+                <span class="success-copy" style="color:black;">Project core and important files has been generated.</span>
+            </div>
+            <div class="rrw">
+                <table>
+                    <tr>
+                        <td class="tdbt"><a href="index.php"><button class="bt ok">OKAY</button></a></td>
+                        <td class="tdbt"><a href="../" target="_blank"><button class="bt start">GET STARTED</button></a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
 <style>
+    .tdbt{
+        padding: 0px 7px 0px 7px;
+    }
+    .bt{
+        width: 150px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        height: 35px;
+    }
+    .ok{
+        background-color: #b6f7ff;
+    }
+    .start{
+        background-color: #d4ffa1;
+    }
+    #modax{
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgb(0,0,0,0.4);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .rrw{
+        padding: 5px 0px 5px 0px;
+    }
+    .modax-body{
+        display: inline-block;
+        padding: 10px 20px 10px 20px;
+        background-color: white;
+        border-radius: 5px;
+    }
     .card-form{
         background-color: gray;
         display: inline-block;
