@@ -1,6 +1,10 @@
 <?php
 try{
-    // Define application paths
+if(! file_exists("data.php")){
+    header('Location: generate/');
+    exit;
+}
+// Define application paths
 // Please don't change value below.
 $front_end_path = 'Front_End/';
 $back_end_path = 'Back_End/';

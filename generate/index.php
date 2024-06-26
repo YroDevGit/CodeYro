@@ -1,4 +1,5 @@
 <?php
+$OK = "";
 if(isset($_POST['btn'])){
     $name = $_POST['name'];
     $server = $_POST['server'];
@@ -98,8 +99,7 @@ $phpContent = <<<EOT
 EOT;
 
 if (file_put_contents($phpFile, $phpContent) !== false) {
-    echo "File successfully generated";
-    header("Refresh: 1; url=../");
+    $OK = "1";
 } else {
     echo "There was an error creating the $phpFile file.";
 }
@@ -121,6 +121,10 @@ function getProjectRootFolderName() {
     <head>
         <title>CodeYRO</title>
     </head>
+<div class="rw"><span class="makesure">Please make sure you already generate APP DATA before opening links below:</span></div>
+<div class="rw"><a href="../" target="_blank">Open Homepage</a></div>
+<div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="Controller/FE/" target="_blank">Add Front End controller</a></div>
+<div class="rw"><a onclick="return confirm('Are you assigned to Back End?')" href="Controller/BE/" target="_blank">Add Back End controller</a></div>
 
 <div align="center" class="starting">
     <div class="card-form">
@@ -144,8 +148,13 @@ function getProjectRootFolderName() {
             <td><label for="">Project server:</label><br><input type="text" name="server" value="http://localhost/" placeholder="Enter project name"></td>
         </tr>
         <tr>
-            <td align="right"><button type="submit" name="btn">Submit</button></td>
+            <td align="center"><button type="submit" name="btn">Submit</button></td>
         </tr>
+        <?php if($OK != ""): ?>
+            <tr style="">
+            <td align="right" style="color:white; font-size:16px;padding-top: 20px;">App data has been generated <a style="color:yellow; font-weight:bold; font-size:16px;" href="../" target="_blank">Get started</a></td>
+            </tr>
+        <?php endif; ?>
     </table>
 </form>
         </div>
@@ -159,6 +168,11 @@ function getProjectRootFolderName() {
         display: inline-block;
         padding: 15px 20px 15px 20px;
         border-radius: 5px;
+    }
+    .makesure{
+        color:gray;
+        font-size: 14px;
+        font-family: monospace;
     }
 
     .starting{
@@ -177,5 +191,8 @@ function getProjectRootFolderName() {
         height: 35px;
         width: 250px;
         font-size: 15px;
+    }
+    .rw{
+        padding-top: 20px;
     }
 </style>

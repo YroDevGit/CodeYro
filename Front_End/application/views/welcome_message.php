@@ -11,6 +11,7 @@
 <div class="message-box">
   <h1>CodeYRO</h1>
   <p>BUILD WEB APPLICATIONS USING THIS FRAMEWORK</p>
+  <p><small class="mono">CodeYRO is a PHP framework inspired to Laravel and CodeIgniter.</small></p>
   <div class="buttons-con">
     <div class="action-link-wrap">
       <a onclick="history.back(-1)" class="link-button link-back-button">DISCOVER</a>
@@ -23,6 +24,9 @@
 <style>
 	body {
   background-color: #2F3242;
+}
+.mono{
+  font-family: monospace;
 }
 svg {
   position: absolute;
