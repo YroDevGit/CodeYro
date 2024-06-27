@@ -12,13 +12,20 @@ if(! function_exists("API")){
 
 // separated classname and function name. we can use API_NAME("classname", "functionname");
 if(! function_exists("API_NAME")){
-   function API_NAME($class, $name, $parameters=null){
-      $ret = null;
-      if($parameters==null){
-         $ret = API.$class."/".$name;
+   function API_NAME($class, $name="", $parameters=null){
+      $nn = $name;
+      if($name=="" || $name == null){
+         $nn = "";
       }
       else{
-         $ret = API.$class."/".$name."?".$parameters;
+         $nn = "/".$name;
+      }
+      $ret = null;
+      if($parameters==null){
+         $ret = API.$class.$nn;
+      }
+      else{
+         $ret = API.$class.$nn."?".$parameters;
       }
       return $ret;
    }
@@ -34,6 +41,7 @@ if(! function_exists("API_URL")){
 
 if(! function_exists("API_REQUEST")){
    function API_REQUEST($api, $parameters=[], $type = "PHP"){
+      include "Front_End\APIKEY.php";
       $ret  = null;
       $ch = curl_init($api);
       $parameters = json_encode($parameters);
@@ -44,15 +52,18 @@ if(! function_exists("API_REQUEST")){
         }
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'Content-Type: application/json',
-            'Content-Length: ' . strlen($parameters)
+            'Content-Length: ' . strlen($parameters),
+            'API_KEY: '.YRO_API_KEY_FE
         ]);
 
         $response = curl_exec($ch);
+        $curl_error = curl_error($ch);
         curl_close($ch);
 
-        if($type=="PHP"){
-         
-        }
+        if ($curl_error) {
+         return ['error' => $curl_error];
+         exit;
+         }
 
         switch($type){
          case "PHP": $ret = json_decode($response, true); break;

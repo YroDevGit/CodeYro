@@ -225,7 +225,7 @@ function getProjectRootFolderName() {
         width: 100%;
         top: 0;
         left: 0;
-        background-color: rgb(0,0,0,0.4);
+        background-color: rgb(0,0,0,0.9);
         z-index: 1000;
         display: flex;
         justify-content: center;

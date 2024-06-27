@@ -1,4 +1,5 @@
 <?php
+include "APIKEY.php";
 /**
  * CodeIgniter
  *
@@ -37,6 +38,11 @@
  * @filesource
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
+
+//Back_End\API_KEY.php
+//Back_End\system\core\Controller.php
+define("API_KEY", YRO_API_KEY);
+
 
 /**
  * Application Controller Class
@@ -91,7 +97,17 @@ class CI_Controller {
 		$this->load->helper("sql_helper");
 		$this->load->database();
 		$this->get = json_decode($this->input->raw_input_stream, true);
-		
+
+		if(API_KEY_ENABLED==true){
+		$headersTR = getallheaders();
+        $apiKey = isset($headersTR['API_KEY']) ? $headersTR['API_KEY'] : null;
+        if ($apiKey !== API_KEY) {
+            http_response_code(401);
+            echo json_response("NOTUSER");
+            exit;
+        }
+	}
+
 	}
 
 	// --------------------------------------------------------------------
