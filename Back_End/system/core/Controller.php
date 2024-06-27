@@ -96,7 +96,7 @@ class CI_Controller {
 		$this->load->helper("api_helper");
 		$this->load->helper("sql_helper");
 		$this->load->database();
-		$this->get = json_decode($this->input->raw_input_stream, true);
+		//$this->get = json_decode($this->input->raw_input_stream, true);
 
 		if(API_KEY_ENABLED==true){
 		$headersTR = getallheaders();
@@ -106,7 +106,18 @@ class CI_Controller {
             echo json_response("NOTUSER");
             exit;
         }
-	}
+		}
+
+		$this->get = json_decode($this->input->raw_input_stream, true);
+		if(isset(getallheaders()['Content-Type'])){
+			$heading111 = getallheaders()['Content-Type'];
+			if($heading111 == "application/json"){
+				$this->get = json_decode($this->input->raw_input_stream, true);
+			}
+			else{
+				$this->get = $_POST;	
+			}
+		}
 
 	}
 

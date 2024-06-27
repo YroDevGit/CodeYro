@@ -47,8 +47,8 @@ if ($is_backend) {
     define('APP_TITLE', $APP_TITLE);
     define('APP_DESCRIPTION', $APP_DESCRIPTION);
 
-    define('ROOT_PATH', SERVERNAME.APPNAME);
-    define('API', SERVERNAME.APPNAME."/back_end/index.php/");
+    define('ROOT_PATH', SERVERNAME."/".APPNAME);
+    define('API', SERVERNAME."/".APPNAME."/back_end/index.php/");
     
     require_once BASEPATH . 'core/CodeIgniter.php';
 }

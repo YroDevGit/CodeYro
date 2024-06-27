@@ -153,7 +153,7 @@ function getProjectRootFolderName() {
             <td><label for="">Project name:</label><br><input type="text" name="name" value="<?= getProjectRootFolderName() ?>" placeholder="Enter project name"></td>
         </tr>
         <tr>
-            <td><label for="">Project server:</label><br><input type="text" name="server" value="http://localhost/" placeholder="Enter project name"></td>
+            <td><label for="">Project server:</label><br><input type="text" name="server" value="<?= $_SERVER['SERVER_NAME'] ?>" placeholder="Enter project name"></td>
         </tr>
         <tr>
             <td align="center"><button type="submit" name="btn">Submit</button></td>

@@ -9,7 +9,7 @@ if(isset($_POST['btn'])){
     $link = "../../../Back_End/index.php/".$name;
 
     include "../../../data.php";
-    $link_name_file = $SERVER_NAME.$APP_NAME."/Back_End/index.php/".$name;
+    $link_name_file = $SERVER_NAME."/".$APP_NAME."/Back_End/index.php/".$name;
 
     $phpContent = <<<EOT
         <?php 
@@ -25,8 +25,11 @@ if(isset($_POST['btn'])){
         }
     
         // This is a Back_End controller (Creating API's and Manage System data)
-        // ===> index() API: $SERVER_NAME.$APP_NAME
+        //TEST API: (Note: this API only works in your current server, might changed when changing server and app name).
+        // ===> index() API: $link_name_file
         // ===> Other function API: $link_name_file/funcname    PS==> replace funcname with the function name from this controller.
+        // ===> STATIC API: SERVER/APPNAME/Back_End/index.php/$name
+
 
         public function index()
         {
