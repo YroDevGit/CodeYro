@@ -8,6 +8,9 @@ if(isset($_POST['btn'])){
     $phpFile = "../../../Back_End/application/controllers/".$name.".php"; // Name of the PHP file to be created
     $link = "../../../Back_End/index.php/".$name;
 
+    include "../../../data.php";
+    $link_name_file = $SERVER_NAME.$APP_NAME."/Back_End/index.php/".$name;
+
     $phpContent = <<<EOT
         <?php 
     class $name extends CI_Controller {
@@ -22,10 +25,12 @@ if(isset($_POST['btn'])){
         }
     
         // This is a Back_End controller (Creating API's and Manage System data)
+        // ===> index() API: $SERVER_NAME.$APP_NAME
+        // ===> Other function API: $link_name_file/funcname    PS==> replace funcname with the function name from this controller.
 
         public function index()
         {
-            /**
+            /** 
              * index() function is a class main function.
              * Example: when you call $name controller, it will find and read the index() function
              * You can create function here
