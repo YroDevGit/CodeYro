@@ -43,6 +43,7 @@ class CI_Controller {
 		$this->load->helper("yro_helper");
 		$this->load->helper("url_helper");
 		$this->load->helper("secure_helper");
+		$this->load->library('form_validation');
 		$this->POST = (! empty($this->input->post())? $this->input->post() : [] );
 		$this->FORM_SUBMITTED = (! empty($this->input->post()) ? true : false);
 	}
