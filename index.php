@@ -48,6 +48,7 @@ if ($is_backend) {
     define('APP_DESCRIPTION', $APP_DESCRIPTION);
 
     define('ENCRYPTION_CODE', "1234567891031420");
+    define("SECURE_KEY", "CodeYro");
 
     define('ROOT_PATH', SERVERNAME."/".APPNAME);
     define('API', SERVERNAME."/".APPNAME."/back_end/index.php/");

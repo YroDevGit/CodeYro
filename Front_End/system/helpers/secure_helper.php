@@ -7,10 +7,11 @@ if(! function_exists("ENCRYPT")){
     
         $enc = ENCRYPTION_CODE;
     
-        $encryption_key = "CodeYro";
+        $encryption_key = SECURE_KEY;
     
         $encryption = openssl_encrypt($value, $ciphering,
         $encryption_key, $options, $enc);
+        
         return $encryption;
     }
 }
@@ -20,7 +21,7 @@ if(! function_exists("DECRYPT")){
         $dec = ENCRYPTION_CODE;
         $ciphering = "AES-128-CTR";
         $options = 0;
-        $decryption_key = "CodeYro";
+        $decryption_key = SECURE_KEY;
         $decryption=openssl_decrypt ($value, $ciphering, 
         $decryption_key, $options, $dec);
     
