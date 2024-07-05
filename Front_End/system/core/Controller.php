@@ -44,7 +44,16 @@ class CI_Controller {
 		$this->load->helper("url_helper");
 		$this->load->helper("secure_helper");
 		$this->load->library('form_validation');
-		$this->POST = (! empty($this->input->post())? $this->input->post() : [] );
+		$this->load->helper('script_helper');
+		if(isset(getallheaders()['Content-Type'])){
+			$heading111 = getallheaders()['Content-Type'];
+			if($heading111 == "application/json"){
+				$this->POST = json_decode($this->input->raw_input_stream, true);
+			}
+			else{
+				$this->POST = (! empty($this->input->post())? $this->input->post() : [] );	
+			}
+		}
 		$this->FORM_SUBMITTED = (! empty($this->input->post()) ? true : false);
 	}
 
