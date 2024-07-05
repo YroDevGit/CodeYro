@@ -44,4 +44,10 @@ if (!function_exists('dd')) {
     }
 }
 
+if (!function_exists('VALIDATION_FAILED')) {
+    function VALIDATION_FAILED() {
+        return false;
+    }
+}
+
 ?>

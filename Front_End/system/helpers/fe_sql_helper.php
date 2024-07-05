@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if (!function_exists('setQuery')) {
-    function setQuery($sql, $params = []) {
+if (!function_exists('FE_setQuery')) {
+    function FE_setQuery($sql, $params = []) {
         $CI =& get_instance();
         try {
             if (empty($params)) {
@@ -12,7 +12,7 @@ if (!function_exists('setQuery')) {
             }
             if (!$query) {
                 $error = $CI->db->error();
-                throw new Exception($error['message'] . ' - ' . $error['code']);
+                return $error; exit;
             }
             if (stripos(trim($sql), 'select') === 0) {
                 return $query->result();
@@ -24,14 +24,14 @@ if (!function_exists('setQuery')) {
             if (ENVIRONMENT !== 'production') {
                 echo 'Database error: ' . $e->getMessage();
             }
-            return false;
+            return $e->getMessage(); exit;
         }
     }
 }
 
 
-if(!function_exists("SQL_INSERT")){
-    function SQL_INSERT($tablename, $params=[]){
+if(!function_exists("FE_SQL_INSERT")){
+    function FE_SQL_INSERT($tablename, $params=[]){
         $CI =& get_instance();
         try {
             if (empty($params)) {
@@ -41,7 +41,7 @@ if(!function_exists("SQL_INSERT")){
             }
             if (!$query) {
                 $error = $CI->db->error();
-                throw new Exception($error['message'] . ' - ' . $error['code']);
+                return $error; exit;
             }
             return $query;
         } catch (Exception $e) {
@@ -49,13 +49,13 @@ if(!function_exists("SQL_INSERT")){
             if (ENVIRONMENT !== 'production') {
                 echo 'Database error: ' . $e->getMessage();
             }
-            return false;
+            return $e->getMessage(); exit;
         }
     }
 }
 
-if(!function_exists("SQL_UPDATE")){
-    function SQL_UPDATE($tablename, $condition=[], $parameters =[]){
+if(!function_exists("FE_SQL_UPDATE")){
+    function FE_SQL_UPDATE($tablename, $condition=[], $parameters =[]){
         $CI =& get_instance();
         try {
             if (empty($condition)||empty($parameters)) {
@@ -66,7 +66,7 @@ if(!function_exists("SQL_UPDATE")){
             }
             if (!$query) {
                 $error = $CI->db->error();
-                throw new Exception($error['message'] . ' - ' . $error['code']);
+                return $error; exit;
             }
             return $query;
         } catch (Exception $e) {
@@ -74,14 +74,14 @@ if(!function_exists("SQL_UPDATE")){
             if (ENVIRONMENT !== 'production') {
                 echo 'Database error: ' . $e->getMessage();
             }
-            return false;
+            return $e->getMessage(); exit;
         }
     }
 }
 
 
-if(!function_exists("SQL_DELETE")){
-    function SQL_DELETE($tablename, $condition=[]){
+if(!function_exists("FE_SQL_DELETE")){
+    function FE_SQL_DELETE($tablename, $condition=[]){
         $CI =& get_instance();
         try {
             if (empty($condition)) {
@@ -92,7 +92,7 @@ if(!function_exists("SQL_DELETE")){
             }
             if (!$query) {
                 $error = $CI->db->error();
-                throw new Exception($error['message'] . ' - ' . $error['code']);
+                return $error; exit;
             }
             return $query;
         } catch (Exception $e) {
@@ -100,7 +100,7 @@ if(!function_exists("SQL_DELETE")){
             if (ENVIRONMENT !== 'production') {
                 echo 'Database error: ' . $e->getMessage();
             }
-            return false;
+            return $e->getMessage();exit;
         }
     }
 }
@@ -108,6 +108,12 @@ if(!function_exists("SQL_DELETE")){
 if(! function_exists("SQL_SUCCESS")){
     function SQL_SUCCESS(){
         return 1;
+    }
+}
+
+if(! function_exists("SQL_DUPLICATE_CODE")){
+    function SQL_DUPLICATE_CODE(){
+        return 1062;
     }
 }
 ?>

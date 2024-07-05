@@ -66,6 +66,14 @@ if ( ! function_exists('site_url'))
 	{
 		return get_instance()->config->site_url($uri, $protocol);
 	}
+
+}
+
+if(! function_exists("controller")){
+	function controller($uri = '', $protocol = NULL)
+	{
+		return "http://".get_instance()->config->site_url($uri, $protocol);
+	}
 }
 
 // ------------------------------------------------------------------------
