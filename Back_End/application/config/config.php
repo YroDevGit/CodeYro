@@ -24,7 +24,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = 'http://localhost:8000/';
-$config['base_url'] = 'http://localhost/project/back_end/';
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$hostNAME = $_SERVER['HTTP_HOST'];
+$scriptName = dirname($_SERVER['SCRIPT_NAME']);
+
+
+$config['base_url'] = $hostNAME . $scriptName;
 
 /*
 |--------------------------------------------------------------------------
