@@ -43,6 +43,8 @@ if ($is_backend) {
     define('APPPATH', $front_end_path . 'application/');
     define('VIEWPATH', $front_end_path . 'application/views/');
     define('PUBLICPATH', $front_end_path . 'public/');
+    define('STORAGE', $front_end_path . 'public/storage/');
+    define('ASSETS', $front_end_path . 'public/assets/');
     define('RESOURCES', $front_end_path . 'public/resources/');
     define('SECURITY', $front_end_path . 'public/resources/secure/securejs.js');
 

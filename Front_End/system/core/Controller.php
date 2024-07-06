@@ -46,6 +46,7 @@ class CI_Controller {
 		$this->load->helper("secure_helper");
 		$this->load->library('form_validation');
 		$this->load->helper('script_helper');
+		$this->load->helper('file_manage_helper');
 		if(isset(getallheaders()['Content-Type'])){
 			$heading111 = getallheaders()['Content-Type'];
 			if($heading111 == "application/json"){

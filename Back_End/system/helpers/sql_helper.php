@@ -110,4 +110,11 @@ if(! function_exists("SQL_SUCCESS")){
         return 1;
     }
 }
+
+if(! function_exists("SQL_DUPLICATE_CODE")){
+    function SQL_DUPLICATE_CODE(){
+        return 1062;
+    }
+}
 ?>
+

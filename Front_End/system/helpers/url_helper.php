@@ -116,7 +116,7 @@ if ( ! function_exists('root'))
 	}
 }
 
-if ( ! function_exists('assets'))
+if ( ! function_exists('assets_fe'))
 {
 	/**
 	 * Base URL
@@ -129,7 +129,7 @@ if ( ! function_exists('assets'))
 	 * @param	string	$protocol
 	 * @return	string
 	 */
-	function assets($uri = null)
+	function assets_fe($uri = null)
 	{
 		
 		$ret = "";
@@ -138,6 +138,33 @@ if ( ! function_exists('assets'))
 		}
 		else{
 			$ret = PUBLICPATH.$uri;
+		}
+		return $ret;
+	}
+}
+
+if ( ! function_exists('ASSETS'))
+{
+	/**
+	 * Base URL
+	 *
+	 * Create a local URL based on your basepath.
+	 * Segments can be passed in as a string or an array, same as site_url
+	 * or a URL to a file can be passed in, e.g. to an image file.
+	 *
+	 * @param	string	$uri
+	 * @param	string	$protocol
+	 * @return	string
+	 */
+	function ASSETS($uri = null)
+	{
+		
+		$ret = "";
+		if($uri==""||$uri==null){
+			$ret = ASSETS;
+		}
+		else{
+			$ret = ASSETS.$uri;
 		}
 		return $ret;
 	}
