@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/userguide3/libraries/form_validation.html
  */
-class CI_Form_validation {
+class CI_validation {
 
 	/**
 	 * Reference to the CodeIgniter instance
@@ -362,7 +362,7 @@ class CI_Form_validation {
 		return $this->_error_array;
 	}
 
-	public function validation_error_array()
+    public function errors()
 	{
 		return $this->_error_array;
 	}

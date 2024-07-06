@@ -907,6 +907,30 @@ if ( ! function_exists('form_error'))
 	}
 }
 
+if ( ! function_exists('validation_get_error'))
+{
+	/**
+	 * Form Error
+	 *
+	 * Returns the error for a specific form field. This is a helper for the
+	 * form validation class.
+	 *
+	 * @param	string
+	 * @param	string
+	 * @param	string
+	 * @return	string
+	 */
+	function validation_get_error($field = '', $prefix = '', $suffix = '')
+	{
+		if (FALSE === ($OBJ =& _get_validation_object()))
+		{
+			return '';
+		}
+
+		return $OBJ->error($field, $prefix, $suffix);
+	}
+}
+
 // ------------------------------------------------------------------------
 
 if ( ! function_exists('validation_errors'))
@@ -922,6 +946,29 @@ if ( ! function_exists('validation_errors'))
 	 * @return	string
 	 */
 	function validation_errors($prefix = '', $suffix = '')
+	{
+		if (FALSE === ($OBJ =& _get_validation_object()))
+		{
+			return '';
+		}
+
+		return $OBJ->error_string($prefix, $suffix);
+	}
+}
+
+if ( ! function_exists('validation_all_errors'))
+{
+	/**
+	 * Validation Error String
+	 *
+	 * Returns all the errors associated with a form submission. This is a helper
+	 * function for the form validation class.
+	 *
+	 * @param	string
+	 * @param	string
+	 * @return	string
+	 */
+	function validation_all_errors($prefix = '', $suffix = '')
 	{
 		if (FALSE === ($OBJ =& _get_validation_object()))
 		{
