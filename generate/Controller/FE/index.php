@@ -10,7 +10,7 @@ if(isset($_POST['btn'])){
     $link = "../../../".$name;
     $phpContent = <<<EOT
     <?php 
-    class $name extends CI_Controller {
+    class $name extends CY_Controller {
     
         public function __construct() {
             parent::__construct();
@@ -80,7 +80,7 @@ if(isset($_POST['btn'])){
     $link = "../../../".$name;
     $phpContent = <<<EOT
     <?php 
-    class $name extends CI_Controller {
+    class $name extends CY_Controller {
     
         public function __construct() {
             parent::__construct();

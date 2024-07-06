@@ -13,7 +13,7 @@ if(isset($_POST['btn'])){
 
     $phpContent = <<<EOT
         <?php 
-    class $name extends CI_Controller {
+    class $name extends CY_Controller {
     
         public function __construct() {
             parent::__construct();

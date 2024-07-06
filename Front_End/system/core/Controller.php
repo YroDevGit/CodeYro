@@ -2,9 +2,10 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+define("CY_SUCCESS", 200);
 
 #[\AllowDynamicProperties]
-class CI_Controller {
+class CY_Controller {
 
 	/**
 	 * Reference to the CI singleton

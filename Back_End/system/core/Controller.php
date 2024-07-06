@@ -42,6 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //Back_End\API_KEY.php
 //Back_End\system\core\Controller.php
 define("API_KEY", YRO_API_KEY);
+define("CY_SUCCESS", 200);
 
 
 /**
@@ -57,7 +58,7 @@ define("API_KEY", YRO_API_KEY);
  * @link		https://codeigniter.com/userguide3/general/controllers.html
  */
 #[\AllowDynamicProperties]
-class CI_Controller {
+class CY_Controller {
 
 	/**
 	 * Reference to the CI singleton
