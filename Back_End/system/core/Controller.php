@@ -119,7 +119,8 @@ class CY_Controller {
 				$this->get = $_POST;	
 			}
 		}
-
+		$this->GET = $this->get;
+		$this->POST = $this->get;
 	}
 
 	// --------------------------------------------------------------------

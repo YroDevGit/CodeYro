@@ -23,27 +23,24 @@ if(isset($_POST['btn'])){
              * \$this->load->library('session');
              */
         }
-    
-        // This is a Back_End controller (Creating API's and Manage System data)
-        //TEST API: (Note: this API only works in your current server, might changed when changing server and app name).
-        // ===> index() API: $link_name_file
-        // ===> Other function API: $link_name_file/funcname    PS==> replace funcname with the function name from this controller.
-        // ===> STATIC API: SERVER/APPNAME/Back_End/index.php/$name
 
-
+        //This is Back_End controller where you can create API's, Please don't delete this comment, you can use this in the future.
+        //STATIC API:   /Back_End/index.php/$name   <== add this to your project/app parent link. 
+        //Examples: 
+        //LOCAL API: [SERVER]/[APPNAME]/Back_End/index.php/$name   //Replace the [SERVER]  with your servername and [APPNAME] with you projectname
+        //===>LOCAL API Example use: $link_name_file
+        //SERVER API: [HOST:PORT]/Back_End/index.php/$name    //Replace the [HOST:PORT]  with your HOST and PORT, Example localhost:8000
+        // ===>SERVER API Example use: localhost:8000/Back_End/index.php/$name
+        //PRODUCTION API: [SITENAME]/Back_End/index.php/$name 
+        //===> PRODUCTION API Example use: https://CodeYRO.com/Back_End/index.php/$name 
+        
+        
         public function index()
         {
-            /** 
-             * index() function is a class main function.
-             * Example: when you call $name controller, it will find and read the index() function
-             * You can create function here
-             *  create API's
-             */
             //Please remove the sample code, it is just a test code
              \$data = ['AppName' => "First CodeYRO project"];
              print_r(\$data);
              //Remove the comment and replace your own code. thanks: CodeYro
-
         }
     
         /**
