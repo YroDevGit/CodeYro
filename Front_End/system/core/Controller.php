@@ -57,7 +57,9 @@ class CY_Controller {
 				$this->POST = (! empty($this->input->post())? $this->input->post() : [] );	
 			}
 		}
-		$this->FORM_SUBMITTED = (! empty($this->input->post()) ? true : false);
+		define("POST_ACTIVE", empty($this->POST)? false : true);
+
+		$this->load->helper('cy_helper');
 	}
 
 	// --------------------------------------------------------------------

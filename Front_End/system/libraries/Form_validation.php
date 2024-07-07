@@ -362,7 +362,7 @@ class CI_Form_validation {
 		return $this->_error_array;
 	}
 
-	public function validation_error_array()
+	public function validation_errors()
 	{
 		return $this->_error_array;
 	}

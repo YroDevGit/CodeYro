@@ -907,7 +907,7 @@ if ( ! function_exists('form_error'))
 	}
 }
 
-if ( ! function_exists('validation_get_error'))
+if ( ! function_exists('VALIDATION_GET_ERROR'))
 {
 	/**
 	 * Form Error
@@ -920,7 +920,7 @@ if ( ! function_exists('validation_get_error'))
 	 * @param	string
 	 * @return	string
 	 */
-	function validation_get_error($field = '', $prefix = '', $suffix = '')
+	function VALIDATION_GET_ERROR($field = '', $prefix = '', $suffix = '')
 	{
 		if (FALSE === ($OBJ =& _get_validation_object()))
 		{
