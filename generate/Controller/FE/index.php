@@ -126,31 +126,23 @@ if (isset($_POST['btn'])) {
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            background: #141414; /* Dark background for Netflix theme */
+            color: #e5e5e5; /* Light text color */
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #333;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         .card-form {
-            background-color: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            background-color: #333; /* Dark card background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            padding: 30px;
             border-radius: 8px;
             text-align: center;
-            width: 300px;
+            width: 350px;
         }
 
         .starting {
@@ -162,38 +154,40 @@ if (isset($_POST['btn'])) {
         }
 
         .main-title span {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
-            color: #333;
+            color: #e50914; /* Netflix red */
         }
 
         .small small {
-            color: #666;
+            color: #b3b3b3;
         }
 
         input[type=text] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
-            border: 1px solid #ccc;
+            border: 1px solid #555;
             border-radius: 4px;
+            background-color: #222; /* Dark input background */
+            color: #e5e5e5;
         }
 
         button {
-            background-color: #007bff;
+            background-color: #e50914; /* Netflix red */
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 4px;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #f40612; /* Slightly darker red */
         }
 
         a {
-            color: #007bff;
+            color: #e50914; /* Netflix red */
             text-decoration: none;
         }
 
@@ -202,11 +196,11 @@ if (isset($_POST['btn'])) {
         }
 
         .success-message {
-            color: green;
+            color: #0e76a8; /* Success color */
         }
 
         .error-message {
-            color: red;
+            color: #e50914; /* Error color */
         }
     </style>
 </head>
@@ -224,7 +218,7 @@ if (isset($_POST['btn'])) {
             <form action="" method="post">
                 <div>
                     <label for="name">Front End Controller name:</label>
-                    <input type="text" name="name" placeholder="Enter controller name">
+                    <input type="text" name="name" placeholder="Enter controller name" required>
                 </div>
                 <div style="display: none;">
                     <label for="check">
@@ -237,7 +231,7 @@ if (isset($_POST['btn'])) {
                 <?php if (intval($succ) == 1): ?>
                     <div class="success-message">
                         <p>Controller created.</p>
-                        <a href="<?= $link; ?>"><?= ($link == "") ? "" : "Show " . $nm . " Controller" ?></a>
+                        <a style="color:#1bdb1b;" href="<?= $link; ?>"><?= ($link == "") ? "" : "Show " . $nm . " Controller" ?></a>
                     </div>
                 <?php elseif (intval($succ) == 2): ?>
                     <div class="error-message">
