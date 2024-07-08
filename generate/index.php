@@ -124,8 +124,9 @@ function getProjectRootFolderName() {
 <?php if(file_exists("../data.php")): ?>    
 <div class="rw"><span class="makesure">Welcome to CodeYRO:</span></div>
 <div class="rw"><a href="../" target="_blank">Open Homepage</a></div>
-<div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="Controller/FE/" target="_blank">Add Front End controller</a></div>
-<div class="rw"><a onclick="return confirm('Are you assigned to Back End?')" href="Controller/BE/" target="_blank">Add Back End controller</a></div>
+<div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="Controller/FE/" target="_blank">Add Front End <b>Controller</b></a></div>
+<div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="Model/index.php" target="_blank">Add Front End <b>MODEL</b></a></div>
+<div class="rw"><a onclick="return confirm('Are you assigned to Back End?')" href="Controller/BE/" target="_blank">Add Back End <b>Controller</b></a></div>
 <?php endif; ?>
 <?php if(file_exists("../data.php")): ?> 
 <div align='center' style="padding:10px 0px 10px 0px">

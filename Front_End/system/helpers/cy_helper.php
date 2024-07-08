@@ -50,4 +50,11 @@ if(! function_exists("VALIDATION_ERROR_LIST")){
     }
 }
 
+if(! function_exists("CY_USE_MODEL")){
+    function CY_USE_MODEL($modelname){
+        $CY =& get_instance();
+        $CY->load->model($modelname);
+    }
+}
+
 ?>

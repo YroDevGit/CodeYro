@@ -47,15 +47,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * @author		EllisLab Dev Team
  * @link		https://codeigniter.com/userguide3/libraries/config.html
  */
-class CI_Model {
+class CY_Model {
 
+	private static $instance;
+
+	/**
+	 * CI_Loader
+	 *
+	 * @var	CI_Loader
+	 */
+	public $load;
 	/**
 	 * Class constructor
 	 *
 	 * @link	https://github.com/bcit-ci/CodeIgniter/issues/5332
 	 * @return	void
 	 */
-	public function __construct() {}
+	public function __construct() {
+
+		self::$instance =& $this;
+
+		$this->load =& load_class('Loader', 'core');
+		$this->load->initialize();
+		log_message('info', 'Controller Class Initialized');
+		$this->load->database();
+		$this->load->helper("back_end_helper");
+		$this->load->helper("form_helper");
+		$this->load->helper("yro_helper");
+		$this->load->helper("fe_sql_helper");
+		$this->load->helper("url_helper");
+		$this->load->helper("secure_helper");
+		$this->load->library('form_validation');
+		$this->load->helper('script_helper');
+		$this->load->helper('file_manage_helper');
+
+	}
 
 	/**
 	 * __get magic
