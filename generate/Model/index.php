@@ -9,38 +9,33 @@ if(isset($_POST['btn'])){
     $phpFile1 = "../../Front_End/application/controllers/".$name.".php"; // Name of the PHP file to be created
     $link = "../../../".$name;
 
-
     $phpContent = <<<EOT
-        <?php
-            defined('BASEPATH') OR exit('No direct script access allowed');
+    <?php
+        defined('BASEPATH') OR exit('No direct script access allowed');
 
-            class $name extends CY_Model {
+        class $name extends CY_Model {
 
-                public function __construct() {
-                    parent::__construct();
-                    /**
-                     * in your controller. add this model
-                     *  \$this->load->model('$name');   or   USE_MODEL('$name');
-                     * Model usage: 
-                     * Example function name: showAll(){ return 1; }
-                     *  ==> usage: \$this->\$name->showAll();
-                     */
-
-                    \$TABLE = "";  //put your table name inside the double qoute.
-                    define("TABLE", \$TABLE);
-                }
-            
-                
-
-                
+            public function __construct() {
+                parent::__construct();
                 /**
-                 * Add functions here...
-                 * Example: public function showAll(){}
-                 * 
+                 * in your controller. add this model
+                 *  \$this->load->model('$name');   or   USE_MODEL('$name');
+                 * Model usage: 
+                 * Example function name: showAll(){ return 1; }
+                 *  ==> usage: \$this->\$name->showAll();
                  */
 
+                \$TABLE = "";  //put your table name inside the double qoute.
+                define("TABLE", \$TABLE);
             }
-        ?>
+        
+            /**
+             * Add functions here...
+             * Example: public function showAll(){}
+             * 
+             */
+        }
+    ?>
     EOT;
     
     if (file_exists($phpFile)||file_exists($phpFile1)) {
@@ -55,82 +50,130 @@ if(isset($_POST['btn'])){
 }
 ?>
 
-
-
 <html>
     <head>
         <title>CodeYRO</title>
-    </head>
+        <style>
+            body {
+                font-family: 'Courier New', Courier, monospace;
+                background-color: #000;
+                color: #0f0;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
 
-<div align="center" class="starting">
-    <div class="card-form">
-        <div>
-            <div class="title">
+            .card-form {
+                background-color: #222;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 255, 0, 0.2);
+                width: 320px;
+                text-align: left;
+            }
+
+            .starting {
+                padding-top: 20px;
+            }
+
+            .title {
+                padding-bottom: 20px;
+            }
+
+            .main-title span {
+                font-size: 22px;
+                font-weight: bold;
+                color: #0f0;
+            }
+
+            .small small {
+                color: #0f0;
+            }
+
+            input[type=text] {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid #0f0;
+                border-radius: 4px;
+                background-color: #000;
+                color: #0f0;
+            }
+
+            button {
+                background-color: #0f0;
+                color: #000;
+                border: none;
+                padding: 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            button:hover {
+                background-color: #0b0;
+            }
+
+            a {
+                color: #0f0;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            .success-message {
+                color: #28a745;
+            }
+
+            .error-message {
+                color: #dc3545;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="starting">
+            <div class="card-form">
+                <div class="title">
                     <div class="main-title">
-                    <span>CodeYro Framework</span>
+                        <span>CodeYro Framework</span>
                     </div>
                     <div class="small">
                         <small>ADD MODEL</small>
                     </div>
+                </div>
+                <form action="" method="post">
+                    <div>
+                        <label for="name">Model name:</label>
+                        <input type="text" name="name" placeholder="Enter model name">
+                    </div>
+                    <div>
+                        <button type="submit" name="btn">Submit</button>
+                    </div>
+                    <?php if (intval($succ) == 1): ?>
+                        <div class="success-message">
+                            <p>Model created.</p>
+                        </div>
+                    <?php elseif (intval($succ) == 2): ?>
+                        <div class="error-message">
+                            <p>Filename exists.</p>
+                        </div>
+                    <?php elseif (intval($succ) == 3): ?>
+                        <div class="error-message">
+                            <p>Failed.</p>
+                        </div>
+                    <?php endif; ?>
+                </form>
+            </div>
+            <div align='center' style="padding-top: 20px;">
+                <?php if(intval($succ)==2): ?>
+                    <span style="color: red;">File name should not be the same with any controller or model names</span>
+                <?php endif; ?>
             </div>
         </div>
-        <div>
-        <form action="" method="post">
-    <table>
-        <tr>
-            <td><label for="">Model name:</label><br><input type="text" name="name"  placeholder="Enter model name"></td>
-        </tr>
-        <tr>
-            <td align="right"><button type="submit" name="btn">Submit</button></td>
-        </tr>
-        <?php if(intval($succ)==1): ?>
-            <tr>
-            <td><h3 style="color:white;">Model created.</h3></td>
-            </tr>
-        <?php elseif(intval($succ)==2): ?>
-            <tr>
-            <td><h3 style="color:red;">Filename exist</h3></td>
-            </tr>
-        <?php elseif(intval($succ)==3): ?>
-            <tr>
-            <td><h3 style="color:red;">Failed.</h3></td>
-            </tr>
-        <?php endif; ?>
-    </table>
-</form>
-        </div>
-    </div>
-    <div align='center' style="padding-top: 20px;">
-        <?php if(intval($succ)==2): ?>
-            <span style="color :red;">File name should should not be the same with any controller or model names</span>
-        <?php endif; ?>
-    </div>
-</div>
+    </body>
 </html>
-
-<style>
-    .card-form{
-        background-color: orange;
-        display: inline-block;
-        padding: 15px 20px 15px 20px;
-        border-radius: 5px;
-    }
-
-    .starting{
-        padding-top: 50px;
-    }
-    .title{
-        padding: 10px 0px 10px 0px;
-    }
-    span, small, label{
-        color: white;
-    }
-    .main-title span{
-        font-size: 19px;
-    }
-    input[type=text]{
-        height: 35px;
-        width: 250px;
-        font-size: 15px;
-    }
-</style>

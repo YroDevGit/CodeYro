@@ -28,13 +28,11 @@ $htaccessContent = <<<EOT
 </IfModule>
 EOT;
 
-
 if (file_put_contents($htaccessFile, $htaccessContent) !== false) {
     
 } else {
     echo "There was an error creating the .htaccess file.";
 }
-
 
 $htaccessFile = '../Front_End/.htaccess';
 
@@ -53,7 +51,6 @@ $htaccessContent = <<<EOT
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(.*)$ index.php/$1 [L]
 </IfModule>
-
 EOT;
 
 if (file_put_contents($htaccessFile, $htaccessContent) !== false) {
@@ -61,7 +58,6 @@ if (file_put_contents($htaccessFile, $htaccessContent) !== false) {
 } else {
     echo "There was an error creating the .htaccess file.";
 }
-
 
 $phpFile = '../data.php'; 
 
@@ -105,172 +101,225 @@ if (file_put_contents($phpFile, $phpContent) !== false) {
 }
 }
 
-
 function getProjectRootFolderName() {
     $currentDir = __DIR__;
-    
     $parentDir = dirname($currentDir);
-    
     return basename($parentDir);
 }
 ?>
 
-
-
 <html>
-    <head>
-        <title>CodeYRO</title>
-    </head>
-<?php if(file_exists("../data.php")): ?>    
-<div class="rw"><span class="makesure">Welcome to CodeYRO:</span></div>
-<div class="rw"><a href="../" target="_blank">Open Homepage</a></div>
-<div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="Controller/FE/" target="_blank">Add Front End <b>Controller</b></a></div>
-<div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="Model/index.php" target="_blank">Add Front End <b>MODEL</b></a></div>
-<div class="rw"><a onclick="return confirm('Are you assigned to Back End?')" href="Controller/BE/" target="_blank">Add Back End <b>Controller</b></a></div>
-<?php endif; ?>
-<?php if(file_exists("../data.php")): ?> 
-<div align='center' style="padding:10px 0px 10px 0px">
+<head>
+    <title>CodeYRO</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #0b0c10;
+            color: #66fcf1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .card-form {
+            background-color: #1f2833;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 255, 255, 0.2);
+            width: 350px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .starting {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .title {
+            padding-bottom: 20px;
+            text-align: center;
+        }
+
+        .main-title span {
+            font-size: 24px;
+            font-weight: bold;
+            color: #66fcf1;
+        }
+
+        .small small {
+            color: #66fcf1;
+        }
+
+        input[type=text] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #66fcf1;
+            border-radius: 4px;
+            background-color: #0b0c10;
+            color: #66fcf1;
+        }
+
+        button {
+            background-color: #66fcf1;
+            color: #0b0c10;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a29e;
+        }
+
+        a {
+            color: #66fcf1;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .success-message {
+            color: #45a29e;
+        }
+
+        .error-message {
+            color: #d9534f;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            color: #c5c6c7;
+        }
+
+        .rw {
+            padding-top: 20px;
+        }
+
+        .rw a {
+            color: #66fcf1;
+        }
+
+        .makesure {
+            color: #c5c6c7;
+            font-size: 14px;
+            font-family: monospace;
+        }
+
+        #modax {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modax-body {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .rrw {
+            padding: 10px 0;
+        }
+
+        .bt {
+            width: 150px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            height: 35px;
+            margin: 5px;
+        }
+
+        .ok {
+            background-color: #b6f7ff;
+        }
+
+        .start {
+            background-color: #d4ffa1;
+        }
+
+        .tdbt {
+            padding: 0 7px;
+        }
+
+        .success-copy {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <?php if(file_exists("../data.php")): ?>    
+    <div class="rw"><span class="makesure">Welcome to CodeYRO:</span></div>
+    <div class="rw"><a href="../" target="_blank">Open Homepage</a></div>
+    <div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="Controller/FE/" target="_blank">Add Front End <b>Controller</b></a></div>
+    <div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="Model/index.php" target="_blank">Add Front End <b>MODEL</b></a></div>
+    <div class="rw"><a onclick="return confirm('Are you assigned to Back End?')" href="Controller/BE/" target="_blank">Add Back End <b>Controller</b></a></div>
+    <?php endif; ?>
+
+    <?php if(file_exists("../data.php")): ?> 
+<div align='center' style="padding:20px 0px 5px 0px">
     <div>
         <span style="color:red;">Warning: File is already generated,<br>You don't need to submit the project details again unless you made some changes in parent folder name and server name.</span>
     </div>
 </div>
 <?php endif; ?>
-<div align="center" class="starting">
-    <div class="card-form">
-        <div>
+    
+    <div class="starting">
+        <div class="card-form">
             <div class="title">
-                    <div class="main-title">
+                <div class="main-title">
                     <span>CodeYro Framework</span>
-                    </div>
-                    <div class="small">
-                        <small>Let us start with your project details</small>
-                    </div>
+                </div>
+                <div class="small">
+                    <small>Let us start with your project details</small>
+                </div>
             </div>
-        </div>
-        <div>
-        <form action="" method="post">
-    <table>
-        <tr>
-            <td><label for="">Project name:</label><br><input type="text" name="name" value="<?= getProjectRootFolderName() ?>" placeholder="Enter project name"></td>
-        </tr>
-        <tr>
-            <td><label for="">Project server:</label><br><input type="text" name="server" value="<?= $_SERVER['SERVER_NAME'] ?>" placeholder="Enter project name"></td>
-        </tr>
-        <tr>
-            <td align="center"><button type="submit" name="btn">Submit</button></td>
-        </tr>
-        <?php if($OK != ""): ?>
-            <tr style="">
-            <td align="right" style="color:white; font-size:16px;padding-top: 20px;">App data has been generated <a style="color:yellow; font-weight:bold; font-size:16px;" href="../" target="_blank">Get started</a></td>
-            </tr>
-        <?php endif; ?>
-    </table>
-</form>
+            <form action="" method="post">
+                <div>
+                    <label for="name">Project name:</label>
+                    <input type="text" name="name" value="<?= getProjectRootFolderName() ?>" placeholder="Enter project name">
+                </div>
+                <div>
+                    <label for="server">Project server:</label>
+                    <input type="text" name="server" value="<?= $_SERVER['SERVER_NAME'] ?>" placeholder="Enter project server">
+                </div>
+                <button type="submit" name="btn">Generate</button>
+                <?php if($OK == "1"): ?>
+                    <div class="success-message">Files created successfully!</div>
+                <?php endif; ?>
+            </form>
         </div>
     </div>
-</div>
-<footer>
-    <div align='center'>
-        <div style="padding-top: 20px;">
-            <span style="color:gray;">CodeYRO <?= date('Y') ?></span>
-        </div>
-    </div>
-</footer>
+
+    <footer>
+        <p>&copy; 2024 CodeYRO. All Rights Reserved.</p>
+    </footer>
+</body>
 </html>
-
-
-
-<?php if($OK != ""): ?>
-    <div id="modax" align='center'>
-    <div class="modax-body">
-        <div>
-            <div class="rrw">
-                <h3 class="success">SUCCESS</h3>
-            </div>
-            <div class="rrw">
-                <span class="success-copy" style="color:black;">Project core and important files has been generated.</span>
-            </div>
-            <div class="rrw">
-                <table>
-                    <tr>
-                        <td class="tdbt"><a href="index.php"><button class="bt ok">OKAY</button></a></td>
-                        <td class="tdbt"><a href="../" target="_blank"><button class="bt start">GET STARTED</button></a></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-<?php endif; ?>
-
-<style>
-    .tdbt{
-        padding: 0px 7px 0px 7px;
-    }
-    .bt{
-        width: 150px;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        height: 35px;
-    }
-    .ok{
-        background-color: #b6f7ff;
-    }
-    .start{
-        background-color: #d4ffa1;
-    }
-    #modax{
-        position: fixed;
-        height: 100%;
-        width: 100%;
-        top: 0;
-        left: 0;
-        background-color: rgb(0,0,0,0.9);
-        z-index: 1000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .rrw{
-        padding: 5px 0px 5px 0px;
-    }
-    .modax-body{
-        display: inline-block;
-        padding: 10px 20px 10px 20px;
-        background-color: white;
-        border-radius: 5px;
-    }
-    .card-form{
-        background-color: gray;
-        display: inline-block;
-        padding: 15px 20px 15px 20px;
-        border-radius: 5px;
-    }
-    .makesure{
-        color:gray;
-        font-size: 14px;
-        font-family: monospace;
-    }
-
-    .starting{
-        padding-top: 50px;
-    }
-    .title{
-        padding: 10px 0px 10px 0px;
-    }
-    span, small, label{
-        color: white;
-    }
-    .main-title span{
-        font-size: 19px;
-    }
-    input[type=text]{
-        height: 35px;
-        width: 250px;
-        font-size: 15px;
-    }
-    .rw{
-        padding-top: 20px;
-    }
-</style>

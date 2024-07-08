@@ -12,7 +12,7 @@ if(isset($_POST['btn'])){
     $link_name_file = $SERVER_NAME."/".$APP_NAME."/Back_End/index.php/".$name;
 
     $phpContent = <<<EOT
-        <?php 
+    <?php 
     class $name extends CY_Controller {
     
         public function __construct() {
@@ -47,7 +47,6 @@ if(isset($_POST['btn'])){
          * You can add more functions here
          */
     }
-
     ?>
     EOT;
     
@@ -63,77 +62,126 @@ if(isset($_POST['btn'])){
 }
 ?>
 
-
-
 <html>
     <head>
         <title>CodeYRO</title>
-    </head>
+        <style>
+            body {
+                font-family: 'Courier New', Courier, monospace;
+                background-color: #282c34;
+                color: #abb2bf;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
 
-<div align="center" class="starting">
-    <div class="card-form">
-        <div>
-            <div class="title">
+            .card-form {
+                background-color: #1c1e22;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                width: 320px;
+                text-align: left;
+            }
+
+            .starting {
+                padding-top: 20px;
+            }
+
+            .title {
+                padding-bottom: 20px;
+            }
+
+            .main-title span {
+                font-size: 22px;
+                font-weight: bold;
+                color: #61dafb;
+            }
+
+            .small small {
+                color: #61dafb;
+            }
+
+            input[type=text] {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid #61dafb;
+                border-radius: 4px;
+                background-color: #282c34;
+                color: #abb2bf;
+            }
+
+            button {
+                background-color: #61dafb;
+                color: #282c34;
+                border: none;
+                padding: 10px;
+                border-radius: 4px;
+                cursor: pointer;
+                width: 100%;
+            }
+
+            button:hover {
+                background-color: #21a1f1;
+            }
+
+            a {
+                color: #61dafb;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            .success-message {
+                color: #28a745;
+            }
+
+            .error-message {
+                color: #dc3545;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="starting">
+            <div class="card-form">
+                <div class="title">
                     <div class="main-title">
-                    <span>CodeYro Framework</span>
+                        <span>CodeYro Framework</span>
                     </div>
                     <div class="small">
                         <small>Let us start with your project details</small>
                     </div>
+                </div>
+                <form action="" method="post">
+                    <div>
+                        <label for="name">Back End Controller name:</label>
+                        <input type="text" name="name" placeholder="Enter controller name">
+                    </div>
+                    <div>
+                        <button type="submit" name="btn">Submit</button>
+                    </div>
+                    <?php if (intval($succ) == 1): ?>
+                        <div class="success-message">
+                            <p>Controller created.</p>
+                            <a href="<?= $link; ?>"><?= ($link == "") ? "" : "Show " . $nm . " Controller" ?></a>
+                        </div>
+                    <?php elseif (intval($succ) == 2): ?>
+                        <div class="error-message">
+                            <p>File exists.</p>
+                        </div>
+                    <?php elseif (intval($succ) == 3): ?>
+                        <div class="error-message">
+                            <p>Failed.</p>
+                        </div>
+                    <?php endif; ?>
+                </form>
             </div>
         </div>
-        <div>
-        <form action="" method="post">
-    <table>
-        <tr>
-            <td><label for="">Front End Controller name:</label><br><input type="text" name="name"  placeholder="Enter controller name"></td>
-        </tr>
-        <tr>
-            <td align="right"><button type="submit" name="btn">Submit</button></td>
-        </tr>
-        <?php if(intval($succ)==1): ?>
-            <tr>
-            <td><h3 style="color:white;">Controller created.</h3><a style="color:yellow;" href="<?= $link; ?>" ><?= ($link=="")? "": "Show ".$nm." Controller" ?></a></td>
-            </tr>
-        <?php elseif(intval($succ)==2): ?>
-            <tr>
-            <td><h3 style="color:red;">File exist.</h3></td>
-            </tr>
-        <?php elseif(intval($succ)==3): ?>
-            <tr>
-            <td><h3 style="color:red;">Failed.</h3></td>
-            </tr>
-        <?php endif; ?>
-    </table>
-</form>
-        </div>
-    </div>
-</div>
+    </body>
 </html>
-
-<style>
-    .card-form{
-        background-color: black;
-        display: inline-block;
-        padding: 15px 20px 15px 20px;
-        border-radius: 5px;
-    }
-
-    .starting{
-        padding-top: 50px;
-    }
-    .title{
-        padding: 10px 0px 10px 0px;
-    }
-    span, small, label{
-        color: white;
-    }
-    .main-title span{
-        font-size: 19px;
-    }
-    input[type=text]{
-        height: 35px;
-        width: 250px;
-        font-size: 15px;
-    }
-</style>
