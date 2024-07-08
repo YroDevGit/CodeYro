@@ -12,6 +12,28 @@ if(! function_exists("ADD_REACT")){
     }
 }
 
+if(! function_exists("ADD_CY_TABLE")){
+    function ADD_CY_TABLE(){
+        ADD_JQUERY();
+        ?>
+            <link rel="stylesheet" type="text/css" href="<?= RESOURCES ?>jQuery/cytable/cytablecss/jquery.dataTables.css">
+            <link rel="stylesheet" type="text/css" href="<?= RESOURCES ?>jQuery/cytable/cytablecss/responsive.dataTables.min.css">
+            <link rel="stylesheet" type="text/css" href="<?= RESOURCES ?>jQuery/cytable/cytablecss/buttons.dataTables.min.css">
+            <link rel="stylesheet" href="<?= RESOURCES ?>jQuery/cytable/cytablecss/all.min.css">
+            <link rel="stylesheet" type="text/css" href="<?= RESOURCES ?>jQuery/cytable/cytablecss/cytable.css">
+  
+            <script src="<?= RESOURCES ?>jQuery/cytable/cytblejs/jquery.dataTables.min.js"></script>         
+            <script src="<?= RESOURCES ?>jQuery/cytable/cytblejs/dataTables.responsive.min.js"></script>
+            <script src="<?= RESOURCES ?>jQuery/cytable/cytblejs/dataTables.buttons.min.js"></script>      
+            <script src="<?= RESOURCES ?>jQuery/cytable/cytblejs/jszip.min.js"></script>
+            <script src="<?= RESOURCES ?>jQuery/cytable/cytblejs/buttons.html5.min.js"></script>
+            <script src="<?= RESOURCES ?>jQuery/cytable/cytblejs/buttons.print.min.js"></script>
+            <script src="<?= RESOURCES ?>jQuery/cytable/cytblejs/cytable.js"></script>
+
+        <?php
+    }
+}
+
 
 if(! function_exists("ADD_JQUERY")){
     function ADD_JQUERY(){
@@ -61,6 +83,7 @@ if(! function_exists("ADD_ALL_SCRIPTS")){
 
         <script src="<?= RESOURCES ?>customs/customjs.js"></script>
         <?php
+        ADD_CY_TABLE();
     }
 }
 

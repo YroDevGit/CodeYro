@@ -1,0 +1,171 @@
+/* Custom styles for DataTables */
+
+    
+.cy-table-container {
+    max-width: 100%;
+    margin: 20px auto;
+    border: 1px solid #e0e0e0; 
+    border-radius: 8px; 
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    padding: 15px; 
+}
+
+
+#CY_TABLE thead th {
+    background-color: #8f8f8f; 
+    color: #ffffff; 
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #8f8f8f;
+    font-weight: bold;
+}
+
+/* Table Footer */
+#CY_TABLE tfoot th {
+    background-color: #f9f9f9; 
+    color: #333;
+    padding: 12px;
+    border-top: 2px solid #ddd; 
+    font-weight: bold;
+}
+
+/* Table Rows */
+#CY_TABLE tbody tr {
+    border-bottom: 1px solid #ddd; 
+}
+
+#CY_TABLE tbody tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+
+#CY_TABLE tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Table Cells */
+#CY_TABLE td, #CY_TABLE th {
+    padding: 12px; 
+}
+#CY_TABLE{
+    width: 100%;
+}
+
+/* DataTable Pagination */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #007bff; 
+    color: #fff; 
+    font-size: 0.875rem;
+    margin: 2px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: #0056b3; 
+}
+
+/* DataTable Search Box */
+.dataTables_wrapper .dataTables_filter {
+    margin: 10px 0;
+    border: 1px solid #ddd; 
+    border-radius: 4px; 
+    padding: 8px 12px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; 
+    display: flex; 
+    align-items: center; 
+}
+
+.dataTables_wrapper .dataTables_filter label {
+    margin-right: 10px; 
+    font-weight: bold; 
+    color: #333;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border: none; 
+    outline: none;
+    box-sizing: border-box;
+    padding: 8px; 
+}
+
+.dataTables_wrapper .dataTables_filter input::placeholder {
+    color: #888; 
+}
+
+
+.dt-buttons {
+    margin: 10px 0;
+}
+
+.dt-buttons .btn {
+    padding: 8px 12px;
+    margin-right: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #007bff; 
+    color: #fff; 
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.dt-buttons .btn:hover {
+    background-color: #0056b3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.dataTables_wrapper .dataTables_info {
+    margin-top: 10px;
+}
+
+.bordered-table {
+    border-collapse: collapse; 
+    border: 2px solid #8f8f8f; 
+    border-radius: 4px; 
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+/* Table Header */
+.bordered-table thead th {
+    background-color: #8f8f8f; 
+    color: #333; 
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd; 
+    font-weight: bold;
+}
+
+/* Table Footer */
+.bordered-table tfoot th {
+    background-color: #f9f9f9; 
+    color: #333;
+    padding: 12px;
+    border-top: 2px solid #007bff; 
+    font-weight: bold;
+}
+
+
+.bordered-table tbody td {
+    padding: 12px;
+    border: 1px solid #ddd; 
+}
+
+/* Table Rows */
+.bordered-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+
+.bordered-table tbody tr:hover {
+    background-color: #f1f1f1; 
+}
+
+
+@media (max-width: 768px) {
+    #CY_TABLE {
+        font-size: 14px;
+    }
+}
