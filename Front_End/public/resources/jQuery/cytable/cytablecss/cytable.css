@@ -1,13 +1,13 @@
-/* Custom styles for DataTables */
-
+/* Custom styles for CY table */
+/* Tyrone Limen Malocon */
     
 .cy-table-container {
     max-width: 100%;
     margin: 20px auto;
-    border: 1px solid #e0e0e0; 
+    /*border: 1px solid #e0e0e0;*/ 
     border-radius: 8px; 
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px; 
     padding: 15px; 
 }
 
@@ -17,7 +17,7 @@
     color: #ffffff; 
     padding: 12px;
     text-align: left;
-    border-bottom: 2px solid #8f8f8f;
+    border: 2px solid #8f8f8f;
     font-weight: bold;
 }
 
@@ -123,10 +123,10 @@
 
 .bordered-table {
     border-collapse: collapse; 
-    border: 2px solid #8f8f8f; 
+    /*border: 2px solid #8f8f8f; */
     border-radius: 4px; 
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 /* Table Header */

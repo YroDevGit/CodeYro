@@ -13,6 +13,7 @@ $back_end_path = 'Back_End/';
  * 
  * @package	CodeIgniter
  * @author	Tyrone Lee Emz
+ * @author name: Tyrone Limen Malocon
  * @copyright	Copyright (c) 2024 - Tyrone Lee Emz
  * @copyright	Copyright (c) 2019 - 2022, CodeIgniter Foundation (https://codeigniter.com/)
  * @link	https://codeigniter.com

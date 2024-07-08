@@ -68,6 +68,7 @@ $phpContent = <<<EOT
  * 
  * @package    CodeYRO
  * @author     Tyrone Lee Emz
+ * @author name: Tyrone Limen Malocon
  * @copyright  Copyright (c) 2024 - Tyrone Lee Emz
  * @since      Version 1.0.0
  * @filesource
