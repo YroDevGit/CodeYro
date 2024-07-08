@@ -126,8 +126,8 @@ if (isset($_POST['btn'])) {
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: #141414; /* Dark background for Netflix theme */
-            color: #e5e5e5; /* Light text color */
+            background: #141414; 
+            color: #e5e5e5; 
             margin: 0;
             padding: 0;
             display: flex;
@@ -137,7 +137,7 @@ if (isset($_POST['btn'])) {
         }
 
         .card-form {
-            background-color: #333; /* Dark card background */
+            background-color: #333; 
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             padding: 30px;
             border-radius: 8px;
@@ -156,7 +156,7 @@ if (isset($_POST['btn'])) {
         .main-title span {
             font-size: 28px;
             font-weight: bold;
-            color: #e50914; /* Netflix red */
+            color: #e50914; 
         }
 
         .small small {
@@ -169,12 +169,12 @@ if (isset($_POST['btn'])) {
             margin: 10px 0;
             border: 1px solid #555;
             border-radius: 4px;
-            background-color: #222; /* Dark input background */
+            background-color: #222; 
             color: #e5e5e5;
         }
 
         button {
-            background-color: #e50914; /* Netflix red */
+            background-color: #e50914; 
             color: white;
             border: none;
             padding: 12px 20px;
@@ -183,11 +183,11 @@ if (isset($_POST['btn'])) {
         }
 
         button:hover {
-            background-color: #f40612; /* Slightly darker red */
+            background-color: #f40612;
         }
 
         a {
-            color: #e50914; /* Netflix red */
+            color: #e50914; 
             text-decoration: none;
         }
 
@@ -196,11 +196,11 @@ if (isset($_POST['btn'])) {
         }
 
         .success-message {
-            color: #0e76a8; /* Success color */
+            color: #0e76a8; 
         }
 
         .error-message {
-            color: #e50914; /* Error color */
+            color: #e50914; 
         }
     </style>
 </head>
