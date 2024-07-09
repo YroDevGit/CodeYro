@@ -182,8 +182,8 @@ if(! function_exists("REMOVE_ALL_SESSION")){
     }
 }
 
-if(! function_exists("SET_COKIE")){
-    function SET_COKIE($key, $value, $expiration = 86500){
+if(! function_exists("SET_COOKIE")){
+    function SET_COOKIE($key, $value, $expiration = 86500){
         /**
          *  => Void
          */
@@ -201,8 +201,8 @@ if(! function_exists("SET_COKIE")){
     }
 }
 
-if(! function_exists("COKIE_EXIST")){
-    function COKIE_EXIST($input){
+if(! function_exists("COOKIE_EXIST")){
+    function COOKIE_EXIST($input){
         /**
          * Boolean
          */
@@ -217,8 +217,8 @@ if(! function_exists("COKIE_EXIST")){
     }
 }
 
-if(! function_exists("GET_COKIE")){
-    function GET_COKIE($key){
+if(! function_exists("GET_COOKIE")){
+    function GET_COOKIE($key){
         /**
          *  => String or Array
          */
@@ -227,8 +227,8 @@ if(! function_exists("GET_COKIE")){
     }
 }
 
-if(! function_exists("REMOVE_COKIE")){
-    function REMOVE_COKIE($key){
+if(! function_exists("REMOVE_COOKIE")){
+    function REMOVE_COOKIE($key){
         /**
          *  => Void
          */
