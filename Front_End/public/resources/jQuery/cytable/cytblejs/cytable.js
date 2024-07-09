@@ -3,9 +3,11 @@ $(document).ready(function() {
     var exportFilename = $('#CY_TABLE').attr('export') || 'Exported_Data';
 
     $('#CY_TABLE').DataTable({
-        "responsive": true, // Enable responsive extension
-        "ordering": false, // Disable sorting
-        "dom": 'Bfrtip', // Define the position of the buttons
+        "responsive": true, 
+        "ordering": false, 
+        "dom": 'Bfrtip',
+        "pageLength": 15, 
+        "lengthMenu": [5, 10, 25, 50, 100], 
         "buttons": [
             {
                 extend: 'copy',

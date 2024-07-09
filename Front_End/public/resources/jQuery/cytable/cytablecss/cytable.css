@@ -1,168 +1,137 @@
-/* Custom styles for CY table */
-/* Tyrone Limen Malocon */
-    
+/** CY table - Tyrone Limen Malocon */
+/** You can change CY table styling here... */
+
 .cy-table-container {
     max-width: 100%;
     margin: 20px auto;
-    /*border: 1px solid #e0e0e0;*/ 
-    border-radius: 8px; 
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px; 
-    padding: 15px; 
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    padding: 15px;
 }
 
+.cy-container {
+    max-width: 100%;
+    margin: 20px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    padding: 15px;
+}
 
-#CY_TABLE thead th {
-    background-color: #8f8f8f; 
-    color: #ffffff; 
+.bordered-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #333;
+    font-family: 'Roboto', sans-serif;
+    color: #444;
+}
+
+.bordered-table thead th {
+    background-color: #2c3e50;
+    color: #ecf0f1;
     padding: 12px;
     text-align: left;
-    border: 2px solid #8f8f8f;
+    border-bottom: 2px solid #34495e;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
-/* Table Footer */
-#CY_TABLE tfoot th {
-    background-color: #f9f9f9; 
-    color: #333;
+.bordered-table tfoot th {
+    background-color: #34495e;
+    color: #ecf0f1;
     padding: 12px;
-    border-top: 2px solid #ddd; 
+    border-top: 2px solid #2c3e50;
     font-weight: bold;
 }
 
-/* Table Rows */
-#CY_TABLE tbody tr {
-    border-bottom: 1px solid #ddd; 
+.bordered-table tbody td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    background-color: #ecf0f1;
+    color: #2c3e50;
 }
 
-#CY_TABLE tbody tr:nth-child(even) {
-    background-color: #f9f9f9; 
+.bordered-table tbody tr:nth-child(even) {
+    background-color: #bdc3c7;
 }
 
-#CY_TABLE tbody tr:hover {
-    background-color: #f1f1f1;
+.bordered-table tbody tr:hover {
+    background-color: #95a5a6;
+    color: #ecf0f1;
 }
 
-/* Table Cells */
-#CY_TABLE td, #CY_TABLE th {
-    padding: 12px; 
-}
-#CY_TABLE{
-    width: 100%;
-}
-
-/* DataTable Pagination */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     padding: 8px 12px;
-    border: 1px solid #ddd;
+    border: 1px solid #333;
     border-radius: 4px;
-    background: #007bff; 
-    color: #fff; 
+    background: #2c3e50;
+    color: #ecf0f1;
     font-size: 0.875rem;
     margin: 2px;
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-    background: #0056b3; 
+    background: #34495e;
 }
 
-/* DataTable Search Box */
 .dataTables_wrapper .dataTables_filter {
     margin: 10px 0;
-    border: 1px solid #ddd; 
-    border-radius: 4px; 
+    border: 2px solid #333;
+    border-radius: 4px;
     padding: 8px 12px;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); 
-    background-color: #fff; 
-    display: flex; 
-    align-items: center; 
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    background-color: #ecf0f1;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .dataTables_wrapper .dataTables_filter label {
-    margin-right: 10px; 
-    font-weight: bold; 
-    color: #333;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #2c3e50;
 }
 
 .dataTables_wrapper .dataTables_filter input {
-    border: none; 
+    border: none;
     outline: none;
     box-sizing: border-box;
-    padding: 8px; 
+    padding: 8px;
+    color: #2c3e50;
 }
 
 .dataTables_wrapper .dataTables_filter input::placeholder {
-    color: #888; 
+    color: #888;
 }
 
-
-.dt-buttons {
+.dataTables_wrapper .dt-buttons {
     margin: 10px 0;
 }
 
-.dt-buttons .btn {
+.dataTables_wrapper .dt-buttons .btn {
     padding: 8px 12px;
     margin-right: 5px;
     border-radius: 4px;
-    border: 1px solid #ddd;
-    background-color: #007bff; 
-    color: #fff; 
+    border: 2px solid #333;
+    background-color: #2c3e50;
+    color: #ecf0f1;
     font-size: 0.875rem;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.dt-buttons .btn:hover {
-    background-color: #0056b3;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+.dataTables_wrapper .dt-buttons .btn:hover {
+    background-color: #34495e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.dataTables_wrapper .dataTables_info {
-    margin-top: 10px;
+.dataTables_wrapper .dt-buttons .btn i {
+    margin-right: 5px;
 }
-
-.bordered-table {
-    border-collapse: collapse; 
-    /*border: 2px solid #8f8f8f; */
-    border-radius: 4px; 
-    overflow: hidden;
-    /*box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+.dataTables_wrapper .dataTables_paginate .paginate_button{
+    color:white;
 }
-
-/* Table Header */
-.bordered-table thead th {
-    background-color: #8f8f8f; 
-    color: #333; 
-    padding: 12px;
-    text-align: left;
-    border: 1px solid #ddd; 
-    font-weight: bold;
-}
-
-/* Table Footer */
-.bordered-table tfoot th {
-    background-color: #f9f9f9; 
-    color: #333;
-    padding: 12px;
-    border-top: 2px solid #007bff; 
-    font-weight: bold;
-}
-
-
-.bordered-table tbody td {
-    padding: 12px;
-    border: 1px solid #ddd; 
-}
-
-/* Table Rows */
-.bordered-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9; 
-}
-
-.bordered-table tbody tr:hover {
-    background-color: #f1f1f1; 
-}
-
 
 @media (max-width: 768px) {
     #CY_TABLE {
