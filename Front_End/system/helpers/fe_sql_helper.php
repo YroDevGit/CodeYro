@@ -1,8 +1,40 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if (!function_exists('CY_SetQuery')) {
-    function CY_SetQuery($sql, $params = []) {
+if (!function_exists('CY_DB_SETQUERY')) {
+    function CY_DB_SETQUERY($sql, $params = []) {
+        $CY =& get_instance();
+        try {
+            if (empty($params)) {
+                $query = $CY->db->query($sql);
+            } else {
+                $query = $CY->db->query($sql, $params);
+            }
+            if (!$query) {
+                $error = $CY->db->error();
+                return ["code"=>-1, "status"=> $error, "message"=>"Error"]; exit;
+            }
+            if (stripos(trim($sql), 'select') === 0) {
+                return ["code"=>CY_SUCCESS, "status"=>$query, "message"=> "SUCCESS", "data"=>$query->result_array()]; exit;
+            }else if(stripos(trim($sql), 'insert') === 0){
+                return ["code"=>CY_SUCCESS, "status"=>$query, "message" => "Data inserted successfully", "insert_id"=>$CY->db->insert_id(), "parameters"=>$params];
+                exit;
+            } else {
+                return ["code"=>CY_SUCCESS, "status"=>$query, "message" => "SUCCESS", "parameters"=>$params];
+                //pwde mn $CY->db->affected_rows() for INSERT/UPDATE
+            }
+        } catch (Exception $e) {
+            log_message('error', 'SQL Error: ' . $e->getMessage());
+            if (ENVIRONMENT !== 'production') {
+                //echo 'Database error: ' . $e->getMessage();
+            }
+            return ["code"=>-1, "status"=> $e->getMessage(), "message"=>"Error"]; exit;
+        }
+    }
+}
+
+if (!function_exists('CY_SETQUERY')) {
+    function CY_SETQUERY($sql, $params = []) {
         $CY =& get_instance();
         try {
             if (empty($params)) {

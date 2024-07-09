@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if (!function_exists('SetQuery')) {
-    function SetQuery($sql, $params = []) {
+if (!function_exists('DB_SET_QUERY')) {
+    function DB_SET_QUERY($sql, $params = []) {
         $CY =& get_instance();
         try {
             if (empty($params)) {
