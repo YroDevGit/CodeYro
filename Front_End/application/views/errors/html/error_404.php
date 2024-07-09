@@ -5,7 +5,7 @@
   <p>The Page you're looking for isn't here.</p>
   <div align="left" class="back">
 	<div>
-		<a href="<?= ROOT_PATH ?>">
+		<a href="<?= CY_MAIN_URL() ?>">
 			<button class="back-btn">Go back</button>
 		</a>
 	</div>
