@@ -55,6 +55,23 @@ if (!function_exists('VALIDATION_FAILED')) {
     }
 }
 
+if(! function_exists("VALIDATION_FAILED_REDIRECT")){
+    function VALIDATION_FAILED_REDIRECT($page){
+        /** ==> Void
+         *  ==> Redirect
+         * Redirect with error messages
+         */
+        $CY =& get_instance();
+        if ($CY->form_validation->run() == false) {
+            $CY->session->set_flashdata('cy_validation_error_1005CodeYro05', VALIDATION_ERROR_LIST());
+            CY_REDIRECT($page);
+        }
+        else{
+            P(["code"=>-1, "status"=>"Error","message"=>"Invalid call, there no failed validation found.!, you can call this function if validation is failed."]);
+        }
+    }
+}
+
 
 if(! function_exists("VALIDATION_GET_FLASH_ERROR")){
     function VALIDATION_GET_FLASH_ERROR($inputname){
