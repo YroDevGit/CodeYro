@@ -5,7 +5,7 @@
   <p>The Page you're looking for isn't here.</p>
   <div align="left" class="back">
 	<div>
-		<a href="<?= CY_MAIN_URL() ?>">
+		<a href="<?= ROOT_PATH ?>">
 			<button class="back-btn">Go back</button>
 		</a>
 	</div>
@@ -182,7 +182,7 @@ transform: rotate(-20deg);
   transform: rotate(-20deg);
   }
 }
-}
+
 @-moz-keyframes animation_error_2 {
   from { -webkit-transform: rotate(-15deg); 
   transform: rotate(-15deg);

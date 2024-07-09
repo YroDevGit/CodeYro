@@ -55,7 +55,7 @@ if ($is_backend) {
     define('ENCRYPTION_CODE', "1234567891031420");
     define("SECURE_KEY", "CodeYro");
 
-    define('ROOT_PATH', SERVERNAME."/".APPNAME);
+    define('ROOT_PATH', PROTOCOL.SERVERNAME."/".APPNAME);
     define('API', SERVERNAME."/".APPNAME."/back_end/index.php/");
     
     require_once BASEPATH . 'core/CodeIgniter.php';
