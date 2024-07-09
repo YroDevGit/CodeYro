@@ -191,13 +191,29 @@ if(! function_exists("SET_COKIE")){
         $cokie_data = array(
             'name'   => $key,  
             'value'  => $value,  
-            'expire' => 86500,  
+            'expire' => $expiration,  
             'secure' => FALSE,  // TRUE if the cookie should only be transmitted over secure HTTPS connections
             'httponly' => FALSE,  // TRUE to make the cookie accessible only through the HTTP protocol
             'domain' => '',  
             'path'   => '/', 
         );
         $CY->input->set_cookie($cokie_data);
+    }
+}
+
+if(! function_exists("COKIE_EXIST")){
+    function COKIE_EXIST($input){
+        /**
+         * Boolean
+         */
+        $ret = false;
+        $cookie_value = get_cookie($input);
+        if ($cookie_value !== NULL) {
+            $ret = true;
+        } else {
+            $ret = false;
+        }
+        return $ret;
     }
 }
 
@@ -216,8 +232,7 @@ if(! function_exists("REMOVE_COKIE")){
         /**
          *  => Void
          */
-        $CY =& get_instance();    
-        $CY->input->set_cookie($key, '', 0, '/');
+        setcookie($key, '', time() - 9999999999, '/');
     }
 }
 
