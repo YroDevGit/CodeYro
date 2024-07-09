@@ -84,13 +84,6 @@ $phpContent = <<<EOT
 \$SERVER_NAME = "$server"; // Mandatory - this is the first thing you need to rename
 \$APP_NAME = "$name"; // Mandatory - this is the second thing you need to rename
 
-/**
- * \$MAIN_PAGE
- * Welcome is found at application\\controllers\\Welcome.php 
- * Open Welcome.php inside controllers folder to modify view, if you want to change the main page, you can create new controller and rename the MAIN_PAGE value
- */
-\$MAIN_PAGE = "Welcome";
-/** END OF MAIN_PAGE */
 
 ?>
 EOT;

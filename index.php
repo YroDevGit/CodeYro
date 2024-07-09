@@ -38,7 +38,6 @@ if ($is_backend) {
     define("PROTOCOL", "http://");
     define("SERVERNAME", $SERVER_NAME);
     define("APPNAME", $APP_NAME);
-    define("MAIN_PAGE", $MAIN_PAGE);
 
     define('BASEPATH', $front_end_path . 'system/');
     define('APPPATH', $front_end_path . 'application/');
