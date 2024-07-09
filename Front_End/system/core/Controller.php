@@ -39,7 +39,10 @@ class CY_Controller {
 		$this->load->initialize();
 		log_message('info', 'Controller Class Initialized');
 		$this->load->database();
+		$this->load->library('session');
+		$this->load->helper('cookie');
 		$this->load->helper("back_end_helper");
+		$this->load->helper('security');
 		$this->load->helper("form_helper");
 		$this->load->helper("yro_helper");
 		$this->load->helper("fe_sql_helper");

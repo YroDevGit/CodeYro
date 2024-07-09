@@ -36,6 +36,7 @@ if ($is_backend) {
     header("Location: Back_end/index.php");
 } else {
 
+    define("PROTOCOL", "http://");
     define("SERVERNAME", $SERVER_NAME);
     define("APPNAME", $APP_NAME);
     define("MAIN_PAGE", $MAIN_PAGE);

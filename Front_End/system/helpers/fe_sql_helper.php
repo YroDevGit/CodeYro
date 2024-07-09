@@ -15,7 +15,7 @@ if (!function_exists('CY_SetQuery')) {
                 return ["code"=>-1, "status"=> $error, "message"=>"Error"]; exit;
             }
             if (stripos(trim($sql), 'select') === 0) {
-                return ["code"=>CY_SUCCESS, "status"=>$query, "message"=> "SUCCESS", "data"=>$query->result()]; exit;
+                return ["code"=>CY_SUCCESS, "status"=>$query, "message"=> "SUCCESS", "data"=>$query->result_array()]; exit;
             }else if(stripos(trim($sql), 'insert') === 0){
                 return ["code"=>CY_SUCCESS, "status"=>$query, "message" => "Data inserted successfully", "insert_id"=>$CY->db->insert_id(), "parameters"=>$params];
                 exit;

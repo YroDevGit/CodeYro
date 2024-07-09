@@ -72,7 +72,7 @@ if ( ! function_exists('site_url'))
 if(! function_exists("controller")){
 	function controller($uri = '', $protocol = NULL)
 	{
-		return "http://".get_instance()->config->site_url($uri, $protocol);
+		return PROTOCOL.get_instance()->config->site_url($uri, $protocol);
 	}
 }
 
@@ -156,15 +156,64 @@ if ( ! function_exists('ASSETS'))
 	 * @param	string	$protocol
 	 * @return	string
 	 */
-	function ASSETS($uri = null)
+	function ASSETS($uri = null, $protocol=null)
 	{
 		
 		$ret = "";
 		if($uri==""||$uri==null){
-			$ret = ASSETS;
+			$ret = PROTOCOL.get_instance()->config->site_url($uri, $protocol).ASSETS;
 		}
 		else{
-			$ret = ASSETS.$uri;
+			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).ASSETS.$uri;
+		}
+		return $ret;
+	}
+
+	
+}
+
+
+
+if(! function_exists("RESOURCES")){
+	function RESOURCES($uri = null, $protocol=null)
+	{
+		
+		$ret = "";
+		if($uri==""||$uri==null){
+			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).RESOURCES;
+		}
+		else{
+			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).RESOURCES.$uri;
+		}
+		return $ret;
+	}
+}
+
+if(! function_exists("SECURITY")){
+	function SECURITY($uri = null, $protocol=null)
+	{
+		
+		$ret = "";
+		if($uri==""||$uri==null){
+			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).SECURITY;
+		}
+		else{
+			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).SECURITY.$uri;
+		}
+		return $ret;
+	}
+}
+
+if(! function_exists("STORAGE")){
+	function STORAGE($uri = null, $protocol=null)
+	{
+		
+		$ret = "";
+		if($uri==""||$uri==null){
+			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).STORAGE;
+		}
+		else{
+			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).STORAGE.$uri;
 		}
 		return $ret;
 	}
