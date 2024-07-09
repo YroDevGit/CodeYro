@@ -28,6 +28,9 @@ if(! function_exists("POST_DATA")){
 }
 
 if(! function_exists("SET_VALIDATION")){
+    /** => Void
+     * set validation to the specific form input
+     */
     function SET_VALIDATION($inputname, $label, $rules){
         $CY =& get_instance();
         $CY->form_validation->set_rules($inputname, $label, $rules);
@@ -36,15 +39,72 @@ if(! function_exists("SET_VALIDATION")){
 }
 
 
-if(! function_exists("VALIDATION_FAILED")){
-    function VALIDATION_FAILED(){
+if (!function_exists('VALIDATION_FAILED')) {
+    function VALIDATION_FAILED() {
+        /** => Boolean
+         * Check if there is input validation that fails
+         * Required SET_VALIDATION function
+         */
         $CY =& get_instance();
-        return $CY->form_validation->run() == false;
+        if ($CY->form_validation->run() == false) {
+            $CY->session->set_flashdata('cy_validation_error_1005CodeYro05', VALIDATION_ERROR_LIST());
+            return true;
+        }
+
+        return false; 
     }
 }
 
+
+if(! function_exists("VALIDATION_GET_FLASH_ERROR")){
+    function VALIDATION_GET_FLASH_ERROR($inputname){
+        /** => Array
+         * This is effective in both load view and redirects
+         * This will required VALIDATION_FAILED() to be effective
+         * CodeYro
+         */
+        $all_error = (!empty(GET_FLASHDATA("cy_validation_error_1005CodeYro05"))?GET_FLASHDATA("cy_validation_error_1005CodeYro05"): []);
+        $ret = "";
+        if(isset($all_error[$inputname])){
+            $ret = $all_error[$inputname];
+        }
+        else{
+            $ret = "";
+        }
+        return $ret;
+    }
+}
+
+if(! function_exists("VALIDATION_FAILED_MESSAGE")){
+    function VALIDATION_FAILED_MESSAGE($inputname){ //String
+        /** => String
+         * This is effective in both load view and redirects
+         * This will required VALIDATION_FAILED() to be effective
+         * CodeYro
+         */
+        return VALIDATION_GET_FLASH_ERROR($inputname);
+    }
+}
+
+if(! function_exists("VALIDATION_ALL_FAILED_LIST")){ 
+    function VALIDATION_ALL_FAILED_LIST(){
+        /** => array
+         * This is effective in both load view and redirects
+         * This will required VALIDATION_FAILED() to be effective
+         * CodeYro
+         */
+        $all_error = (!empty(GET_FLASHDATA("cy_validation_error_1005CodeYro05"))?GET_FLASHDATA("cy_validation_error_1005CodeYro05"): []);
+        return $all_error;
+    }
+}
+
+
+
 if(! function_exists("VALIDATION_ERROR_LIST")){
     function VALIDATION_ERROR_LIST(){
+        /**
+         *  => Array
+         */
         $CY =& get_instance();
         return $CY->form_validation->validation_errors();
     }
@@ -59,6 +119,9 @@ if(! function_exists("CY_USE_MODEL")){
 
 if(! function_exists("SET_SESSION_ARRAY")){
     function SET_SESSION_ARRAY($session){
+        /**
+         *  => Void
+         */
         $CY =& get_instance();
         if(is_array($session)){
             $CY->session->set_userdata($session);
@@ -71,6 +134,9 @@ if(! function_exists("SET_SESSION_ARRAY")){
 
 if(! function_exists("SET_SESSION")){
     function SET_SESSION($key, $value){
+        /**
+         *  => Void
+         */
         $CY =& get_instance();
         $CY->session->set_userdata($key,$value);
     }
@@ -78,6 +144,9 @@ if(! function_exists("SET_SESSION")){
 
 if(! function_exists("GET_SESSION")){
     function GET_SESSION($key){
+        /**
+         *  => Array or String
+         */
         $CY =& get_instance();
         return $CY->session->userdata($key);
     }
@@ -85,6 +154,9 @@ if(! function_exists("GET_SESSION")){
 
 if(! function_exists("GET_ALL_SESSION")){
     function GET_ALL_SESSION(){
+        /**
+         *  => Array
+         */
         $CY =& get_instance();
         return $CY->session->all_userdata();
     }
@@ -92,12 +164,18 @@ if(! function_exists("GET_ALL_SESSION")){
 
 if(! function_exists("REMOVE_SESSION")){
     function REMOVE_SESSION($key){
+        /**
+         *  => Void
+         */
         $CY =& get_instance();
         $CY->session->unset_userdata($key);
     }
 }
 
 if(! function_exists("REMOVE_ALL_SESSION")){
+    /**
+         *  => Void
+         */
     function REMOVE_ALL_SESSION($key){
         $CY =& get_instance();
         $CY->session->sess_destroy();
@@ -106,6 +184,9 @@ if(! function_exists("REMOVE_ALL_SESSION")){
 
 if(! function_exists("SET_COKIE")){
     function SET_COKIE($key, $value, $expiration = 86500){
+        /**
+         *  => Void
+         */
         $CY =& get_instance();
         $cokie_data = array(
             'name'   => $key,  
@@ -122,6 +203,9 @@ if(! function_exists("SET_COKIE")){
 
 if(! function_exists("GET_COKIE")){
     function GET_COKIE($key){
+        /**
+         *  => String or Array
+         */
         $CY =& get_instance();    
         return $CY->input->cookie($key, TRUE);
     }
@@ -129,6 +213,9 @@ if(! function_exists("GET_COKIE")){
 
 if(! function_exists("REMOVE_COKIE")){
     function REMOVE_COKIE($key){
+        /**
+         *  => Void
+         */
         $CY =& get_instance();    
         $CY->input->set_cookie($key, '', 0, '/');
     }
@@ -136,12 +223,18 @@ if(! function_exists("REMOVE_COKIE")){
 
 if(! function_exists("SET_FLASHDATA")){
     function SET_FLASHDATA($key, $value){
+        /**
+         *  => Void
+         */
         $CY =& get_instance();    
         $CY->session->set_flashdata($key, $value);
     }
 }
 if(! function_exists("GET_FLASHDATA")){
     function GET_FLASHDATA($key){
+        /**
+         *  => Array or String
+         */
         $CY =& get_instance();    
         return $CY->session->flashdata($key);
     }

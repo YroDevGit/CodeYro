@@ -69,6 +69,25 @@ if ( ! function_exists('site_url'))
 
 }
 
+if ( ! function_exists('CY_MAIN_URL'))
+{
+	/**
+	 * Site URL
+	 *
+	 * Create a local URL based on your basepath. Segments can be passed via the
+	 * first parameter either as a string or an array.
+	 *
+	 * @param	string	$uri
+	 * @param	string	$protocol
+	 * @return	string
+	 */
+	function CY_MAIN_URL($uri = '', $protocol = NULL)
+	{
+		return PROTOCOL.get_instance()->config->site_url($uri, $protocol);
+	}
+
+}
+
 if(! function_exists("controller")){
 	function controller($uri = '', $protocol = NULL)
 	{
@@ -691,13 +710,27 @@ if ( ! function_exists('redirect'))
 		switch ($method)
 		{
 			case 'refresh':
-				header('Refresh:0;url='.$uri);
+				header('Refresh:0;url='.CY_MAIN_URL($uri));
 				break;
 			default:
-				header('Location: '.$uri, TRUE, $code);
+				header('Location: '.CY_MAIN_URL($uri), TRUE, $code);
 				break;
 		}
 		exit;
+	}
+}
+
+if(! function_exists("CY_REDIRECT")){
+	function CY_REDIRECT($uri = '', $method = 'auto', $code = NULL){
+		switch ($method)
+		{
+			case 'refresh':
+				header('Refresh:0;url='.CY_MAIN_URL($uri));
+				break;
+			default:
+				header('Location: '.CY_MAIN_URL($uri), TRUE, $code);
+				break;
+		}
 	}
 }
 

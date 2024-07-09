@@ -717,7 +717,10 @@ if ( ! function_exists('set_value'))
 		return ($html_escape) ? html_escape($value) : $value;
 	}
 
-	function old_value($field, $default = '', $html_escape = TRUE)
+}
+
+if(! function_exists("OLD_VALUE")){
+	function OLD_VALUE($field, $default = '', $html_escape = TRUE)
 	{
 		$CI =& get_instance();
 
@@ -922,6 +925,11 @@ if ( ! function_exists('VALIDATION_GET_ERROR'))
 	 */
 	function VALIDATION_GET_ERROR($field = '', $prefix = '', $suffix = '')
 	{
+		/**
+		 * This only works on load view or CY_VIEW
+		 * This is not effective in redirects, Must use VALIDATION_GET_FLASH_ERROR instead
+		 * CodeYro
+		 */
 		if (FALSE === ($OBJ =& _get_validation_object()))
 		{
 			return '';
