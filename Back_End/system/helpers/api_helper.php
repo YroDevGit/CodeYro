@@ -9,8 +9,8 @@ if(! function_exists("API_INPUT")){
     }
 }
 
-if(! function_exists("json_response")){
-    function json_response($result, $direct=false){
+if(! function_exists("JSON_RESPONSE")){
+    function JSON_RESPONSE($result, $direct=false){
       
        if(is_array($result)){
         $ret = [

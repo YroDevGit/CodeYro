@@ -35,7 +35,7 @@ include "data.php";
 if ($is_backend) {
     header("Location: Back_end/index.php");
 } else {
-    define("PROTOCOL", "http://");
+    define("PROTOCOL", $APP_PROTOCOL);
     define("SERVERNAME", $SERVER_NAME);
     define("APPNAME", $APP_NAME);
 
@@ -56,6 +56,10 @@ if ($is_backend) {
 
     define('ROOT_PATH', PROTOCOL.SERVERNAME."/".APPNAME);
     define('API', SERVERNAME."/".APPNAME."/back_end/index.php/");
+
+
+    $APP_LINK = get_cy_base_url(PROTOCOL.SERVERNAME."/".APPNAME); //you can use: $APP_LINK = "http://www.CodeYro.com"; Production
+    define("APP_LINK", $APP_LINK."/");
     
     require_once BASEPATH . 'core/CodeIgniter.php';
 }
@@ -64,3 +68,18 @@ catch(Exception $e){
     header("Refresh: 0; url=generate");
 }
 ?>
+
+<?php
+function get_cy_base_url($default = PROTOCOL.SERVERNAME."/".APPNAME) {
+    $host = $_SERVER['HTTP_HOST'];
+    $uri = $_SERVER['REQUEST_URI'];
+    if (strpos($host, ':') !== false) {
+        return "http://$host/";
+    } else {
+        return $default;
+    }
+}
+
+
+?>
+

@@ -2,6 +2,11 @@
 
 if(! function_exists("CY_VIEW")){
     function CY_VIEW($view, $data=[]){
+        /** ==> Void
+         * CY_VIEW parameters: $view = view filename. $data = data to be pass from controller to view file
+         * Example use: view filename is required as parameter
+         * CY_VIEW('view_filename', ['page'=>'page1']);  // view_filename is the view filename
+         */
         $CY =& get_instance();
         if(empty($data)){
             $CY->load->view($view);

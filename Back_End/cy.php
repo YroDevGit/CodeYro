@@ -1,6 +1,15 @@
 <?php
 
+/**
+ * @author Tyrone Limen Malocon
+ * CY command to start server inside Front_End environment
+ *  CodeYro
+ */
 include_once "..\IgniteData\ForCommand\command.php";
+/**
+ * Please do not modify anything here...
+ * 
+ */
 
 function findProjectRoot($currentDir) {
     $maxDepth = 10;
@@ -33,5 +42,8 @@ $command = $php_command;
 echo $print_data;
 
 passthru($command);
+/**
+ * CodeYro by: Tyrone Limen Malocon => Yro Lee Emz
+ */
 
 ?>

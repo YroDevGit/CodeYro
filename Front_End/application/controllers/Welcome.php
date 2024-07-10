@@ -5,7 +5,7 @@ class Welcome extends CY_Controller {
 
 	
 	public function index()
-	{
-		$this->load->view('welcome_message');
+	{ 
+		CY_VIEW('welcome_message');	
 	}
 }

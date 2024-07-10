@@ -83,7 +83,7 @@ if ( ! function_exists('CY_MAIN_URL'))
 	 */
 	function CY_MAIN_URL($uri = '', $protocol = NULL)
 	{
-		return PROTOCOL.get_instance()->config->site_url($uri, $protocol);
+		return get_instance()->config->site_url($uri, $protocol);
 	}
 
 }
@@ -91,7 +91,7 @@ if ( ! function_exists('CY_MAIN_URL'))
 if(! function_exists("controller")){
 	function controller($uri = '', $protocol = NULL)
 	{
-		return PROTOCOL.get_instance()->config->site_url($uri, $protocol);
+		return get_instance()->config->site_url($uri, $protocol);
 	}
 }
 
@@ -180,10 +180,10 @@ if ( ! function_exists('ASSETS'))
 		
 		$ret = "";
 		if($uri==""||$uri==null){
-			$ret = PROTOCOL.get_instance()->config->site_url($uri, $protocol).ASSETS;
+			$ret = get_instance()->config->site_url($uri, $protocol).ASSETS;
 		}
 		else{
-			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).ASSETS.$uri;
+			$ret = get_instance()->config->site_url('', $protocol).ASSETS.$uri;
 		}
 		return $ret;
 	}
@@ -199,10 +199,10 @@ if(! function_exists("RESOURCES")){
 		
 		$ret = "";
 		if($uri==""||$uri==null){
-			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).RESOURCES;
+			$ret = get_instance()->config->site_url('', $protocol).RESOURCES;
 		}
 		else{
-			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).RESOURCES.$uri;
+			$ret = get_instance()->config->site_url('', $protocol).RESOURCES.$uri;
 		}
 		return $ret;
 	}
@@ -214,10 +214,10 @@ if(! function_exists("SECURITY")){
 		
 		$ret = "";
 		if($uri==""||$uri==null){
-			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).SECURITY;
+			$ret = get_instance()->config->site_url('', $protocol).SECURITY;
 		}
 		else{
-			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).SECURITY.$uri;
+			$ret = get_instance()->config->site_url('', $protocol).SECURITY.$uri;
 		}
 		return $ret;
 	}
@@ -229,10 +229,10 @@ if(! function_exists("STORAGE")){
 		
 		$ret = "";
 		if($uri==""||$uri==null){
-			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).STORAGE;
+			$ret = get_instance()->config->site_url('', $protocol).STORAGE;
 		}
 		else{
-			$ret = PROTOCOL.get_instance()->config->site_url('', $protocol).STORAGE.$uri;
+			$ret = get_instance()->config->site_url('', $protocol).STORAGE.$uri;
 		}
 		return $ret;
 	}
@@ -722,6 +722,11 @@ if ( ! function_exists('redirect'))
 
 if(! function_exists("CY_REDIRECT")){
 	function CY_REDIRECT($uri = '', $method = 'auto', $code = NULL){
+		/** => Void
+		 * Example use: controller classname: cycontrol
+		 * index function => CY_REDIRECT('cycontrol');
+		 * other function => CY_REDIRECT('cycontrol/show'); <== show is the function name under cycontrol
+		 */
 		switch ($method)
 		{
 			case 'refresh':

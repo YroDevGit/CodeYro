@@ -83,6 +83,7 @@ $phpContent = <<<EOT
 // When using apache, might need to use the default http://localhost/, might need to rename when server is changed
 \$SERVER_NAME = "$server"; // Mandatory - this is the first thing you need to rename
 \$APP_NAME = "$name"; // Mandatory - this is the second thing you need to rename
+\$APP_PROTOCOL = "http://"; // Mandatory - this is the second thing you need to rename
 
 
 ?>
@@ -269,12 +270,13 @@ function getProjectRootFolderName() {
     </style>
 </head>
 <body>
-    <?php if(file_exists("../data.php")): ?>    
+    <?php if(file_exists("../data.php")): ?>
+        <?php include_once "../data.php" ?>
     <div class="rw"><span class="makesure">Welcome to CodeYRO:</span></div>
-    <div class="rw"><a href="../" target="_blank">Open Homepage</a></div>
-    <div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="Controller/FE/" target="_blank">Add Front End <b>Controller</b></a></div>
-    <div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="Model/index.php" target="_blank">Add Front End <b>MODEL</b></a></div>
-    <div class="rw"><a onclick="return confirm('Are you assigned to Back End?')" href="Controller/BE/" target="_blank">Add Back End <b>Controller</b></a></div>
+    <div class="rw"><a href="<?= $APP_PROTOCOL.$SERVER_NAME.'/'.$APP_NAME ?>" target="_blank">Open Homepage</a></div>
+    <div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="<?= $APP_PROTOCOL.$SERVER_NAME.'/'.$APP_NAME.'/generate/Controller/FE/' ?>" target="_blank">Add Front End <b>Controller</b></a></div>
+    <div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="<?= $APP_PROTOCOL.$SERVER_NAME.'/'.$APP_NAME.'/generate/Model/index.php' ?>" target="_blank">Add Front End <b>MODEL</b></a></div>
+    <div class="rw"><a onclick="return confirm('Are you assigned to Back End?')" href="<?= $APP_PROTOCOL.$SERVER_NAME.'/'.$APP_NAME.'/generate/Controller/BE/' ?>" target="_blank">Add Back End <b>Controller</b></a></div>
     <?php endif; ?>
 
     <?php if(file_exists("../data.php")): ?> 
