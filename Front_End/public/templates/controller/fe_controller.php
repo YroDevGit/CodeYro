@@ -16,9 +16,8 @@ class controller_template extends CY_Controller {
     public function index()
     {
         /**
-         * You can add view here to display front_end view
-         * $this->load->view('welcome_message'); // will display welcome_message.php
-         * 
+         * You can create function here
+         *  create API's
          */
         
     }

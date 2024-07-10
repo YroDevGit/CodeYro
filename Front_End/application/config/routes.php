@@ -1,10 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * this is for the main page route
+ */
+include "Front_End\FE_MAINPAGE.php";
+$MAINPAGE = CY_MAIN_PAGE;
+/**
+ * if you want to modify mainpage, please refer to replace value in Front_End/FE_MAINPAGE.php
+ */
 
-$MAINPAGE = "Welcome";
-
-define("MAIN_PAGE", $MAINPAGE);
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
