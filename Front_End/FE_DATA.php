@@ -33,4 +33,6 @@ if(!defined('FE_CY_APP_EMAIL')){
     define('FE_CY_APP_EMAIL',$FE_CY_APP_EMAIL);
 }
 
+//define variables here...
+
 ?>
