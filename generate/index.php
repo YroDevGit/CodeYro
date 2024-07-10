@@ -87,6 +87,19 @@ $phpContent = <<<EOT
 
 
 ?>
+<?php
+function get_cy_base_link(\$default) {
+    \$host = \$_SERVER['HTTP_HOST'];
+    \$uri = \$_SERVER['REQUEST_URI'];
+    if (strpos(\$host, ':') !== false) {
+        return "http://\$host";
+    } else {
+        return \$default;
+    }
+}
+
+
+?>
 EOT;
 
 if (file_put_contents($phpFile, $phpContent) !== false) {
@@ -273,10 +286,10 @@ function getProjectRootFolderName() {
     <?php if(file_exists("../data.php")): ?>
         <?php include_once "../data.php" ?>
     <div class="rw"><span class="makesure">Welcome to CodeYRO:</span></div>
-    <div class="rw"><a href="<?= $APP_PROTOCOL.$SERVER_NAME.'/'.$APP_NAME ?>" target="_blank">Open Homepage</a></div>
-    <div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="<?= $APP_PROTOCOL.$SERVER_NAME.'/'.$APP_NAME.'/generate/Controller/FE/' ?>" target="_blank">Add Front End <b>Controller</b></a></div>
-    <div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="<?= $APP_PROTOCOL.$SERVER_NAME.'/'.$APP_NAME.'/generate/Model/index.php' ?>" target="_blank">Add Front End <b>MODEL</b></a></div>
-    <div class="rw"><a onclick="return confirm('Are you assigned to Back End?')" href="<?= $APP_PROTOCOL.$SERVER_NAME.'/'.$APP_NAME.'/generate/Controller/BE/' ?>" target="_blank">Add Back End <b>Controller</b></a></div>
+    <div class="rw"><a href="<?= get_cy_base_link($APP_PROTOCOL.$SERVER_NAME.'/'.$APP_NAME) ?>" target="_blank">Open Homepage</a></div>
+    <div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="<?= get_cy_base_link($APP_PROTOCOL.$SERVER_NAME.'/'.$APP_NAME).'/generate/Controller/FE/' ?>" target="_blank">Add Front End <b>Controller</b></a></div>
+    <div class="rw"><a onclick="return confirm('Are you assigned to Front End?')" href="<?= get_cy_base_link($APP_PROTOCOL.$SERVER_NAME.'/'.$APP_NAME).'/generate/Model/index.php' ?>" target="_blank">Add Front End <b>MODEL</b></a></div>
+    <div class="rw"><a onclick="return confirm('Are you assigned to Back End?')" href="<?= get_cy_base_link($APP_PROTOCOL.$SERVER_NAME.'/'.$APP_NAME).'/generate/Controller/BE/' ?>" target="_blank">Add Back End <b>Controller</b></a></div>
     <?php endif; ?>
 
     <?php if(file_exists("../data.php")): ?> 

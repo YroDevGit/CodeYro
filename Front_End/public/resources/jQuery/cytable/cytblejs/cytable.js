@@ -2,7 +2,7 @@ $(document).ready(function() {
     // CY_TABLE
     var exportFilename = $('#CY_TABLE').attr('export') || 'Exported_Data';
     var maxrow = $('#CY_TABLE').attr('maxrow') || 10;
-    var ordering = $('#CY_TABLE').attr('maxrow') || false;
+    var ordering = $('#CY_TABLE').attr('ordering') || false;
     var defaultClass = $('#CY_TABLE').attr('defaultClass') || true;
 
     $('#CY_TABLE').DataTable({

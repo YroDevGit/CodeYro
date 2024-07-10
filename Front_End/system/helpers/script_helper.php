@@ -66,7 +66,7 @@ if(! function_exists("ADD_CUSTOMS")){
 
 
 if(! function_exists("ADD_ALL_SCRIPTS")){
-    function ADD_ALL_SCRIPTS(){
+    function ADD_ALL_SCRIPTS($arr = ["CY_TABLE"=>"FALSE"]){
         ?>
         <script src="<?= RESOURCES('react/react.js') ?>"></script>
         <script src="<?= RESOURCES('react/react-dom.js') ?>"></script>
@@ -83,7 +83,11 @@ if(! function_exists("ADD_ALL_SCRIPTS")){
 
         <script src="<?= RESOURCES('customs/customjs.js') ?>"></script>
         <?php
-        ADD_CY_TABLE();
+        if(in_array("CY_TABLE", $arr)){
+            if($arr['CY_TABLE']=="TRUE"){
+                ADD_CY_TABLE();
+            }
+        }
     }
 }
 

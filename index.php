@@ -80,7 +80,7 @@ function get_cy_base_url($default = PROTOCOL.SERVERNAME."/".APPNAME) {
     $host = $_SERVER['HTTP_HOST'];
     $uri = $_SERVER['REQUEST_URI'];
     if (strpos($host, ':') !== false) {
-        return "http://$host/";
+        return "http://$host";
     } else {
         return $default;
     }

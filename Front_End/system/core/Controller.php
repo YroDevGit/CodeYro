@@ -3,6 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 define("CY_SUCCESS", 200);
+include_once "Front_End\FE_DATA.php";
 
 #[\AllowDynamicProperties]
 class CY_Controller {
