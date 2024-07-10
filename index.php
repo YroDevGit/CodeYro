@@ -57,8 +57,14 @@ if ($is_backend) {
     define('ROOT_PATH', PROTOCOL.SERVERNAME."/".APPNAME);
     define('API', SERVERNAME."/".APPNAME."/back_end/index.php/");
 
+    //
+    //When changing environment, you can modify $CY_APP_BASE_PATH
+    $CY_APP_BASE_PATH = PROTOCOL.SERVERNAME."/".APPNAME;  //you can use: $APP_LINK = "http://www.CodeYro.com"; Production
+    //$CY_APP_BASE_PATH = "http://www.CodeYro.com";   // Sample link when hosted, replace the link with your actual link
+    // PROTOCOL.SERVERNAME."/".APPNAME is a default localhost environment, you can change it when it is hosted.
+    //
 
-    $APP_LINK = get_cy_base_url(PROTOCOL.SERVERNAME."/".APPNAME); //you can use: $APP_LINK = "http://www.CodeYro.com"; Production
+    $APP_LINK = get_cy_base_url($CY_APP_BASE_PATH); 
     define("APP_LINK", $APP_LINK."/");
     
     require_once BASEPATH . 'core/CodeIgniter.php';
