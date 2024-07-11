@@ -57,7 +57,7 @@ if(! function_exists("ADD_ENCRYPTION")){
 
 
 if(! function_exists("ADD_CUSTOMS")){
-    function ADD_CUSTOMS(){
+    function ADD_CY_SCRIPTS(){
         ?>
         <script src="<?= RESOURCES('customs/customjs.js') ?>"></script>
         <?php

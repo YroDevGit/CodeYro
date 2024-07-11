@@ -9,6 +9,8 @@ if(isset($_POST['btn'])){
     $phpFile1 = "../../Front_End/application/controllers/".$name.".php"; // Name of the PHP file to be created
     $link = "../../../".$name;
 
+    $guide_cy = "\$this->{$name}->getName();";
+
     $phpContent = <<<EOT
     <?php
         defined('BASEPATH') OR exit('No direct script access allowed');
@@ -19,21 +21,30 @@ if(isset($_POST['btn'])){
                 parent::__construct();
                 /**
                  * in your controller. add this model
-                 *  \$this->load->model('$name');   or   USE_MODEL('$name');
-                 * Model usage: 
-                 * Example function name: showAll(){ return 1; }
-                 *  ==> usage: \$this->\$name->showAll();
+                 * CY_USE_MODEL('$name');   or   \$this->load->model('$name');
                  */
 
-                \$TABLE = "";  //put your table name inside the double qoute.
-                define("TABLE", \$TABLE);
+                \$TABLE = "";  // <<<<<======== put your table name inside the double qoute. <<<====== TABLE NAME
+
+                //Define table to use in every functions...
+                define('TABLE', \$TABLE);
             }
+
+            
+            public function getTableName(){ //Sample function, you can delete or replace this.
+                return TABLE;
+            } // to call this function: $guide_cy
         
-            /**
-             * Add functions here...
-             * Example: public function showAll(){}
-             * 
-             */
+            
+            //add functions here...
+
+
+
+
+
+
+            
+
         }
     ?>
     EOT;

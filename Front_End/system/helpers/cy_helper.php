@@ -112,6 +112,29 @@ if(! function_exists("VALIDATION_GET_FLASH_ERROR")){
     }
 }
 
+if(! function_exists("VALIDATION_FAILED_MESSAGE_ARRAY")){
+    function VALIDATION_FAILED_MESSAGE_ARRAY(){
+        /** => Array
+         * This is effective in both load view and redirects
+         * This will required VALIDATION_FAILED() to be effective
+         * CodeYro
+         */
+        $all_error = (!empty(GET_FLASHDATA("cy_validation_error_1005CodeYro05"))?GET_FLASHDATA("cy_validation_error_1005CodeYro05"): []);
+        return $all_error;
+    }
+}
+
+if(! function_exists("VALIDATION_FAILED_MESSAGE_LIST")){
+    function VALIDATION_FAILED_MESSAGE_LIST(){
+        /** => Array
+         * This is effective in both load view and redirects
+         * This will required VALIDATION_FAILED() to be effective
+         * CodeYro
+         */
+        return VALIDATION_FAILED_MESSAGE_ARRAY();
+    }
+}
+
 if(! function_exists("VALIDATION_FAILED_MESSAGE")){
     function VALIDATION_FAILED_MESSAGE($inputname){ //String
         /** => String
@@ -139,8 +162,8 @@ if(! function_exists("VALIDATION_ALL_FAILED_LIST")){
 
 if(! function_exists("VALIDATION_ERROR_LIST")){
     function VALIDATION_ERROR_LIST(){
-        /**
-         *  => Array
+        /** => Array
+         *  Not effective in any redirects
          */
         $CY =& get_instance();
         return $CY->form_validation->validation_errors();
@@ -350,6 +373,53 @@ if(! function_exists("UN_SET")){
          * Remove $value existence
          */
         unset($val);
+    }
+}
+
+if(! function_exists("CY_PARSE_DATE")){
+    function CY_PARSE_DATE($value){
+        /** ==> Date / Date string
+         * convert value to Date
+         */
+        $date = new DateTime($value);
+        $formattedDate = $date->format('Y-m-d');
+        return $formattedDate;
+    }
+}
+
+if(! function_exists("CY_PARSE_STRING")){
+    function CY_PARSE_STRING($value){
+        /** ==> String
+         * convert value to String 
+         */
+        return strval($value);
+    }
+}
+
+if(! function_exists("CY_PARSE_INT")){
+    function CY_PARSE_INT($value){
+        /** ==> Int / Integer
+         * convert value to Integer 
+         */
+        return intval($value);
+    }
+}
+
+if(! function_exists("CY_PARSE_FLOAT")){
+    function CY_PARSE_FLOAT($value){
+        /** ==> Float
+         * convert value to Float
+         */
+        return floatval($value);
+    }
+}
+
+if(! function_exists("CY_PARSE_DOUBLE")){
+    function CY_PARSE_DOUBLE($value){
+        /** ==> Double
+         * convert value to Double
+         */
+        return doubleval($value);
     }
 }
 
