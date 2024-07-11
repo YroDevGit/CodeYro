@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 define("CY_SUCCESS", 200);
-include_once "Front_End\FE_DATA.php";
+include_once "Front_End\SystemData\FE_DATA.php";
 
 #[\AllowDynamicProperties]
 class CY_Controller {
@@ -64,6 +64,7 @@ class CY_Controller {
 		define("POST_ACTIVE", empty($this->POST)? false : true);
 
 		$this->load->helper('cy_helper');
+		$this->load->helper('component_helper');
 	}
 
 	// --------------------------------------------------------------------
