@@ -15,7 +15,12 @@ if (!function_exists('CY_DB_SETQUERY')) {
                 return ["code"=>-1, "status"=> $error, "message"=>"Error"]; exit;
             }
             if (stripos(trim($sql), 'select') === 0) {
-                return ["code"=>CY_SUCCESS, "status"=>$query, "message"=> "SUCCESS", "data"=>$query->result_array()]; exit;
+                $result_array = $query->result_array();
+                $first_row = [];
+                if(! empty($result_array)){
+                    $first_row = $result_array[0];
+                }
+                return ["code"=>CY_SUCCESS, "status"=>$query, "message"=> "SUCCESS", "data"=>$result_array,"first_row"=>$first_row]; exit;
             }else if(stripos(trim($sql), 'insert') === 0){
                 return ["code"=>CY_SUCCESS, "status"=>$query, "message" => "Data inserted successfully", "insert_id"=>$CY->db->insert_id(), "parameters"=>$params];
                 exit;
@@ -47,7 +52,12 @@ if (!function_exists('CY_SETQUERY')) {
                 return ["code"=>-1, "status"=> $error, "message"=>"Error"]; exit;
             }
             if (stripos(trim($sql), 'select') === 0) {
-                return ["code"=>CY_SUCCESS, "status"=>$query, "message"=> "SUCCESS", "data"=>$query->result_array()]; exit;
+                $result_array = $query->result_array();
+                $first_row = [];
+                if(! empty($result_array)){
+                    $first_row = $result_array[0];
+                }
+                return ["code"=>CY_SUCCESS, "status"=>$query, "message"=> "SUCCESS", "data"=>$result_array,"first_row"=>$first_row]; exit;
             }else if(stripos(trim($sql), 'insert') === 0){
                 return ["code"=>CY_SUCCESS, "status"=>$query, "message" => "Data inserted successfully", "insert_id"=>$CY->db->insert_id(), "parameters"=>$params];
                 exit;
