@@ -17,6 +17,21 @@ if(! function_exists("CY_VIEW")){
     }
 }
 
+if(! function_exists("CY_VIEW_CONTENT")){
+    function CY_VIEW_CONTENT($content, $data=[]){
+        /** ==> Void
+         * CY_VIEW parameters: $content = content filename inside view. $data = data to be pass from controller to view file
+         */
+        $CY =& get_instance();
+        if(empty($data)){
+            $CY->load->view("contents/".$content);
+        }
+        else{
+            $CY->load->view("contents/".$content,$data);
+        }
+    }
+}
+
 
 if(! function_exists("POST")){
     function POST($inputname){
@@ -278,9 +293,68 @@ if(! function_exists("GET_FLASHDATA")){
 }
 
 
+if (!function_exists("CY_STRING_VALUE")) {
+    function CY_STRING_VALUE(&$val, $default="") {
+        /** => String
+         * if the $val is not set or exist then display the default value of "" or null.
+         * [Using isset]
+         */
+        return (isset($val) ? $val : $default);
+    }
+}
+
+if (!function_exists("CY_INT_VALUE")) {
+    function CY_INT_VALUE(&$val, $default=0) {
+        /** => Int / Integer
+         * if the $val is not set or exist then display the default value of 0 or null.
+         * [Using isset]
+         */
+        return (isset($val) ? intval($val) : $default);
+    }
+}
+
+if (!function_exists("CY_FLOAT_VALUE")) {
+    function CY_FLOAT_VALUE(&$val, $default=0) {
+        /** => Float
+         * if the $val is not set or exist then display the default value of 0 or null.
+         * [Using isset]
+         */
+        return (isset($val) ? floatval($val) : $default);
+    }
+}
+
+if(! function_exists("IS_EXIST")){
+    function IS_EXIST(&$val){
+        /** ==> Boolean
+         * check if $value is existing.
+         * TRUE if existing, False if not.
+         * [Using isset]
+         */
+        return isset($val);
+    }
+}
+if(! function_exists("IS_SET")){
+    function IS_SET(&$val){
+        /** ==> Boolean
+         * check if $value is existing.
+         * TRUE if existing, False if not.
+         * [Using isset]
+         */
+        return IS_EXIST($val);
+    }
+}
+
+if(! function_exists("UN_SET")){
+    function UN_SET(&$val){
+        /** ==> Void
+         * Remove $value existence
+         */
+        unset($val);
+    }
+}
 
 
-
-
-
+/**
+ * CodeYro
+ */
 ?>
