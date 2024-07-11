@@ -727,6 +727,18 @@ if(! function_exists("CY_REDIRECT")){
 		 * index function => CY_REDIRECT('cycontrol');
 		 * other function => CY_REDIRECT('cycontrol/show'); <== show is the function name under cycontrol
 		 */
+		if(isset($_POST)){
+			$to_send = [];
+			$CY =& get_instance();
+			$post_data = $CY->input->post();
+			if(empty($post_data)){
+				$to_send = [];
+			}
+			else{
+				$to_send = $post_data;
+			}
+			SET_FLASHDATA('CODEYRO_1005_POST_DATA_00129937_YRO', $to_send);
+		}
 		switch ($method)
 		{
 			case 'refresh':
@@ -738,4 +750,5 @@ if(! function_exists("CY_REDIRECT")){
 		}
 	}
 }
+
 

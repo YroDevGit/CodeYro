@@ -722,6 +722,9 @@ if ( ! function_exists('set_value'))
 if(! function_exists("OLD_VALUE")){
 	function OLD_VALUE($field, $default = '', $html_escape = TRUE)
 	{
+		/** ==> String or array
+		 * Not works on redirect like CY_REDIRECT or any redirects
+		 */
 		$CI =& get_instance();
 
 		$value = (isset($CI->form_validation) && is_object($CI->form_validation) && $CI->form_validation->has_rule($field))
@@ -730,6 +733,44 @@ if(! function_exists("OLD_VALUE")){
 
 		isset($value) OR $value = $default;
 		return ($html_escape) ? html_escape($value) : $value;
+	}
+}
+
+if(! function_exists("CY_INPUT_OLD_VALUE")){
+	function CY_INPUT_OLD_VALUE($field, $default = '', $html_escape = TRUE)
+	{
+		/** ==> String or array
+		 * This is works on redirects (CY_REDIRECT()).
+		 * This is only effective when CY_REDIRECT() is use/called.
+		 * not effective in any php redirects.
+		 */
+		$ret = "";
+		$flash_post = GET_FLASHDATA('CODEYRO_1005_POST_DATA_00129937_YRO');
+		if(! empty($flash_post)){
+			if(isset($flash_post[$field])){
+				$ret = $flash_post[$field];
+			}
+			else{
+				$ret = "Input name '".$field."' not defined.! - CodeYro";
+			}
+		}
+		else{
+			$ret = NULL;
+		}
+		return $ret;
+	}
+}
+
+if(! function_exists("CY_SELECT_SETVALUE")){
+	function CY_SELECT_SETVALUE($name, $value){
+		?>
+		<script>
+			window.addEventListener('load', function() {
+			var inputElement = document.querySelector("input[name='<?= $name ?>']");
+			inputElement.value = '<?= $value ?>';
+			});
+		</script>
+		<?php
 	}
 }
 
