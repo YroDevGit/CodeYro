@@ -74,24 +74,55 @@ include "Front_End/SystemData/database.php";
 $active_group = 'default';
 $query_builder = TRUE;
 
-$db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => CY_DB_HOST,
-	'username' => CY_DB_USERNAME,
-	'password' => CY_DB_PASSWORD,
-	'database' => CY_DATABASE,
-	'dbdriver' => CY_DB_DRIVER,
-	'dbprefix' => '',
-	'pconnect' => FALSE,
-	'db_debug' => FALSE,//(ENVIRONMENT !== 'production'),
-	'cache_on' => FALSE,
-	'cachedir' => '',
-	'char_set' => 'utf8',
-	'dbcollat' => 'utf8_general_ci',
-	'swap_pre' => '',
-	'encrypt' => FALSE,
-	'compress' => FALSE,
-	'stricton' => FALSE,
-	'failover' => array(),
-	'save_queries' => TRUE
-);
+$db['default'] = array();
+
+if(CY_DB_DRIVER=="mysqli"){
+	$db['default'] = array(
+		'dsn'	=> '',
+		'hostname' => CY_DB_HOST,
+		'username' => CY_DB_USERNAME,
+		'password' => CY_DB_PASSWORD,
+		'database' => CY_DATABASE,
+		'dbdriver' => CY_DB_DRIVER,
+		'dbprefix' => '',
+		'pconnect' => FALSE,
+		'db_debug' => FALSE,//(ENVIRONMENT !== 'production'),
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE,
+		'failover' => array(),
+		'save_queries' => TRUE
+	);
+}
+
+if(CY_DB_DRIVER=="pdo"){
+	$db['default'] = array(
+		'dsn'   => 'mysql:host='.CY_DB_HOST.';dbname='.CY_DATABASE,
+		'hostname' => "",
+		'username' => CY_DB_USERNAME,
+		'password' => CY_DB_PASSWORD,
+		'database' => '',
+		'dbdriver' => CY_DB_DRIVER,
+		'dbprefix' => '',
+		'pconnect' => FALSE,
+		'db_debug' => FALSE, // (ENVIRONMENT !== 'production'),
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE,
+		'failover' => array(),
+		'save_queries' => TRUE
+	);
+}
+
+
+

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * CodeYRO functions
+ */
+
 if(! function_exists("CY_VIEW")){
     function CY_VIEW($view, $data=[]){
         /** ==> Void
@@ -35,6 +39,9 @@ if(! function_exists("CY_VIEW_CONTENT")){
 
 if(! function_exists("POST")){
     function POST($inputname){
+        /** ==> Any
+         * Post data from form submission
+         */
         $CY =& get_instance();
         return $CY->POST[$inputname];
     }
@@ -42,6 +49,9 @@ if(! function_exists("POST")){
 
 if(! function_exists("POST_DATA")){
     function POST_DATA(){
+        /** ==> Array
+         * Post array from form submission
+         */
         $CY =& get_instance();
         return $CY->POST;
     }
