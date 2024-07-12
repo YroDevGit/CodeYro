@@ -76,7 +76,7 @@ $query_builder = TRUE;
 
 $db['default'] = array();
 
-if(CY_DB_DRIVER=="mysqli"){
+if(CY_DB_DRIVER=="mysqli" || CY_DB_DRIVER=="postgre"){
 	$db['default'] = array(
 		'dsn'	=> '',
 		'hostname' => CY_DB_HOST,
@@ -124,5 +124,125 @@ if(CY_DB_DRIVER=="pdo"){
 	);
 }
 
+if(CY_DB_DRIVER=="sqlite3"){
+	$db['default'] = array(
+		'dsn'   => 'sqlite:'.CY_DB_PATH,  
+		'hostname' => '',  
+		'username' => '', 
+		'password' => '',  
+		'database' => '',  
+		'dbdriver' => CY_DB_DRIVER,  
+		'dbprefix' => '',
+		'pconnect' => FALSE,
+		'db_debug' => FALSE, //(ENVIRONMENT !== 'production'),
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE,
+		'failover' => array(),
+		'save_queries' => TRUE
+	);	
+}
+
+if(CY_DB_DRIVER=="sqlsrv" || CY_DB_DRIVER=="mssql"){
+	$db['default'] = array(
+		'dsn'   => '',
+		'hostname' => CY_DB_HOST,
+		'username' => CY_DB_USERNAME,
+		'password' => CY_DB_PASSWORD,
+		'database' => CY_DATABASE,
+		'dbdriver' => 'sqlsrv',
+		'dbprefix' => '',
+		'pconnect' => FALSE,
+		'db_debug' => FALSE, //(ENVIRONMENT !== 'production'),
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE,
+		'failover' => array(),
+		'save_queries' => TRUE
+	);	
+}
+
+if(CY_DB_DRIVER == "ibase"){
+	$db['default'] = array(
+		'dsn'   => 'ibase:dbname='.CY_DB_PATH, 
+		'hostname' => '',
+		'username' => CY_DB_USERNAME, 
+		'password' => CY_DB_PASSWORD, 
+		'database' => '',
+		'dbdriver' => 'ibase',
+		'dbprefix' => '',
+		'pconnect' => FALSE,
+		'db_debug' => FALSE, //(ENVIRONMENT !== 'production'),
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE,
+		'failover' => array(),
+		'save_queries' => TRUE
+	);	
+}
+
+if(CY_DB_DRIVER == "cubrid"){
+	$db['default'] = array(
+		'dsn'   => 'cubrid:host='.CY_DB_HOST.';port='.CY_DB_PORT.';dbname='.CY_DATABASE, 
+		'hostname' => '', 
+		'username' => CY_DB_USERNAME, 
+		'password' => CY_DB_PASSWORD, 
+		'database' => '',
+		'dbdriver' => 'cubrid',
+		'dbprefix' => '',
+		'pconnect' => FALSE,
+		'db_debug' => FALSE, 
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE,
+		'failover' => array(),
+		'save_queries' => TRUE
+	);	
+}
+
+if(CY_DB_DRIVER == "odbc"){
+	$db['default'] = array(
+		'dsn'   => 'odbc:'.CY_DSN_NAME,  
+		'hostname' => '', 
+		'username' => CY_DB_USERNAME,  
+		'password' => CY_DB_PASSWORD,  
+		'database' => '', 
+		'dbdriver' => 'odbc',
+		'dbprefix' => '',
+		'pconnect' => FALSE,
+		'db_debug' => FALSE, // (ENVIRONMENT !== 'production'),
+		'cache_on' => FALSE,
+		'cachedir' => '',
+		'char_set' => 'utf8',
+		'dbcollat' => 'utf8_general_ci',
+		'swap_pre' => '',
+		'encrypt' => FALSE,
+		'compress' => FALSE,
+		'stricton' => FALSE,
+		'failover' => array(),
+		'save_queries' => TRUE
+	);
+	
+}
 
 
