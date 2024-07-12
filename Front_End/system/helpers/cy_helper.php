@@ -58,6 +58,15 @@ if(! function_exists("INPUT_VALUE")){
     }
 }
 
+if(! function_exists("INPUT_DATE")){
+    function INPUT_DATE($inputname){
+        /** ==> Any
+         * Input date from form submission
+         */
+        return CY_PARSE_DATE(POST($inputname));
+    }
+}
+
 if(! function_exists("INPUT")){
     function INPUT($inputname){
         /** ==> Any
