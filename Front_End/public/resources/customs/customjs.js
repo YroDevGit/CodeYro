@@ -61,3 +61,31 @@ function inputIsEmpty(attr){
     }
     return $ret;
 }
+
+function WindowIsLoaded(func){
+    window.addEventListener("load", func);
+}
+
+function WindowLoaded(func){
+    window.addEventListener("load", func);
+}
+function PageIsLoaded(func){
+    window.addEventListener("load", func);
+}
+
+function PageLoaded(func){
+    window.addEventListener("load", func);
+}
+
+function SetDelay(func, delay){
+   setTimeout(func,delay)
+}
+
+function Click(attr){
+    var inputElement = document.querySelector(attr);
+    inputElement.click();
+}
+function ClickElementById(id){
+    var inputElement = document.getElementById(id);
+    inputElement.click();
+}
