@@ -23,16 +23,11 @@ if(isset($_POST['btn'])){
                  * in your controller. add this model
                  * CY_USE_MODEL('$name');   or   \$this->load->model('$name');
                  */
-
-                \$TABLE = "";  // <<<<<======== put your table name inside the double qoute. <<<====== TABLE NAME
-
-                //Define table to use in every functions...
-                define('TABLE', \$TABLE);
             }
 
             
             public function getTableName(){ //Sample function, you can delete or replace this.
-                return TABLE;
+                return "CodeYRO";
             } // to call this function: $guide_cy
         
             
