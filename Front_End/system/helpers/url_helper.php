@@ -721,7 +721,7 @@ if ( ! function_exists('redirect'))
 }
 
 if(! function_exists("CY_REDIRECT")){
-	function CY_REDIRECT($uri = '', $method = 'auto', $code = NULL){
+	function CY_REDIRECT($uri = '', $data = [] ,$method = 'auto', $code = NULL){
 		/** => Void
 		 * Example use: controller classname: cycontrol
 		 * index function => CY_REDIRECT('cycontrol');
@@ -739,6 +739,10 @@ if(! function_exists("CY_REDIRECT")){
 			}
 			SET_FLASHDATA('CODEYRO_1005_POST_DATA_00129937_YRO', $to_send);
 		}
+
+			SET_FLASHDATA('CODEYRO_PHP7_1005_RDR_90384_DATA_YRO05', $data);
+		
+
 		switch ($method)
 		{
 			case 'refresh':
@@ -748,6 +752,40 @@ if(! function_exists("CY_REDIRECT")){
 				header('Location: '.CY_MAIN_URL($uri), TRUE, $code);
 				break;
 		}
+	}
+}
+
+if(! function_exists("CY_REDIRECT_DATA")){
+	function CY_REDIRECT_DATA($key=""){
+		/** ==> Array (when no paramenters).
+		 ** ==> Any (When has parameters).
+		 * Get data from CY_REDIRECT("controller", $data);
+		 * When data is not array, no need to add key as parameter.
+		 */
+		$ret = NULL;
+		$flash = GET_FLASHDATA("CODEYRO_PHP7_1005_RDR_90384_DATA_YRO05");
+		if($flash){
+			if(is_array($flash)){
+				if($key == "" || $key == NULL){
+					$ret = $flash;
+				}
+				else{
+					if(isset($flash[$key])){
+						$ret = $flash[$key];
+					}
+					else{
+						$ret = "ERROR: No key [".$key."] found in redirect data.";
+					}
+				}
+			}
+			else{
+				$ret = $flash;
+			}
+		}
+		else{
+			$ret = NULL;
+		}
+		return $ret;
 	}
 }
 
