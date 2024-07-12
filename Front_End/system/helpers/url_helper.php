@@ -721,7 +721,7 @@ if ( ! function_exists('redirect'))
 }
 
 if(! function_exists("CY_REDIRECT")){
-	function CY_REDIRECT($uri = '', $data = [] ,$method = 'auto', $code = NULL){
+	function CY_REDIRECT($controller = '', $data = [] ,$method = 'auto', $code = NULL){
 		/** => Void
 		 * Example use: controller classname: cycontrol
 		 * index function => CY_REDIRECT('cycontrol');
@@ -746,10 +746,10 @@ if(! function_exists("CY_REDIRECT")){
 		switch ($method)
 		{
 			case 'refresh':
-				header('Refresh:0;url='.CY_MAIN_URL($uri));
+				header('Refresh:0;url='.CY_MAIN_URL($controller));
 				break;
 			default:
-				header('Location: '.CY_MAIN_URL($uri), TRUE, $code);
+				header('Location: '.CY_MAIN_URL($controller), TRUE, $code);
 				break;
 		}
 	}
