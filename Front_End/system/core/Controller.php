@@ -42,6 +42,7 @@ class CY_Controller {
 		$this->load->initialize();
 		log_message('info', 'Controller Class Initialized');
 		$this->load->database();
+		$this->load->helper("cyautoloader_helper");
 		$this->load->library('session');
 		$this->load->helper('cookie');
 		$this->load->helper("back_end_helper");
@@ -67,6 +68,7 @@ class CY_Controller {
 
 		$this->load->helper('cy_helper');
 		$this->load->helper('component_helper');
+		load_all_models();
 	}
 
 	// --------------------------------------------------------------------
