@@ -60,8 +60,10 @@ if(! function_exists("INPUT_VALUE")){
 
 if(! function_exists("INPUT_DATE")){
     function INPUT_DATE($inputname){
-        /** ==> Any
+        /** ==> String / Date
          * Input date from form submission
+         * Effective when parsing date.
+         * use this when date is not in default format.
          */
         return CY_PARSE_DATE(POST($inputname));
     }
@@ -69,8 +71,10 @@ if(! function_exists("INPUT_DATE")){
 
 if(! function_exists("POST_DATE")){
     function POST_DATE($inputname){
-        /** ==> Any
+        /** ==> String / Date
          * Input date from form submission
+         * Effective when parsing date.
+         * used this when date is not in default format.
          */
         return INPUT_DATE($inputname);
     }
