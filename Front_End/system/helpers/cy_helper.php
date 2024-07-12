@@ -40,12 +40,33 @@ if(! function_exists("CY_VIEW_CONTENT")){
 if(! function_exists("POST")){
     function POST($inputname){
         /** ==> Any
-         * Post data from form submission
+         * Input value from form submission
+         * in CY, you can also use INPUT() and INPUT_VALUE(), the same output as POST()
          */
         $CY =& get_instance();
         return $CY->POST[$inputname];
     }
 }
+
+
+if(! function_exists("INPUT_VALUE")){
+    function INPUT_VALUE($inputname){
+        /** ==> Any
+         * Input value from form submission
+         */
+        return POST($inputname);
+    }
+}
+
+if(! function_exists("INPUT")){
+    function INPUT($inputname){
+        /** ==> Any
+         * Input value from form submission
+         */
+        return POST($inputname);
+    }
+}
+
 
 if(! function_exists("POST_DATA")){
     function POST_DATA(){
@@ -65,6 +86,28 @@ if(! function_exists("SET_VALIDATION")){
         $CY =& get_instance();
         $CY->form_validation->set_rules($inputname, $label, $rules);
         return $CY;
+    }
+}
+
+if(! function_exists("GET")){
+    function GET($inputname){
+        /** ==> Any
+         * Get value from url parameters
+         */
+        $CY =& get_instance();
+        $value = $CY->input->get($inputname);
+        return $value;
+    }
+}
+
+if(! function_exists("GET_DATA")){
+    function GET_DATA(){
+        /** ==> Any
+         * Get data from url parameters
+         */
+        $CY =& get_instance();
+        $value = $CY->input->get();
+        return $value;
     }
 }
 
@@ -430,6 +473,15 @@ if(! function_exists("CY_PARSE_DOUBLE")){
          * convert value to Double
          */
         return doubleval($value);
+    }
+}
+
+if(! function_exists('CY_PASSWORD_HASH')){
+    function CY_PASSWORD_HASH($password){
+        /** => String
+         * make password hashed.
+         */
+        return password_hash($password, PASSWORD_DEFAULT);
     }
 }
 
