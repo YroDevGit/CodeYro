@@ -67,6 +67,15 @@ if(! function_exists("INPUT_DATE")){
     }
 }
 
+if(! function_exists("POST_DATE")){
+    function POST_DATE($inputname){
+        /** ==> Any
+         * Input date from form submission
+         */
+        return INPUT_DATE($inputname);
+    }
+}
+
 if(! function_exists("INPUT")){
     function INPUT($inputname){
         /** ==> Any
