@@ -43,7 +43,7 @@ if(! function_exists("CY_VIEW_PAGE")){
     function CY_VIEW_PAGE($page, $data=[]){
         /** ==> Void
          * Show php content inside application/views/pages/
-         * CY_VIEW parameters: $page = page filename inside views/pages/. $data = data to be pass from controller to view file
+         * parameters: $page = page filename inside views/pages/. $data = data to be pass from controller to view file
          */
          $CY =& get_instance();
         if(empty($data)){
@@ -55,11 +55,75 @@ if(! function_exists("CY_VIEW_PAGE")){
     }
 }
 
+if(! function_exists("CY_VIEW_OTHERS")){
+    function CY_VIEW_OTHERS($page, $data=[]){
+        /** ==> Void
+         * Show php content inside application/views/others/
+         * parameters: $page = page filename inside views/others/. $data = data to be pass from controller to view file
+         */
+         $CY =& get_instance();
+        if(empty($data)){
+            $CY->load->view("others/".$page);
+        }
+        else{
+            $CY->load->view("others/".$page,$data);
+        }
+    }
+}
+
+if(! function_exists("CY_SHOW_OTHERS")){
+    function CY_SHOW_OTHERS($page, $data=[]){
+        /** ==> Void
+         * Show php content inside application/views/others/
+         * parameters: $page = page filename inside views/others/. $data = data to be pass from controller to view file
+         */
+         $CY =& get_instance();
+        if(empty($data)){
+            $CY->load->view("others/".$page);
+        }
+        else{
+            $CY->load->view("others/".$page,$data);
+        }
+    }
+}
+
+if(! function_exists("CY_SHOW_ERROR")){
+    function CY_SHOW_ERROR($page, $data=[]){
+        /** ==> Void
+         * Show php content inside application/views/errors/html/
+         * parameters: $page = page filename inside views/errors/html/. $data = data to be pass from controller to view file
+         */
+         $CY =& get_instance();
+        if(empty($data)){
+            $CY->load->view("errors/html/".$page);
+        }
+        else{
+            $CY->load->view("errors/html/".$page,$data);
+        }
+    }
+}
+
+if(! function_exists("CY_VIEW_ERROR")){
+    function CY_VIEW_ERROR($page, $data=[]){
+        /** ==> Void
+         * Show php content inside application/views/errors/html/
+         * parameters: $page = page filename inside views/errors/html/. $data = data to be pass from controller to view file
+         */
+         $CY =& get_instance();
+        if(empty($data)){
+            $CY->load->view("errors/html/".$page);
+        }
+        else{
+            $CY->load->view("errors/html/".$page,$data);
+        }
+    }
+}
+
 if(! function_exists("CY_SHOW_PAGE")){
     function CY_SHOW_PAGE($page, $data=[]){
         /** ==> Void
          * Show php content inside application/views/pages/
-         * CY_VIEW parameters: $page = page filename inside views/pages/. $data = data to be pass from controller to view file
+         * parameters: $page = page filename inside views/pages/. $data = data to be pass from controller to view file
          */
          $CY =& get_instance();
         if(empty($data)){
@@ -75,7 +139,7 @@ if(! function_exists("CY_VIEW_CONTENT")){
     function CY_VIEW_CONTENT($content, $data=[]){
         /** ==> Void
          * Show php content inside application/views/contents/
-         * CY_VIEW parameters: $content = content filename inside views/contents/. $data = data to be pass from controller to view file
+         * parameters: $content = content filename inside views/contents/. $data = data to be pass from controller to view file
          */
         $CY =& get_instance();
         if(empty($data)){
@@ -91,7 +155,7 @@ if(! function_exists("CY_SHOW_CONTENT")){
     function CY_SHOW_CONTENT($content, $data=[]){
         /** ==> Void
          * Show php content inside application/views/contents/
-         * CY_VIEW parameters: $content = content filename inside views/contents/. $data = data to be pass from controller to view file
+         * parameters: $content = content filename inside views/contents/. $data = data to be pass from controller to view file
          */
         $CY =& get_instance();
         if(empty($data)){
