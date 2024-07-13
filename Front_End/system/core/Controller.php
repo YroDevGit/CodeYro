@@ -49,6 +49,7 @@ class CY_Controller {
 		$this->load->helper('security');
 		$this->load->helper("form_helper");
 		$this->load->helper('string');
+		$this->load->library('email');
 		$this->load->helper("yro_helper");
 		$this->load->helper("fe_sql_helper");
 		$this->load->helper("url_helper");
@@ -71,6 +72,7 @@ class CY_Controller {
 		$this->load->helper('component_helper');
 		load_all_models();
 		$this->load->helper("auth_helper");
+		$this->load->helper("cyemail_helper");
 		AUTHENTICATE_CY_USER(false);
 	}
 
