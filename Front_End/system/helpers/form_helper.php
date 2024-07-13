@@ -746,18 +746,45 @@ if(! function_exists("CY_INPUT_OLD_VALUE")){
 		 */
 		$ret = "";
 		$flash_post = GET_FLASHDATA('CODEYRO_1005_POST_DATA_00129937_YRO');
-		if(! empty($flash_post)){
-			if(isset($flash_post[$field])){
-				$ret = $flash_post[$field];
+		if($flash_post){
+			if(! empty($flash_post)){
+				if(isset($flash_post[$field])){
+					$ret = $flash_post[$field];
+				}
+				else{
+					$ret = "";
+				}
 			}
 			else{
-				$ret = "Input name '".$field."' not defined.! - CodeYro";
+				$ret = "";
 			}
 		}
 		else{
-			$ret = NULL;
+			$ret = "";
 		}
 		return $ret;
+	}
+}
+
+if(! function_exists("INPUT_OLD_VALUE")){
+	function INPUT_OLD_VALUE($field){
+		/** ==> String or array
+		 * This is works on redirects (CY_REDIRECT()).
+		 * This is only effective when CY_REDIRECT() is use/called.
+		 * not effective in any php redirects.
+		 */
+		return CY_INPUT_OLD_VALUE($field);
+	}
+}
+
+if(! function_exists("INPUT_PREVIOUS_VALUE")){
+	function INPUT_PREVIOUS_VALUE($field){
+		/** ==> String or array
+		 * This is works on redirects (CY_REDIRECT()).
+		 * This is only effective when CY_REDIRECT() is use/called.
+		 * not effective in any php redirects.
+		 */
+		return CY_INPUT_OLD_VALUE($field);
 	}
 }
 
