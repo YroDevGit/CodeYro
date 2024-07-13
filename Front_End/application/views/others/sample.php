@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    Welcome to CodeYRO view page.
+    CodeYRO others page
 </body>
 </html>
