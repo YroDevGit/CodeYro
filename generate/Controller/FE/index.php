@@ -23,6 +23,7 @@ if (isset($_POST['btn'])) {
             }
             
             // This is a Front_End controller (Manage User interface and fetch data from Back End to display).
+            // You can also directly interact with database using CY_DB. Example: CY_DB_SETQUERY('your query').
     
             public function index() 
             {
