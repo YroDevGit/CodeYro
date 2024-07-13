@@ -55,11 +55,11 @@ if(! function_exists("CY_VIEW_PAGE")){
     }
 }
 
-if(! function_exists("CY_VIEW_OTHERS")){
-    function CY_VIEW_OTHERS($page, $data=[]){
+if(! function_exists("CY_VIEW_INCLUDE_PAGE")){
+    function CY_VIEW_INCLUDE_PAGE($page, $data=[]){
         /** ==> Void
-         * Show php content inside application/views/others/
-         * parameters: $page = page filename inside views/others/. $data = data to be pass from controller to view file
+         * Show php content inside application/views/includes/
+         * parameters: $page = page filename inside views/includes/. $data = data to be pass from controller to view file
          */
          $CY =& get_instance();
         if(empty($data)){
@@ -71,11 +71,11 @@ if(! function_exists("CY_VIEW_OTHERS")){
     }
 }
 
-if(! function_exists("CY_SHOW_OTHERS")){
-    function CY_SHOW_OTHERS($page, $data=[]){
+if(! function_exists("CY_SHOW_INCLUDE_PAGE")){
+    function CY_SHOW_INCLUDE_PAGE($page, $data=[]){
         /** ==> Void
-         * Show php content inside application/views/others/
-         * parameters: $page = page filename inside views/others/. $data = data to be pass from controller to view file
+         * Show php content inside application/views/includes/
+         * parameters: $page = page filename inside views/includes/. $data = data to be pass from controller to view file
          */
          $CY =& get_instance();
         if(empty($data)){

@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    CodeYRO others page
+    CodeYRO include page.
 </body>
 </html>
