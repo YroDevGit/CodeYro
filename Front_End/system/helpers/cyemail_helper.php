@@ -7,18 +7,18 @@
          * 200 when success (CY_SUCCESS, CY_SUCCESS_CODE).
          * -1 when fail sending email.
          */
-
+        include_once "Front_End\SystemData\Email_config.php";
         $ret = -1;
         $CY =& get_instance();
     
         $config = array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'smtp.gmail.com',
-            'smtp_port' => 587, // or 465 for SSL
-            'smtp_user' => 'your_email@gmail.com',
-            'smtp_pass' => 'your_email_password',
-            'mailtype'  => 'html', 
-            'charset'   => 'iso-8859-1'
+            'protocol' => cy_protocol,
+            'smtp_host' => cy_smtp_host,
+            'smtp_port' => cy_smtp_port, 
+            'smtp_user' => cy_smtp_user,
+            'smtp_pass' => cy_smtp_pass,
+            'mailtype'  => cy_mail_type, 
+            'charset'   => cy_charset
         );
     
         $CY->email->initialize($config);
