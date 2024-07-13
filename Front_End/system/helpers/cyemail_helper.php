@@ -2,8 +2,13 @@
 
 
  if(! function_exists("CY_SEND_EMAIL")){
-    function CY_SEND_EMAIL($from, $to, ) {
+    function CY_SEND_EMAIL($sender_name, $from , $to, $subject="No Subject", $email_view="cy_email", $data = ["title" => "Welcome to CY mailer", "message" => "This is just a test codeyro mailer."]) {
+        /** => Integer
+         * 200 when success (CY_SUCCESS, CY_SUCCESS_CODE).
+         * -1 when fail sending email.
+         */
 
+        $ret = -1;
         $CY =& get_instance();
     
         $config = array(
@@ -18,24 +23,21 @@
     
         $CY->email->initialize($config);
     
-        $CY->email->from('your_email@gmail.com', 'Your Name');
-        $CY->email->to('recipient@example.com');
-        $CY->email->subject('Email Test');
+        $CY->email->from($from, $sender_name);
+        $CY->email->to($to);
+        $CY->email->subject($subject);
     
-        $data = array(
-            'title' => 'Email Title',
-            'message' => 'This is an example email with HTML and CSS styling. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.'
-        );
-        $htmlContent = $CY->load->view('email_template', $data, TRUE);
+        $htmlContent = $CY->load->view('emails/'.$email_view, $data, TRUE);
     
         $CY->email->message($htmlContent);
     
         if ($CY->email->send()) {
-            echo 'Email sent successfully!';
+            $ret = CY_SUCCESS_CODE;
         } else {
-            echo 'Failed to send email.';
-            echo $CY->email->print_debugger();
+            $ret = -1;
+            //echo $CY->email->print_debugger();
         }
+        return $ret;
     }
  }
 
