@@ -21,10 +21,77 @@ if(! function_exists("CY_VIEW")){
     }
 }
 
+if(! function_exists("CY_SHOW")){
+    function CY_SHOW($view, $data=[]){
+        /** ==> Void
+         * Show php content inside application/views/
+         * CY_SHOW parameters: $view = view filename. $data = data to be pass from controller to view file
+         * Example use: view filename is required as parameter
+         * CY_SHOW('view_filename', ['page'=>'page1']);  // view_filename is the view filename
+         */
+        $CY =& get_instance();
+        if(empty($data)){
+            $CY->load->view($view);
+        }
+        else{
+            $CY->load->view($view,$data);
+        }
+    }
+}
+
+if(! function_exists("CY_VIEW_PAGE")){
+    function CY_VIEW_PAGE($page, $data=[]){
+        /** ==> Void
+         * Show php content inside application/views/pages/
+         * CY_VIEW parameters: $page = page filename inside views/pages/. $data = data to be pass from controller to view file
+         */
+         $CY =& get_instance();
+        if(empty($data)){
+            $CY->load->view("pages/".$page);
+        }
+        else{
+            $CY->load->view("pages/".$page,$data);
+        }
+    }
+}
+
+if(! function_exists("CY_SHOW_PAGE")){
+    function CY_SHOW_PAGE($page, $data=[]){
+        /** ==> Void
+         * Show php content inside application/views/pages/
+         * CY_VIEW parameters: $page = page filename inside views/pages/. $data = data to be pass from controller to view file
+         */
+         $CY =& get_instance();
+        if(empty($data)){
+            $CY->load->view("pages/".$page);
+        }
+        else{
+            $CY->load->view("pages/".$page,$data);
+        }
+    }
+}
+
 if(! function_exists("CY_VIEW_CONTENT")){
     function CY_VIEW_CONTENT($content, $data=[]){
         /** ==> Void
-         * CY_VIEW parameters: $content = content filename inside view. $data = data to be pass from controller to view file
+         * Show php content inside application/views/contents/
+         * CY_VIEW parameters: $content = content filename inside views/contents/. $data = data to be pass from controller to view file
+         */
+        $CY =& get_instance();
+        if(empty($data)){
+            $CY->load->view("contents/".$content);
+        }
+        else{
+            $CY->load->view("contents/".$content,$data);
+        }
+    }
+}
+
+if(! function_exists("CY_SHOW_CONTENT")){
+    function CY_SHOW_CONTENT($content, $data=[]){
+        /** ==> Void
+         * Show php content inside application/views/contents/
+         * CY_VIEW parameters: $content = content filename inside views/contents/. $data = data to be pass from controller to view file
          */
         $CY =& get_instance();
         if(empty($data)){
