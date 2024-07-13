@@ -14,6 +14,7 @@ if (isset($_POST['btn'])) {
         
             public function __construct() {
                 parent::__construct();
+                AUTHENTICATE_CY_USER(true); // Set to TRUE to make this controller under authentication.
                 /**
                  * CodeYRO PHP framework inspired to Laravel and CodeIgniter.
                  *  you can load libraries and files here..

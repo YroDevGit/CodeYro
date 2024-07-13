@@ -307,11 +307,11 @@ if(! function_exists("REMOVE_SESSION")){
     }
 }
 
-if(! function_exists("REMOVE_ALL_SESSION")){
+if(! function_exists("REMOVE_ALL_SESSIONS")){
     /**
          *  => Void
          */
-    function REMOVE_ALL_SESSION($key){
+    function REMOVE_ALL_SESSIONS(){
         $CY =& get_instance();
         $CY->session->sess_destroy();
     }
@@ -323,16 +323,14 @@ if(! function_exists("SET_COOKIE")){
          *  => Void
          */
         $CY =& get_instance();
-        $cokie_data = array(
-            'name'   => $key,  
-            'value'  => $value,  
-            'expire' => $expiration,  
-            'secure' => FALSE,  // TRUE if the cookie should only be transmitted over secure HTTPS connections
-            'httponly' => FALSE,  // TRUE to make the cookie accessible only through the HTTP protocol
-            'domain' => '',  
-            'path'   => '/', 
-        );
-        $CY->input->set_cookie($cokie_data);
+        $data = null;
+        if(is_array($value)){
+            $data = json_encode($value);
+        }
+        else{
+            $data = $$value;
+        }
+        $CY->input->set_cookie($key, $data, $expiration);
     }
 }
 
@@ -357,8 +355,28 @@ if(! function_exists("GET_COOKIE")){
         /**
          *  => String or Array
          */
-        $CY =& get_instance();    
-        return $CY->input->cookie($key, TRUE);
+        $ret = null;
+        $CY =& get_instance(); 
+
+        $cookie = $CY->input->cookie($key, TRUE);
+
+        if ($cookie) {
+            $decoded = json_decode($cookie, true);
+            
+            if (json_last_error() === JSON_ERROR_NONE) {
+                if (is_array($decoded)) {
+                    $ret = $decoded;
+                } else {
+                    $ret = $cookie;
+                }
+            } else {
+                $ret = $cookie;
+            }
+        } else {
+            return;
+        }
+           
+        return $ret;
     }
 }
 
@@ -506,6 +524,167 @@ if(! function_exists('CY_PASSWORD_HASH')){
         return password_hash($password, PASSWORD_DEFAULT);
     }
 }
+
+if(! function_exists("REMOVE_ALL_FLASHDATA")){
+    function REMOVE_ALL_FLASHDATA(){
+        /** ==> Void
+         * Remove all flash data.
+         */
+        $CY =& get_instance();
+        $flash_keys = $CY->session->flashdata();
+
+        foreach ($flash_keys as $key => $value) {
+            $CY->session->unset_flashdata($key);
+        }
+    }
+}
+
+if(! function_exists("REMOVE_ALL_COOKIES")){
+    function REMOVE_ALL_COOKIES(){
+        /** ==> Void
+         * Remove all cookies.
+         */
+        foreach ($_COOKIE as $key => $value) {
+            REMOVE_COOKIE($key);
+        }
+    }
+}
+
+if(! function_exists("SET_LOGIN")){
+    function SET_LOGIN($status = true , $data = []){
+        /** ==> Void
+         * set login status and data.
+         * Using cookies.
+         */
+        if(! is_bool($status)){
+            die("Error: status must be boolean [TRUE or FALSE]");
+        }
+        elseif(! is_array($data)){
+            die("Error: data must be an array ['id' => '1005' , 'name' => 'Yro']");
+        }
+        else{
+            if($status == false || $status == FALSE){
+                if(GET_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ")){
+                    REMOVE_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ");
+                }
+                REMOVE_ALL_SESSIONS();
+                REMOVE_ALL_FLASHDATA();
+            }
+            else{
+                $login_data = [
+                    "status" => true,
+                    "data" => $data
+                ];
+        
+                SET_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ", $login_data);
+            }  
+        }
+    }
+}
+
+if(! function_exists("GET_LOGIN_DATA")){
+    function GET_LOGIN_DATA($key=""){
+        /** => Array / String
+         * Get Login data.
+         * When key is not set = returns array.
+         * When key is set = returns any.
+         * Using cookies.
+         */
+        $ret = null;
+        $l_cookie = GET_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ");
+        if($l_cookie){
+            $login_cookie = $l_cookie;
+            if($key == null || $key == NULL || $key == ""){
+                $ret = $login_cookie["data"];
+            }
+            else{
+                if(isset($login_cookie["data"][$key])){
+                    $ret = $login_cookie["data"][$key];
+                }
+                else{
+                    die("Error: No key '".$key."' found in login cookie data");
+                } 
+            } 
+        }
+        else{
+            die("Error: No login cookie found.! login cookie might not set.");
+        }
+        return $ret;
+    }
+}
+
+if(! function_exists("IS_LOGGED_IN")){
+    function IS_LOGGED_IN(){
+        /** ==> Boolean
+         * Check if login status is TRUE or FALSE.
+         * Using cookies.
+         */
+        $ret = false;
+        if(GET_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ")){
+            $login_cookie = GET_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ");
+            if(isset($login_cookie["status"])){
+                $status = $login_cookie["status"];
+                $ret = $status;
+            }
+            else{
+                $ret = false;
+            }
+        }
+        else{
+            $ret = false;
+        }
+        return $ret;
+    }
+}
+
+
+if(! function_exists("CY_STRING_CODE")){
+    function CY_STRING_CODE($lenght = 10){
+        /** ==> String
+         * random string code.
+         */
+        return random_string('alnum', $lenght);
+    }
+}
+
+if(! function_exists("CY_INT_CODE")){
+    function CY_INT_CODE($lenght = 10){
+        /** ==> Integer
+         * random integer code.
+         */
+        return random_string('numeric', $lenght);
+    }
+}
+
+
+if(! function_exists("CY_ALPHA_CODE")){
+    function CY_ALPHA_CODE($lenght = 10){
+        /** ==> String
+         * random letters.
+         */
+        return random_string('alpha', $lenght);
+    }
+}
+
+if(! function_exists("CY_UNIQUE_CODE")){
+    function CY_UNIQUE_CODE($lenght = 10){
+        /** ==> String
+         * unique characters.
+         */
+        return random_string('unique', $lenght);
+    }
+}
+
+if(! function_exists("CY_REALNUM_CODE")){
+    function CY_REALNUM_CODE($lenght = 10){
+        /** ==> String
+         * random numbers with no zero.
+         */
+        return random_string('nozero', $lenght);
+    }
+}
+
+
 
 
 /**

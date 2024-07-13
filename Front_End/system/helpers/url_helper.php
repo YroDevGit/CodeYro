@@ -721,12 +721,14 @@ if ( ! function_exists('redirect'))
 }
 
 if(! function_exists("CY_REDIRECT")){
-	function CY_REDIRECT($controller = '', $data = [] ,$method = 'auto', $code = NULL){
+	function CY_REDIRECT($controller = '', $data = [], $delay = 0 ,$method = 'auto', $code = NULL){
 		/** => Void
 		 * Example use: controller classname: cycontrol
 		 * index function => CY_REDIRECT('cycontrol');
 		 * other function => CY_REDIRECT('cycontrol/show'); <== show is the function name under cycontrol
+		 * Has stopper, don't continue to other codes below this redirect.
 		 */
+		sleep($delay);
 		if(isset($_POST)){
 			$to_send = [];
 			$CY =& get_instance();
@@ -746,10 +748,10 @@ if(! function_exists("CY_REDIRECT")){
 		switch ($method)
 		{
 			case 'refresh':
-				header('Refresh:0;url='.CY_MAIN_URL($controller));
+				header('Refresh:0;url='.CY_MAIN_URL($controller)); exit;
 				break;
 			default:
-				header('Location: '.CY_MAIN_URL($controller), TRUE, $code);
+				header('Location: '.CY_MAIN_URL($controller), TRUE, $code); exit;
 				break;
 		}
 	}
