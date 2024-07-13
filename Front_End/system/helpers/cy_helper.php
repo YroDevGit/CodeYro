@@ -199,6 +199,41 @@ if(! function_exists("VALIDATION_FAILED_MESSAGE_ARRAY")){
     }
 }
 
+if(! function_exists("HAS_VALIDATION_ERRORS")){
+    function HAS_VALIDATION_ERRORS(){
+        /** ==> Boolean
+         * Check if there is a validation error in form submission.
+         * Effects in both view and redirects.
+         * Required: VALIDATION_FAILED().
+         */
+        $ret = false;
+        $val_errors = GET_FLASHDATA("cy_validation_error_1005CodeYro05");
+        if($val_errors){
+            if(empty($val_errors)){
+                $ret = false;
+            }
+            else{
+                $ret = true;
+            }
+        }
+        else{
+            $ret = false;
+        }
+        return $ret;
+    }
+}
+
+if(! function_exists("VALIDATION_HAS_ERRORS")){
+    function VALIDATION_HAS_ERRORS(){
+        /** ==> Boolean
+         * Check if there is a validation error in form submission.
+         * Effects in both view and redirects.
+         * Required: VALIDATION_FAILED().
+         */
+        return HAS_VALIDATION_ERRORS();
+    }
+}
+
 if(! function_exists("VALIDATION_FAILED_MESSAGE_LIST")){
     function VALIDATION_FAILED_MESSAGE_LIST(){
         /** => Array
