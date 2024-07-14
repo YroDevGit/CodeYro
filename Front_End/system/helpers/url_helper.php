@@ -88,10 +88,17 @@ if ( ! function_exists('CY_MAIN_URL'))
 
 }
 
-if(! function_exists("controller")){
-	function controller($uri = '', $protocol = NULL)
+if(! function_exists("CONTROLLER")){
+	function CONTROLLER($controller = '', $protocol = NULL)
 	{
-		return get_instance()->config->site_url($uri, $protocol);
+		return get_instance()->config->site_url($controller, $protocol);
+	}
+}
+
+if(! function_exists("CY_CONTROLLER")){
+	function CY_CONTROLLER($controller = '', $protocol = NULL)
+	{
+		return get_instance()->config->site_url($controller, $protocol);
 	}
 }
 

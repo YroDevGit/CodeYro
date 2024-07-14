@@ -6,13 +6,14 @@ function GetInputData(element){
     return data;
 }
 
-function GetFormData(element){
+function GetFormData(attr){
+    var element = document.querySelector(attr);
     const formData = new FormData(element);
     const data = Object.fromEntries(formData.entries());
     return data;
 }
 
-function getValueById(id, datatype="string"){
+function GetValueById(id, datatype="string"){
     $ret = null;
     $value = document.getElementById(id).value;
     switch (datatype) {
@@ -24,7 +25,7 @@ function getValueById(id, datatype="string"){
     return $ret;
 }
 
-function getValue(attr, datatype="string"){
+function GetValue(attr, datatype="string"){
     $ret = null;
     $value = document.querySelector(attr).value;
     switch (datatype) {
@@ -36,24 +37,24 @@ function getValue(attr, datatype="string"){
     return $ret;
 }
 
-function getElementById(id){
+function GetElementById(id){
     return document.getElementById(id);
 }
 
-function getElement(attr){
+function GetElement(attr){
     var inputElement = document.querySelector(attr);
     return inputElement;
 }
 
-function setValue(attr, value){
+function SetValue(attr, value){
     document.querySelector(attr).value = value;
 }
 
-function clearValue(attr){
+function ClearValue(attr){
     document.querySelector(attr).value = "";
 }
 
-function inputIsEmpty(attr){
+function InputIsEmpty(attr){
     $ret = false;
     $val =  document.querySelector(attr).value;
     if($val=="" || $val ==null){
@@ -89,3 +90,61 @@ function ClickElementById(id){
     var inputElement = document.getElementById(id);
     inputElement.click();
 }
+
+function FormSubmit(attr, reload, func){ //usage: FormSubmit("#form", true, ()=>console.log('hello world.'));
+    if(reload === true){
+        document.querySelector(attr).addEventListener("submit", func);
+    } else {
+        document.querySelector(attr).addEventListener("submit", (event) => {
+            event.preventDefault();
+            func();
+        });
+    }
+}
+
+function PostRequest(url, data = {}, method = 'POST', headers = {}) {
+    return new Promise((resolve, reject) => {
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, url, true);
+        
+        if (!headers['Content-Type']) {
+            headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        }
+
+        // Set custom headers
+        for (const [key, value] of Object.entries(headers)) {
+            xhr.setRequestHeader(key, value);
+        }
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    try {
+                        let responseData;
+                        if (xhr.getResponseHeader('Content-Type')?.includes('application/json')) {
+                            responseData = JSON.parse(xhr.responseText);
+                        } else {
+                            responseData = xhr.responseText;
+                        }
+
+                        resolve(responseData);
+                    } catch (error) {
+                        reject(new Error('Failed to parse response data'));
+                    }
+                } else {
+                    reject(new Error(xhr.statusText));
+                }
+            }
+        };
+        if (headers['Content-Type'] === 'application/json') {
+            xhr.send(JSON.stringify(data));
+        } else {
+            var encodedData = new URLSearchParams(data).toString();
+            xhr.send(encodedData);
+        }
+    });
+}
+
+
+
+

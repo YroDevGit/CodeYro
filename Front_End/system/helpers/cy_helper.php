@@ -850,6 +850,62 @@ if(! function_exists("CY_REALNUM_CODE")){
     }
 }
 
+if(! function_exists("CY_JSON_RESPONSE")){
+    function CY_JSON_RESPONSE($value){
+        /** => Json / js array
+         * convert php array to  js / json array.
+         */
+        return json_encode($value);
+    }
+}
+
+if(! function_exists("JSON_RESPONSE")){
+    function JSON_RESPONSE($value){
+        /** => Json / js array
+         * convert php array to  js / json array.
+         */
+        return json_encode($value);
+    }
+}
+
+if(! function_exists("CY_JSON_ENCODE")){
+    function CY_JSON_ENCODE($value){
+        /** => Json / js array
+         * convert php array to  js / json array.
+         */
+        return json_encode($value);
+    }
+}
+
+if(! function_exists("CY_JSON_DECODE")){
+    function CY_JSON_DECODE($value, $bool=true){
+        /** => Array
+         * conver js / json array to php array.
+         */
+        return json_decode($value, $bool);
+    }
+}
+
+if(! function_exists("JSON_TO_PHP_ARRAY")){
+    function JSON_TO_PHP_ARRAY($value, $bool=true){
+        /** => Array
+         * conver js / json array to php array.
+         */
+        return json_decode($value, $bool);
+    }
+}
+
+if(! function_exists("PHP_TO_JSON_ARRAY")){
+    function PHP_TO_JSON_ARRAY($value){
+        /** => Json / js array
+         * convert php array to  js / json array.
+         */
+        return json_encode($value);
+    }
+}
+
+
+
 
 
 
