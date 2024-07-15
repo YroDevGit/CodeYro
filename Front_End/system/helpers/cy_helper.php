@@ -748,6 +748,17 @@ if(! function_exists("SET_LOGIN")){
     }
 }
 
+if(! function_exists("LOG_OUT")){
+    function LOG_OUT(){
+        /** ==> Void
+         * set login to false. then remove all session data.
+         * Using cookies.
+         * same to: SET_LOGIN(false);
+         */
+        SET_LOGIN(false);
+    }
+}
+
 if(! function_exists("GET_LOGIN_DATA")){
     function GET_LOGIN_DATA($key=""){
         /** => Array / String
