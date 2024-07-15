@@ -6,7 +6,7 @@
     <title>CY_EMAIL</title>
 </head>
 <body>
-    <div style="padding-top: 120px;">
+    <div style="padding-top: 12px;">
         <div>
             <h2><?=$title?></h2>
         </div>
