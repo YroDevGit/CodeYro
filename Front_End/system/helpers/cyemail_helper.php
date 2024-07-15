@@ -2,7 +2,7 @@
 
 
  if(! function_exists("CY_SEND_EMAIL")){
-    function CY_SEND_EMAIL($sender_name, $to, $subject="No Subject", $email_view="cy_email", $data = ["title" => "Welcome to CY mailer", "message" => "This is just a test codeyro mailer."]) {
+    function CY_SEND_EMAIL($sender_name, $to, $subject, $email_view="cy_email", $data = ["title" => "Welcome to CY mailer", "message" => "This is just a test codeyro mailer."]) {
         /** => Array
          * send email.
          * Return result array
