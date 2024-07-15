@@ -198,6 +198,18 @@ if ( ! function_exists('ASSETS'))
 	
 }
 
+if(! function_exists("SRC")){
+	function SRC($uri = null, $protocol=null){
+		$ret = "";
+		if($uri==""||$uri==null){
+			$ret = get_instance()->config->site_url($uri, $protocol).SRC;
+		}
+		else{
+			$ret = get_instance()->config->site_url('', $protocol).SRC.$uri;
+		}
+		return $ret;
+	}
+}
 
 
 if(! function_exists("RESOURCES")){

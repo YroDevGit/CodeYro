@@ -43,6 +43,7 @@ if ($is_backend) {
     define('APPPATH', $front_end_path . 'application/');
     define('AUTHPATH', $front_end_path . 'application/auth/');
     define('VIEWPATH', $front_end_path . 'application/views/');
+    define('SRC', $front_end_path . 'application/src/');
     define('PUBLICPATH', $front_end_path . 'public/');
     define('STORAGE', $front_end_path . 'public/storage/');
     define('ASSETS', $front_end_path . 'public/assets/');
