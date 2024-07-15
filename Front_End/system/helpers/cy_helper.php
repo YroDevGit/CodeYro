@@ -803,6 +803,28 @@ if(! function_exists("IS_LOGGED_IN")){
     }
 }
 
+if(! function_exists("LOGGED_IN")){
+    function LOGGED_IN(){
+        /** ==> Boolean
+         * Check if login status is TRUE or FALSE.
+         * Using cookies.
+         * Same to: IS_LOGGED_IN and USER_HAS_LOGGED_IN
+         */
+        return IS_LOGGED_IN();
+    }
+}
+
+if(! function_exists("USER_HAS_LOGGED_IN")){
+    function USER_HAS_LOGGED_IN(){
+        /** ==> Boolean
+         * Check if login status is TRUE or FALSE.
+         * Using cookies.
+         * Same to: IS_LOGGED_IN and LOGGED_IN
+         */
+        return IS_LOGGED_IN();
+    }
+}
+
 
 if(! function_exists("CY_STRING_CODE")){
     function CY_STRING_CODE($lenght = 10){
@@ -903,6 +925,114 @@ if(! function_exists("PHP_TO_JSON_ARRAY")){
         return json_encode($value);
     }
 }
+
+if(! function_exists("SET_REMEMBER")){
+    function SET_REMEMBER($data){
+        /** => Void
+         * set data to remember
+         */
+        if(! is_array($data)){
+            die("CodeYro ERROR: data must be an array.!");
+        }
+        else{
+            SET_COOKIE("CODEYRO_REMEMBERME_1005_REM_EZ_5510_CY", $data);
+        }
+    }
+}
+
+if(! function_exists("GET_REMEMBER")){
+    function GET_REMEMBER($key=""){
+        /** => String / Array
+         * if there is no key parameter = returns array.
+         * if there is a key parameter = returns string.
+         */
+        $ret = null;
+        if(GET_COOKIE("CODEYRO_REMEMBERME_1005_REM_EZ_5510_CY")){
+            $remembered = GET_COOKIE("CODEYRO_REMEMBERME_1005_REM_EZ_5510_CY");
+            if($key=="" || $key==null){
+                $ret = $remembered;
+            }
+            else{
+                if(IS_SET($remembered[$key])){
+                    $ret = $remembered[$key];
+                }
+                else{
+                    die("CodeYRO ERROR: Key '".$key."' not found in the remembered data.!");
+                }
+            }
+        }
+        else{
+            die("CodeYRO error: remember data not set.!");
+        }
+        return $ret; 
+    }
+}
+
+
+if(! function_exists("FORGET_REMEMBER_DATA")){
+    function FORGET_REMEMBER_DATA(){
+        /** => Void
+         * Forget remembered data
+         */
+        if(GET_COOKIE("CODEYRO_REMEMBERME_1005_REM_EZ_5510_CY")){
+            REMOVE_COOKIE("CODEYRO_REMEMBERME_1005_REM_EZ_5510_CY");
+        }
+    }
+}
+
+if(! function_exists("FORGET_REMEMBER")){
+    function REMOVE_REMEMBER(){
+        /** => Void
+         * Forget remembered data
+         */
+        FORGET_REMEMBER_DATA();
+    }
+}
+
+if(! function_exists("FORGET")){
+    function FORGET(){
+        /** => Void
+         * Forget remembered data
+         */
+        REMOVE_REMEMBER();
+    }
+}
+
+if(! function_exists("HAS_REMEMBER_DATA")){
+    function HAS_REMEMBER_DATA(){
+        /** => Boolean
+         * True or False
+         */
+        $ret = false;
+        if(GET_COOKIE("CODEYRO_REMEMBERME_1005_REM_EZ_5510_CY")){
+            $ret = true;
+        }
+        return $ret;
+    }
+}
+
+if(! function_exists("HAS_REMEMBER")){
+    function HAS_REMEMBER(){
+        /** => Boolean
+         * True or False
+         */
+        $ret = false;
+        if(GET_COOKIE("CODEYRO_REMEMBERME_1005_REM_EZ_5510_CY")){
+            $ret = true;
+        }
+        return $ret;
+    }
+}
+
+if(! function_exists("GET_DEVICE_NAME")){
+    function GET_DEVICE_NAME(){
+        /** => String
+         * returns the name of t
+         */
+        return gethostname();
+    }
+}
+
 
 
 

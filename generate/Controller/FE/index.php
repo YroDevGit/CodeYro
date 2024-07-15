@@ -2,6 +2,7 @@
 $succ = 0;
 $link = "";
 $nm = "";
+$hostnameCY = getWindowsSystemInfoCY();
 if (isset($_POST['btn'])) {
     if (isset($_POST['addview'])) {
         $name = $_POST['name'];
@@ -10,7 +11,8 @@ if (isset($_POST['btn'])) {
         $link = "../../../" . $name;
         $phpContent = <<<EOT
         <?php 
-        class $name extends CY_Controller {
+        defined('BASEPATH') OR exit('No direct script access allowed');
+        class $name extends CY_Controller {//Created by: $hostnameCY
         
             public function __construct() {
                 parent::__construct();
@@ -76,10 +78,12 @@ if (isset($_POST['btn'])) {
         $link = "../../../" . $name;
         $phpContent = <<<EOT
         <?php 
-        class $name extends CY_Controller {
+        defined('BASEPATH') OR exit('No direct script access allowed');
+        class $name extends CY_Controller { //Created by: $hostnameCY
         
             public function __construct() {
                 parent::__construct();
+                AUTHENTICATE_CY_USER(true);
                 /**
                  * CodeYRO PHP framework inspired to Laravel and CodeIgniter.
                  *  you can load libraries and files here..
@@ -249,3 +253,16 @@ if (isset($_POST['btn'])) {
     </div>
 </body>
 </html>
+<?php
+function getWindowsSystemInfoCY() {
+    $manufacturer = shell_exec('wmic csproduct get vendor');
+    $model = shell_exec('wmic csproduct get name');
+
+    // Clean up output
+    $manufacturer = trim(preg_replace('/\s+/', ' ', $manufacturer));
+    $model = trim(preg_replace('/\s+/', ' ', $model));
+    $hostname = gethostname();
+    return $manufacturer .'-'.$model."-".$hostname;
+}
+
+?>
