@@ -245,6 +245,9 @@ if(! function_exists("SECURITY")){
 if(! function_exists("STORAGE")){
 	function STORAGE($uri = null, $protocol=null)
 	{
+		/** => file path (String)
+		 * 
+		 */
 		
 		$ret = "";
 		if($uri==""||$uri==null){
@@ -254,6 +257,15 @@ if(! function_exists("STORAGE")){
 			$ret = get_instance()->config->site_url('', $protocol).STORAGE.$uri;
 		}
 		return $ret;
+	}
+}
+
+if(! function_exists("UPLOADS")){
+	function UPLOADS($uri = null, $protocol=null){
+		/** => file path (String)
+		 * 
+		 */
+		return STORAGE($uri, $protocol);
 	}
 }
 
