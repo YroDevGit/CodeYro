@@ -1205,14 +1205,23 @@ if(! function_exists("IS_MULTIDIMENSIONAL_ARRAY")){
 }
 
 if(! function_exists("ARRAY_FIRST_ROW")){
-    function ARRAY_FIRST_ROW($array): array{
+    function ARRAY_FIRST_ROW($array, $key=""){
+        /** Array / String
+         * if $key is NOT set: returns array
+         * if $key is set: returns string
+         */
         $ret = [];
         if(! is_array($array)){
             die("Error: parameter is not an array");
         }
         else{
             if(IS_MULTIDIMENSIONAL_ARRAY($array)){
-                $ret = $array[0];
+                if($key=="" || $key == null){
+                    $ret = $array[0];
+                }
+                else{
+                    $ret = $array[0][$key];
+                }
             }
             else{
                 $ret = $array;
@@ -1223,14 +1232,23 @@ if(! function_exists("ARRAY_FIRST_ROW")){
 }
 
 if(! function_exists("ARRAY_GET_ROW")){
-    function ARRAY_GET_ROW($array, $row): array{
+    function ARRAY_GET_ROW($array, $row, $key=""){
+        /** Array / String
+         * if $key is NOT set: returns array
+         * if $key is set: returns string
+         */
         $ret = [];
         if(! is_array($array)){
             die("Error: parameter \$array is not an array");
         }
         else{
             if(IS_MULTIDIMENSIONAL_ARRAY($array)){
-                $ret = $array[$row];
+                if($key=="" || $key == null){
+                    $ret = $array[$row];
+                }
+                else{
+                    $ret = $array[$row][$key];
+                }
             }
             else{
                 $ret = $array;
