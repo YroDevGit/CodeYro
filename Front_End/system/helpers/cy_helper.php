@@ -713,8 +713,30 @@ if(! function_exists("BUTTON_CLICKED")){
     }
 }
 
+if(! function_exists("IS_BUTTON_CLICKED")){
+    function IS_BUTTON_CLICKED($buttonname){
+        /** => Boolean
+         * check if specific button is clicked.
+         * Required: form submit (post) to be effective
+         * The same with: BUTTON_CLICKED('buttonname');
+         */
+        return IS_SET(POST($buttonname));
+    }
+}
+
 if(! function_exists("CHECKBOX_CKECKED")){
     function CHECKBOX_CKECKED($checkboxname){
+        /** => Boolean
+         * check if specific checkbox is checked.
+         * same to CHECKBOX_IS_CKECKED('checkboxname')
+         * Required: form submit (post) to be effective
+         */
+        return IS_SET(POST($checkboxname));
+    }
+}
+
+if(! function_exists("IS_CHECKBOX_CKECKED")){
+    function IS_CHECKBOX_CKECKED($checkboxname){
         /** => Boolean
          * check if specific checkbox is checked.
          * same to CHECKBOX_IS_CKECKED('checkboxname')
@@ -1154,6 +1176,69 @@ if(! function_exists("GET_DEVICE_NAME")){
     }
 }
 
+if(! function_exists("ARRAY_IS_MULTIDIMENSIONAL")){
+    function ARRAY_IS_MULTIDIMENSIONAL($array): bool {
+        /** ==>Boolean
+         * check if the array is multi-dimensional (array inside array).
+         */
+        if(! is_array($array)){
+            die("Error: parameter is not an array");
+        }
+        else{
+            foreach ($array as $element) {
+                if (is_array($element)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+
+if(! function_exists("IS_MULTIDIMENSIONAL_ARRAY")){
+    function IS_MULTIDIMENSIONAL_ARRAY($array): bool{
+        /** ==>Boolean
+         * check if the array is multi-dimensional (array inside array).
+         */
+        return ARRAY_IS_MULTIDIMENSIONAL($array);
+    }
+}
+
+if(! function_exists("ARRAY_FIRST_ROW")){
+    function ARRAY_FIRST_ROW($array): array{
+        $ret = [];
+        if(! is_array($array)){
+            die("Error: parameter is not an array");
+        }
+        else{
+            if(IS_MULTIDIMENSIONAL_ARRAY($array)){
+                $ret = $array[0];
+            }
+            else{
+                $ret = $array;
+            }
+        }
+        return $ret;
+    }
+}
+
+if(! function_exists("ARRAY_GET_ROW")){
+    function ARRAY_GET_ROW($array, $row): array{
+        $ret = [];
+        if(! is_array($array)){
+            die("Error: parameter \$array is not an array");
+        }
+        else{
+            if(IS_MULTIDIMENSIONAL_ARRAY($array)){
+                $ret = $array[$row];
+            }
+            else{
+                $ret = $array;
+            }
+        }
+        return $ret;
+    }
+}
 
 
 
