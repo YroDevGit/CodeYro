@@ -66,6 +66,23 @@ class CY_Controller {
 				$this->POST = (! empty($this->input->post())? $this->input->post() : [] );	
 			}
 		}
+
+		if(isset(getallheaders()['Content-Type'])){
+			$heading111 = getallheaders()['Content-Type'];
+			if($heading111 == "application/json"){
+				$rawInputCY = file_get_contents('php://input');
+				$GETCY = json_decode($rawInputCY, true);
+				if(json_last_error() == JSON_ERROR_NONE){
+					$this->GET = $GETCY;
+				}
+				else{
+					die("CodeYRO ERROR: ".json_last_error_msg());
+				}	
+			}
+			else{
+				$this->GET = $_GET;
+			}
+		}
 		define("POST_ACTIVE", empty($this->POST)? false : true);
 
 		$this->load->helper('cy_helper');

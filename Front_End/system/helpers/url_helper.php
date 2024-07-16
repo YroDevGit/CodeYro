@@ -752,7 +752,7 @@ if ( ! function_exists('redirect'))
 }
 
 if(! function_exists("CY_REDIRECT")){
-	function CY_REDIRECT($controller = '', $data = [], $delay = 0 ,$method = 'auto', $code = NULL){
+	function CY_REDIRECT($controller = '', $data = [], $inputOldValue = false, $delay = 0 ,$method = 'auto', $code = NULL){
 		/** => Void
 		 * Example use: controller classname: cycontrol
 		 * index function => CY_REDIRECT('cycontrol');
@@ -770,7 +770,9 @@ if(! function_exists("CY_REDIRECT")){
 			else{
 				$to_send = $post_data;
 			}
-			SET_FLASHDATA('CODEYRO_1005_POST_DATA_00129937_YRO', $to_send);
+			if($inputOldValue==true){
+				SET_FLASHDATA('CODEYRO_1005_POST_DATA_00129937_YRO', $to_send);
+			}
 		}
 
 			SET_FLASHDATA('CODEYRO_PHP7_1005_RDR_90384_DATA_YRO05', $data);

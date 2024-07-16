@@ -145,6 +145,31 @@ function PostRequest(url, data = {}, method = 'POST', headers = {}) {
     });
 }
 
+function OneSubmit(attr, timeout=2500) {
+    var form = document.querySelector(attr);
+    var buttons = form.getElementsByTagName('button');
+    for (var i = 0; i < buttons.length; i++) {
+        if (buttons[i].type === 'submit') {
+            buttons[i].disabled = true;
+        }
+    }
+
+    setTimeout(function(){
+        for (var i = 0; i < buttons.length; i++) {
+            if (buttons[i].type === 'submit') {
+                buttons[i].disabled = false;
+            }
+        }
+    }, timeout);
+}
+
+function OneClick(attr, timeout=2500) {
+    var btn = document.querySelector(attr);
+    btn.disabled = true;
+    setTimeout(function(){
+        btn.disabled = false;
+    }, timeout);
+}
 
 
 

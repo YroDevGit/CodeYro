@@ -63,10 +63,10 @@ if(! function_exists("CY_VIEW_INCLUDE_PAGE")){
          */
          $CY =& get_instance();
         if(empty($data)){
-            $CY->load->view("others/".$page);
+            $CY->load->view("includes/".$page);
         }
         else{
-            $CY->load->view("others/".$page,$data);
+            $CY->load->view("includes/".$page,$data);
         }
     }
 }
@@ -79,10 +79,10 @@ if(! function_exists("CY_SHOW_INCLUDE_PAGE")){
          */
          $CY =& get_instance();
         if(empty($data)){
-            $CY->load->view("others/".$page);
+            $CY->load->view("includes/".$page);
         }
         else{
-            $CY->load->view("others/".$page,$data);
+            $CY->load->view("includes/".$page,$data);
         }
     }
 }
@@ -176,6 +176,61 @@ if(! function_exists("POST")){
          */
         $CY =& get_instance();
         return $CY->POST[$inputname];
+    }
+}
+
+if(! function_exists("FORM_SUBMITTED")){
+    function FORM_SUBMITTED($method = "post"){
+        /** ==> Boolean
+         * check if form is submitted
+         * True if submitted
+         * False if not.
+         */
+        $ret = false;
+        $CY =& get_instance();
+        if($method == "POST" || $method == "post"){
+            if($CY->POST){
+                $CYPOST = $CY->POST;
+                if(empty($CYPOST)){
+                    $ret = false;
+                }
+                else{
+                    $ret = true;
+                }
+            }
+            else{
+                $ret = false;
+            }
+        }
+        elseif($method == "GET" || $method == "get"){
+            if($CY->GET){
+                $CYGET = $CY->GET;
+                if(empty($CYGET)){
+                    $ret = false;
+                }
+                else{
+                    $ret = true;
+                }
+            }
+            else{
+                $ret = false;
+            } 
+        }
+        else{
+            die("CodeYRO error: method undefined.! accepts only POST and GET");
+        }
+        return $ret;
+    }
+}
+
+if(! function_exists("POST_SUBMITTED")){
+    function POST_SUBMITTED(){
+        /** ==> Boolean
+         * check if post submitted
+         * effects only if form method is POST/post\
+         * same to: FORM_SUBMITTED('POST');
+         */
+        return FORM_SUBMITTED("POST");
     }
 }
 
@@ -290,7 +345,7 @@ if(! function_exists("VALIDATION_FAILED_REDIRECT")){
         $CY =& get_instance();
         if ($CY->form_validation->run() == false) {
             $CY->session->set_flashdata('cy_validation_error_1005CodeYro05', VALIDATION_ERROR_LIST());
-            CY_REDIRECT($page);
+            CY_REDIRECT($page, [], true);
         }
         else{
             P(["code"=>-1, "status"=>"Error","message"=>"Invalid call, there no failed validation found.!, you can call this function if validation is failed."]);
@@ -623,6 +678,60 @@ if(! function_exists("IS_SET")){
          * [Using isset]
          */
         return IS_EXIST($val);
+    }
+}
+
+if(! function_exists("INPUT_EXIST")){
+    function INPUT_EXIST($inputname){
+        /** => Boolean
+         * check if form input exist.
+         * same to: HAS_INPUT_NAME('inputname')
+         * Required: form submit (post) to be effective
+         */
+        return IS_SET(POST($inputname));
+    }
+}
+
+if(! function_exists("HAS_INPUT_NAME")){
+    function HAS_INPUT_NAME($inputname){
+        /** => Boolean
+         * check if form input exist.
+         * same to: INPUT_EXIST('inputname')
+         * Required: form submit (post) to be effective
+         */
+        return IS_SET(POST($inputname));
+    }
+}
+
+if(! function_exists("BUTTON_CLICKED")){
+    function BUTTON_CLICKED($buttonname){
+        /** => Boolean
+         * check if specific button is clicked.
+         * Required: form submit (post) to be effective
+         */
+        return IS_SET(POST($buttonname));
+    }
+}
+
+if(! function_exists("CHECKBOX_CKECKED")){
+    function CHECKBOX_CKECKED($checkboxname){
+        /** => Boolean
+         * check if specific checkbox is checked.
+         * same to CHECKBOX_IS_CKECKED('checkboxname')
+         * Required: form submit (post) to be effective
+         */
+        return IS_SET(POST($checkboxname));
+    }
+}
+
+if(! function_exists("CHECKBOX_IS_CKECKED")){
+    function CHECKBOX_IS_CKECKED($checkboxname){
+        /** => Boolean
+         * check if specific checkbox is checked.
+         * same to CHECKBOX_CKECKED('checkboxname')
+         * Required: form submit (post) to be effective
+         */
+        return IS_SET(POST($checkboxname));
     }
 }
 

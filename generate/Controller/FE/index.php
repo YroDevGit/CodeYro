@@ -5,6 +5,10 @@ $nm = "";
 $hostnameCY = getWindowsSystemInfoCY();
 if (isset($_POST['btn'])) {
     if (isset($_POST['addview'])) {
+        $at = "false";
+        if(isset($_POST['auth'])){
+            $at = "true";
+        }
         $name = $_POST['name'];
         $nm = $name;
         $phpFile = "../../../Front_End/application/controllers/" . $name . ".php"; // Name of the PHP file to be created
@@ -16,7 +20,7 @@ if (isset($_POST['btn'])) {
         
             public function __construct() {
                 parent::__construct();
-                AUTHENTICATE_CY_USER(true); // Set to TRUE to make this controller under authentication.
+                AUTHENTICATE_CY_USER($at); // Set to TRUE to make this controller under authentication.
                 /**
                  * CodeYRO PHP framework inspired to Laravel and CodeIgniter.
                  *  you can load libraries and files here..
@@ -72,6 +76,10 @@ if (isset($_POST['btn'])) {
             }
         }
     } else {
+        $at = "false";
+        if(isset($_POST['auth'])){
+            $at = "true";
+        }
         $name = $_POST['name'];
         $nm = $name;
         $phpFile = "../../../Front_End/application/controllers/" . $name . ".php"; // Name of the PHP file to be created
@@ -83,7 +91,7 @@ if (isset($_POST['btn'])) {
         
             public function __construct() {
                 parent::__construct();
-                AUTHENTICATE_CY_USER(true);
+                AUTHENTICATE_CY_USER($at);
                 /**
                  * CodeYRO PHP framework inspired to Laravel and CodeIgniter.
                  *  you can load libraries and files here..
@@ -225,6 +233,9 @@ if (isset($_POST['btn'])) {
                 <div>
                     <label for="name">Front End Controller name:</label>
                     <input type="text" name="name" placeholder="Enter controller name" required>
+                </div>
+                <div style="padding-top: 5px; padding-bottom:20px;">
+                    <label for="auth" title="If checked, Users should be authenticated or logged in to have access to this controller functions"><input type="checkbox" name="auth" id="auth" checked>Authenticated</label>
                 </div>
                 <div style="display: none;">
                     <label for="check">
