@@ -829,6 +829,7 @@ if(! function_exists("SET_LOGIN")){
     function SET_LOGIN($status = true , $data = []){
         /** ==> Void
          * set login status and data.
+         * When using when user_roles assignation is activated, make sure to have user $data.
          * Using cookies.
          */
         if(! is_bool($status)){

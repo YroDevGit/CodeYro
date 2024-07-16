@@ -15,7 +15,15 @@ if(! function_exists("AUTHENTICATE_CY_USER")){
          */
         if($bool == true || $bool == TRUE){
             CODEYRO_AUTH_SETTINGS_1005_YROLEEEMZ_CY();
+            CODEYRO_ASSIGN_USER_1005_YRO_EMZ();
         }
+    }
+}
+
+if(!function_exists("CODEYRO_ASSIGN_USER_1005_YRO_EMZ")){
+    function CODEYRO_ASSIGN_USER_1005_YRO_EMZ(){
+        include_once AUTHPATH."/user_roles.php";
+        CY_ASSIGN_USER(GET_LOGIN_DATA());
     }
 }
 
