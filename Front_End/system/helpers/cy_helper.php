@@ -5,7 +5,7 @@
  */
 
 if(! function_exists("CY_VIEW")){
-    function CY_VIEW($view, $data=[]){
+    function CY_VIEW($view, array $data=[]){
         /** ==> Void
          * CY_VIEW parameters: $view = view filename. $data = data to be pass from controller to view file
          * Example use: view filename is required as parameter
@@ -22,7 +22,7 @@ if(! function_exists("CY_VIEW")){
 }
 
 if(! function_exists("CY_SHOW")){
-    function CY_SHOW($view, $data=[]){
+    function CY_SHOW($view, array $data=[]){
         /** ==> Void
          * Show php content inside application/views/
          * CY_SHOW parameters: $view = view filename. $data = data to be pass from controller to view file
@@ -40,7 +40,7 @@ if(! function_exists("CY_SHOW")){
 }
 
 if(! function_exists("CY_VIEW_PAGE")){
-    function CY_VIEW_PAGE($page, $data=[]){
+    function CY_VIEW_PAGE($page, array $data=[]){
         /** ==> Void
          * Show php content inside application/views/pages/
          * parameters: $page = page filename inside views/pages/. $data = data to be pass from controller to view file
@@ -56,7 +56,7 @@ if(! function_exists("CY_VIEW_PAGE")){
 }
 
 if(! function_exists("CY_VIEW_INCLUDE_PAGE")){
-    function CY_VIEW_INCLUDE_PAGE($page, $data=[]){
+    function CY_VIEW_INCLUDE_PAGE($page, array $data=[]){
         /** ==> Void
          * Show php content inside application/views/includes/
          * parameters: $page = page filename inside views/includes/. $data = data to be pass from controller to view file
@@ -72,7 +72,7 @@ if(! function_exists("CY_VIEW_INCLUDE_PAGE")){
 }
 
 if(! function_exists("CY_SHOW_INCLUDE_PAGE")){
-    function CY_SHOW_INCLUDE_PAGE($page, $data=[]){
+    function CY_SHOW_INCLUDE_PAGE($page, array $data=[]){
         /** ==> Void
          * Show php content inside application/views/includes/
          * parameters: $page = page filename inside views/includes/. $data = data to be pass from controller to view file
@@ -88,7 +88,7 @@ if(! function_exists("CY_SHOW_INCLUDE_PAGE")){
 }
 
 if(! function_exists("CY_SHOW_ERROR")){
-    function CY_SHOW_ERROR($page, $data=[]){
+    function CY_SHOW_ERROR($page, array $data=[]){
         /** ==> Void
          * Show php content inside application/views/errors/html/
          * parameters: $page = page filename inside views/errors/html/. $data = data to be pass from controller to view file
@@ -104,7 +104,7 @@ if(! function_exists("CY_SHOW_ERROR")){
 }
 
 if(! function_exists("CY_VIEW_ERROR")){
-    function CY_VIEW_ERROR($page, $data=[]){
+    function CY_VIEW_ERROR($page, array $data=[]){
         /** ==> Void
          * Show php content inside application/views/errors/html/
          * parameters: $page = page filename inside views/errors/html/. $data = data to be pass from controller to view file
@@ -120,7 +120,7 @@ if(! function_exists("CY_VIEW_ERROR")){
 }
 
 if(! function_exists("CY_SHOW_PAGE")){
-    function CY_SHOW_PAGE($page, $data=[]){
+    function CY_SHOW_PAGE($page, array $data=[]){
         /** ==> Void
          * Show php content inside application/views/pages/
          * parameters: $page = page filename inside views/pages/. $data = data to be pass from controller to view file
@@ -136,7 +136,7 @@ if(! function_exists("CY_SHOW_PAGE")){
 }
 
 if(! function_exists("CY_VIEW_CONTENT")){
-    function CY_VIEW_CONTENT($content, $data=[]){
+    function CY_VIEW_CONTENT($content, array $data=[]){
         /** ==> Void
          * Show php content inside application/views/contents/
          * parameters: $content = content filename inside views/contents/. $data = data to be pass from controller to view file
@@ -152,7 +152,7 @@ if(! function_exists("CY_VIEW_CONTENT")){
 }
 
 if(! function_exists("CY_SHOW_CONTENT")){
-    function CY_SHOW_CONTENT($content, $data=[]){
+    function CY_SHOW_CONTENT($content, array $data=[]){
         /** ==> Void
          * Show php content inside application/views/contents/
          * parameters: $content = content filename inside views/contents/. $data = data to be pass from controller to view file
@@ -864,6 +864,8 @@ if(! function_exists("REMOVE_ALL_COOKIES")){
 if(! function_exists("SET_LOGIN")){
     function SET_LOGIN($status = true , $data = []){
         /** ==> Void
+         * param: $status is boolean and $data is array.
+         * $data can be use in User athentication and roles.
          * set login status and data.
          * When using when user_roles assignation is activated, make sure to have user $data.
          * Using cookies.
@@ -876,21 +878,43 @@ if(! function_exists("SET_LOGIN")){
         }
         else{
             if($status == false || $status == FALSE){
-                if(GET_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ")){
-                    REMOVE_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ");
-                }
-                REMOVE_ALL_SESSIONS();
-                REMOVE_ALL_FLASHDATA();
+                REMOVE_LOGIN_DATA(true); 
             }
             else{
-                $login_data = [
-                    "status" => true,
-                    "data" => $data
-                ];
-        
-                SET_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ", $login_data);
+               if(! empty($data)){
+                SET_LOGIN_DATA($data);
+               }
             }  
         }
+    }
+}
+
+
+if(! function_exists("REMOVE_LOGIN_DATA")){
+    function REMOVE_LOGIN_DATA($delete_sessions=false){
+        /** ==> Void
+         * $delete_sessions: if sessions will also be removed.
+         */
+        if(GET_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ")){
+            REMOVE_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ");
+        }
+        if($delete_sessions == true){
+            REMOVE_ALL_SESSIONS();
+            REMOVE_ALL_FLASHDATA();
+        }
+    }
+}
+
+if(! function_exists("SET_LOGIN_DATA")){
+    function SET_LOGIN_DATA($data){
+        /** ==> Void
+         * Set Login data, can be use in User athentication and roles.
+         */
+        $login_data = [
+            "status" => true,
+            "data" => $data
+        ];
+        SET_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ", $login_data);
     }
 }
 
@@ -1333,6 +1357,31 @@ if(! function_exists("HAS_FILE_SUBMITTED")){
     }
 }
 
+if(! function_exists("ARRAY_APPEND_ELEMENT")){
+    function ARRAY_APPEND_ELEMENT(array &$array, string $key, $value):void{
+        /** ==> Void
+         * add element to the array
+         * $array = specific array
+         * $key = $key of the element to be added.
+         * $value of the element to be added.
+         * Same to ARRAY_ADD_ELEMENT(array $array, string $key, $value)
+         */
+        $array[$key] = $value;
+    }
+}
+
+if(! function_exists("ARRAY_ADD_ELEMENT")){
+    function ARRAY_ADD_ELEMENT(array &$array, string $key, $value):void{
+        /** ==> Void
+         * add element to the array
+         * $array = specific array
+         * $key = $key of the element to be added.
+         * $value of the element to be added.
+         * Same to ARRAY_APPEND_DATA(array $array, string $key, $value)
+         */
+        $array[$key] = $value;
+    }
+}
 
 
 

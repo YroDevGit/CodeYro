@@ -6,8 +6,8 @@ if(! function_exists("CY_ASSIGN_USER")){
     function CY_ASSIGN_USER($roles = ["id"=>null, "type" => null, "role" => null]){ 
         if(! is_array($roles)){die("Roles should be an array");}
         //👆Heading condtions is sensitive, can cause errors when modified.
-        /** CodeYRO assign user.
-         * $roles value is depends on what you put in SET_LOGIN(true, $data);
+        /** CodeYRO assign user.. Required: SET_LOGIN(true, $data); or SET_LOGIN_DATA($data)
+         * $roles value is depends on what you put in SET_LOGIN(true, $data); or SET_LOGIN_DATA($data);
          */
         
         //Conditions below 👇, you can remove and add your own condtions, codes below is just a reference but you can use it too.

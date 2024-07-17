@@ -14,9 +14,9 @@
         }
         else{
             if (move_uploaded_file($_FILES[$inputname]["tmp_name"], STORAGE.$filename)) {
-                $ret = ['code' => '200', 'message'=>'File uploaded suuccessfully', 'filename' => $_FILES[$inputname]["name"], 'filesize' => $_FILES[$inputname]["size"]];
+                $ret = ['code' => '200', 'message'=>'File uploaded suuccessfully', 'original_filename' => $_FILES[$inputname]["name"], 'filesize' => $_FILES[$inputname]["size"], 'filename'=>$filename];
             } else {
-                $ret = ['code' => '-1', 'message'=>'Failed to upload file', 'filename' => $_FILES[$inputname]["name"], 'filesize' => $_FILES[$inputname]["size"]];
+                $ret = ['code' => '-1', 'message'=>'Failed to upload file', 'original_filename' => $_FILES[$inputname]["name"], 'filesize' => $_FILES[$inputname]["size"], 'filename'=>$filename];
             }
         }
         return $ret;

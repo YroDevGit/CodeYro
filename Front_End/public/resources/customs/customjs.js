@@ -171,5 +171,8 @@ function OneClick(attr, timeout=2500) {
     }, timeout);
 }
 
+function GetAttribute($elemet, $attr){
+    return document.querySelector($elemet).getAttribute($attr);
+}
 
 

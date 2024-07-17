@@ -178,4 +178,11 @@ if(! function_exists("DB_TRACKER_STATUS")){
         return $ret;
     }
 }
+
+if(! function_exists("DB_LAST_QUERY")){
+    function DB_LAST_QUERY(){
+        $CY =& get_instance();
+        return $CY->db->last_query();
+    }
+}
 ?>
