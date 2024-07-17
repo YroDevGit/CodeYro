@@ -298,6 +298,17 @@ class CI_Form_validation {
 		return $this;
 	}
 
+	public function set_ci_error_message($lang, $val = '')
+	{
+		if ( ! is_array($lang))
+		{
+			$lang = array($lang => $val);
+		}
+
+		$this->_error_array = array_merge($this->_error_array, $lang);
+		return $this;
+	}
+
 	// --------------------------------------------------------------------
 
 	/**

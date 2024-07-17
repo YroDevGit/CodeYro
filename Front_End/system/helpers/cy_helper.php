@@ -373,6 +373,19 @@ if(! function_exists("VALIDATION_GET_FLASH_ERROR")){
     }
 }
 
+if(! function_exists("VALIDATION_INPUT_ERROR")){
+    function VALIDATION_INPUT_ERROR($inputname){
+        /** => Array
+         * This is effective in both load view and redirects
+         * This will required VALIDATION_FAILED() to be effective
+         * CodeYro
+         * Same to VALIDATION_GET_FLASH_ERROR('input');
+         * Same to VALIDATION_FAILED_MESSAGE('input');
+         */
+        return VALIDATION_GET_FLASH_ERROR($inputname);
+    }
+}
+
 if(! function_exists("VALIDATION_FAILED_MESSAGE_ARRAY")){
     function VALIDATION_FAILED_MESSAGE_ARRAY(){
         /** => Array
@@ -384,6 +397,7 @@ if(! function_exists("VALIDATION_FAILED_MESSAGE_ARRAY")){
         return $all_error;
     }
 }
+
 
 if(! function_exists("HAS_VALIDATION_ERRORS")){
     function HAS_VALIDATION_ERRORS(){
@@ -1257,6 +1271,68 @@ if(! function_exists("ARRAY_GET_ROW")){
         return $ret;
     }
 }
+
+if(! function_exists("FILES")){
+    function FILES($inputname="", $attr=""){
+        /** Array / String (File path)
+         * return the file path
+         */
+        if($inputname=="" || $inputname==null){
+            return $_FILES;
+        }
+        else{
+            if($attr =="" || $attr == null){
+               return $_FILES[$inputname];
+            }
+            else{
+                return $_FILES[$inputname][$attr];
+            }
+        } 
+    }
+}
+
+if(! function_exists("FILENAME")){
+    function FILENAME($inputname=""){
+        /** String
+         * return the file name
+         */
+        return FILES($inputname,"name");
+}
+}
+
+if(! function_exists("VALIDATION_SET_INPUT_ERROR")){
+    function VALIDATION_SET_INPUT_ERROR($inputname, $errormessage){
+        /** ==> Void
+         * Manually add validation error.
+         */
+        $CY =& get_instance();
+        $CY->form_validation->set_ci_error_message($inputname, $errormessage);
+    }
+}
+
+if(! function_exists("HAS_FILE_SUBMITTED")){
+    function HAS_FILE_SUBMITTED($inputname){
+        /** ==> Boolean
+         * check if there is file included in POST data.
+         * form submit.
+         * Required enctype="multipart/form-data"
+         */
+        $ret = false;
+        if($_FILES[$inputname]){
+            if($_FILES[$inputname]["name"]=="" || $_FILES[$inputname]["name"]==null){
+                $ret = false;
+            }
+            else{
+                $ret = true;
+            }
+        }
+        else{
+            $ret = false;
+        }
+        return $ret;
+    }
+}
+
 
 
 

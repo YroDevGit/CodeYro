@@ -1,68 +1,69 @@
-function SuccessMessage($message, $type="0"){
-    if($type=="0"){
-        Swal.fire({
-        title: 'Success!',
-        text: $message,
-        icon: 'success',
-        confirmButtonText: 'OKAY'
+function SuccessMessage(message, type="0") {
+    window.addEventListener("load", function() {
+        if(type === "0") {
+            Swal.fire({
+                title: 'Success!',
+                text: message,
+                icon: 'success',
+                confirmButtonText: 'OKAY'
+            });
+        } else if(type === "1" || type.toLowerCase() === "reload") {
+            Swal.fire({
+                title: 'Success!',
+                text: message,
+                icon: 'success',
+                confirmButtonText: 'OKAY'
+            }).then(() => {
+                window.location.reload();
+            });
+        } else {
+            Swal.fire({
+                title: 'Success!',
+                text: message,
+                icon: 'success',
+                confirmButtonText: 'OKAY'
+            }).then(() => {
+                window.location.href = type;
+            });
+        }
     });
-    }
-    else if($type=="1" || $type=="reload" || $type=="RELOAD"){
-        Swal.fire({
-            title: 'Success!',
-            text: $message,
-            icon: 'success',
-            confirmButtonText: 'OKAY'
-        }).then(() => {
-            window.location.reload();
-        });;
-    }
-    else{
-        Swal.fire({
-            title: 'Success!',
-            text: $message,
-            icon: 'success',
-            confirmButtonText: 'OKAY'
-        }).then(() => {
-            window.location.href = $type;
-        });;
-    }
-    
-}
-
-function ErrorMessage($message, $type="0"){
-    if($type=="0"){
-        Swal.fire({
-        title: 'Error!',
-        text: $message,
-        icon: 'error',
-        confirmButtonText: 'OKAY'
-    });
-    }
-    else if($type=="1" || $type=="reload" || $type=="RELOAD"){
-        Swal.fire({
-            title: 'Error!',
-            text: $message,
-            icon: 'error',
-            confirmButtonText: 'OKAY'
-        }).then(() => {
-            window.location.reload();
-        });;
-    }
-    else{
-        Swal.fire({
-            title: 'Error!',
-            text: $message,
-            icon: 'error',
-            confirmButtonText: 'OKAY'
-        }).then(() => {
-            window.location.href = $type;
-        });;
-    }
 }
 
 
-function ConfirmationMessage(message, action){
+function ErrorMessage(message, type="0") {
+    window.addEventListener("load", function() {
+        if(type === "0") {
+            Swal.fire({
+                title: 'Error!',
+                text: message,
+                icon: 'error',
+                confirmButtonText: 'OKAY'
+            });
+        } else if(type === "1" || type.toLowerCase() === "reload") {
+            Swal.fire({
+                title: 'Error!',
+                text: message,
+                icon: 'error',
+                confirmButtonText: 'OKAY'
+            }).then(() => {
+                window.location.reload();
+            });
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: message,
+                icon: 'error',
+                confirmButtonText: 'OKAY'
+            }).then(() => {
+                window.location.href = type;
+            });
+        }
+    });
+}
+
+
+
+function ConfirmationMessage(message, action) {
     Swal.fire({
         title: 'CONFIRMATION MESSAGE',
         text: message,
@@ -73,10 +74,11 @@ function ConfirmationMessage(message, action){
         confirmButtonText: 'YES'
     }).then((result) => {
         if (result.isConfirmed) {
-           action();
+            action();
         }
-    })
+    });
 }
+
 
 function ConfirmMessage(message, action){
     Swal.fire({

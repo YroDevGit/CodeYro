@@ -3,7 +3,7 @@
  if(! function_exists("UPLOAD_FILE")){
     function UPLOAD_FILE($inputname, $rename = "FALSE"){
         $filename = "";
-        switch($rename){
+        switch(strtoupper($rename)){
             case "FALSE": $filename = basename($_FILES[$inputname]["name"]);break;
             case "TRUE": $filename = AUTO_RENAME_FILE($inputname); break;
             default: $filename = $rename.".".GET_FILE_TYPE($inputname);break;
