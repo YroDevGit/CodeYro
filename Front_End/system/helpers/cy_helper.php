@@ -517,6 +517,7 @@ if(! function_exists("SET_SESSION")){
     function SET_SESSION(string $key, $value){
         /**
          *  => Void
+         * Value can be a string or array.
          */
         $CY =& get_instance();
         $CY->session->set_userdata($key,$value);
