@@ -92,7 +92,7 @@ class CY_Controller {
 		load_all_models();
 		$this->load->helper("auth_helper");
 		$this->load->helper("cyemail_helper");
-		AUTHENTICATE_CY_USER(false);
+		include_once APPPATH."auto/controller_loader.php";
 	}
 
 	// --------------------------------------------------------------------
