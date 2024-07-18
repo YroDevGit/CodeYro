@@ -1,5 +1,4 @@
 function SuccessMessage(message, type="0") {
-    window.addEventListener("load", function() {
         if(type === "0") {
             Swal.fire({
                 title: 'Success!',
@@ -26,12 +25,10 @@ function SuccessMessage(message, type="0") {
                 window.location.href = type;
             });
         }
-    });
 }
 
 
 function ErrorMessage(message, type="0") {
-    window.addEventListener("load", function() {
         if(type === "0") {
             Swal.fire({
                 title: 'Error!',
@@ -58,7 +55,6 @@ function ErrorMessage(message, type="0") {
                 window.location.href = type;
             });
         }
-    });
 }
 
 

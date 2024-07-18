@@ -179,8 +179,8 @@ if(! function_exists("POST")){
     }
 }
 
-if(! function_exists("FORM_SUBMITTED")){
-    function FORM_SUBMITTED($method = "post"){
+if(! function_exists("HAS_FORM_SUBMITTED")){
+    function HAS_FORM_SUBMITTED($method = "post"){
         /** ==> Boolean
          * check if form is submitted
          * True if submitted
@@ -223,14 +223,25 @@ if(! function_exists("FORM_SUBMITTED")){
     }
 }
 
-if(! function_exists("POST_SUBMITTED")){
-    function POST_SUBMITTED(){
+if(! function_exists("HAS_POST_SUBMITTED")){
+    function HAS_POST_SUBMITTED(){
         /** ==> Boolean
          * check if post submitted
          * effects only if form method is POST/post\
          * same to: FORM_SUBMITTED('POST');
          */
-        return FORM_SUBMITTED("POST");
+        return HAS_FORM_SUBMITTED("POST");
+    }
+}
+
+if(! function_exists("HAS_GET_SUBMITTED")){
+    function HAS_GET_SUBMITTED(){
+        /** ==> Boolean
+         * check if post submitted
+         * effects only if form method is POST/post\
+         * same to: FORM_SUBMITTED('POST');
+         */
+        return HAS_FORM_SUBMITTED("GET");
     }
 }
 
@@ -488,7 +499,7 @@ if(! function_exists("CY_USE_MODEL")){
 }
 
 if(! function_exists("SET_SESSION_ARRAY")){
-    function SET_SESSION_ARRAY($session){
+    function SET_SESSION_ARRAY(array $session){
         /**
          *  => Void
          */
@@ -503,7 +514,7 @@ if(! function_exists("SET_SESSION_ARRAY")){
 }
 
 if(! function_exists("SET_SESSION")){
-    function SET_SESSION($key, $value){
+    function SET_SESSION(string $key, $value){
         /**
          *  => Void
          */
@@ -513,7 +524,7 @@ if(! function_exists("SET_SESSION")){
 }
 
 if(! function_exists("GET_SESSION")){
-    function GET_SESSION($key){
+    function GET_SESSION(string $key){
         /**
          *  => Array or String
          */
@@ -1054,20 +1065,30 @@ if(! function_exists("CY_REALNUM_CODE")){
 }
 
 if(! function_exists("CY_JSON_RESPONSE")){
-    function CY_JSON_RESPONSE($value){
+    function CY_JSON_RESPONSE($value, bool $direct=true){
         /** => Json / js array
          * convert php array to  js / json array.
          */
-        return json_encode($value);
+        if($direct == false){
+            return json_encode($value);
+        }
+        else{
+            echo json_encode($value);
+        }
     }
 }
 
 if(! function_exists("JSON_RESPONSE")){
-    function JSON_RESPONSE($value){
+    function JSON_RESPONSE($value, bool $direct=true){
         /** => Json / js array
          * convert php array to  js / json array.
          */
-        return json_encode($value);
+        if($direct == false){
+            return json_encode($value);
+        }
+        else{
+            echo json_encode($value);
+        }
     }
 }
 
@@ -1382,6 +1403,136 @@ if(! function_exists("ARRAY_ADD_ELEMENT")){
         $array[$key] = $value;
     }
 }
+
+if(! function_exists("DOWNLOAD_FILE")){
+    function DOWNLOAD_FILE(string $file, bool $in_storage = false){
+        /** ==> array
+         * Summary of DOWNLOAD_FILE
+         * CodeYro
+         * @param string $file
+         * @param bool $in_storage
+         * @return array
+         */
+        $ret = [];
+        $f_path = "";
+        switch($in_storage){
+            case false: $f_path = $file;break;
+            case true:  $f_path = STORAGE.$file;break;
+        }
+        if (file_exists($f_path)) { 
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="'.basename($f_path).'"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($f_path));
+            ob_clean();
+            flush();
+            readfile($f_path);
+            $ret = ["code" => CY_SUCCESS_CODE, "status" => "Success", "message" => "File downloaded.", "file" => $f_path]; 
+        } else {
+            $ret = ["code" => 404, "status" => "Failed", "message" => "File not found.!", "file" => $f_path]; 
+        }
+        return $ret;
+    }
+}
+
+if(! function_exists("DELETE_FILE")){
+    function DELETE_FILE(string $file, bool $in_storage){
+        /** ==> array
+         * Summary of DELETE_FILE
+         * @param string $file
+         * @param bool $in_storage
+         * @return array
+         */
+        $ret = [];
+        $f_path = "";
+        switch($in_storage){
+            case false: $f_path = $file;break;
+            case true:  $f_path = STORAGE.$file;break;
+        }
+        
+        if (file_exists($f_path)) {
+            if (unlink($f_path)) {
+                $ret = ["code" => CY_SUCCESS_CODE, "status" => "Success", "message" => "File deleted successfully.", "file" => $f_path];
+            } else {
+                $ret = ["code" => -1, "status" => "Failed", "message" => "Failed to download file.", "file" => $f_path];
+            }
+        } else {
+            $ret = ["code" => 404, "status" => "Failed", "message" => "File Not found", "file" => $f_path];
+        }
+        return $ret;
+    }
+}
+
+if(! function_exists("DELETE_STORAGE_FILE")){
+    function DELETE_STORAGE_FILE(string $file):array{
+        /** ==> Array
+     * Summary of DELETE_STORAGE_FILE
+     * @param string $file
+     * @return array
+     */
+        return DELETE_FILE($file, true);
+    }
+}
+
+if(! function_exists("REQUIRE_FORM_SUBMIT")){
+    function REQUIRE_FORM_SUBMIT(string $method){
+        /** ==> Void
+         * Error when there is no form submitted.
+         * @var mixed
+         */
+        $CY =& get_instance();
+        if($method=="post" || $method == "POST"){
+            if(empty($CY->POST)){
+                die("CodeYRO error: POST submission is required");
+            }
+        }
+        elseif($method=="get" || $method == "GET"){
+            if(empty($CY->GET)){
+                die("CodeYRO error: GET submission is required");
+            }
+        }
+        else{
+            die("CodeYRO error: method name [".$method."] is not valid.! accepts post and get only.");
+        }
+    }
+}
+
+if(! function_exists("REQUIRE_POST")){
+    function REQUIRE_POST(){
+        /** ==> Void
+         * Error when there is no POST form submitted.
+         * @var mixed
+         */
+        REQUIRE_FORM_SUBMIT("POST");
+    }
+}
+
+if(! function_exists("REQUIRE_GET")){
+    function REQUIRE_GET(){
+        /** ==> Void
+         * Error when there is no GET form submitted.
+         * @var mixed
+         */
+        REQUIRE_FORM_SUBMIT("GET");
+        
+    }
+}
+
+if(! function_exists("CY_GET_LAST_ERROR")){
+    function CY_GET_LAST_ERROR(){
+        $last_error = error_get_last();
+        if($last_error){
+            return $last_error;
+        }
+        else{
+            return null;
+        }
+    }
+}
+
 
 
 
