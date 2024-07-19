@@ -89,20 +89,36 @@ if(! function_exists("ADD_CUSTOMS")){
 
 
 if(! function_exists("ADD_ALL_SCRIPTS")){
-    function ADD_ALL_SCRIPTS($arr = ["CY_TABLE"=>"FALSE", "JQUERY"=>"TRUE", "REACT"=>"TRUE"]){
+    function ADD_ALL_SCRIPTS($arr){
         /** ==> Void
          *  Load all CY js scripts
-         * [REACT, JQUERY, ENCRYPTION, CY_TABLE]
+         * [REACT, JQUERY, ENCRYPTION, CY_TABLE, CDN]
          */
         ?>
-        <?php if(isset($arr["REACT"])): ?>
-            <?php if($arr['REACT']=="TRUE"): ?>
+        <?php if(in_array("REACT", $arr) || in_array("react", $arr)): ?>
+            <!-- CodeYRO reactjs -->
                 <script src="<?= RESOURCES('react/react.js') ?>"></script>
                 <script src="<?= RESOURCES('react/react-dom.js') ?>"></script>
                 <script src="<?= RESOURCES('react/babel.js') ?>"></script>
                 <script src="<?= RESOURCES('react/axios.js') ?>"></script>
                 <script src="<?= RESOURCES('react/reactCustom.js') ?>"></script>
-            <?php endif; ?>
+        <?php endif; ?>
+        <?php if(in_array("CDN", $arr) || in_array("cdn", $arr)): ?>
+            <!-- CodeYRO cdn preview file -->
+            <div id="cy-preview-modal" align="center">
+                <div id="cy-preview-modal-content">
+                    <div align="center" style="padding-bottom:15px;">
+                    <span class="cy-download"><small style="font-size:14px;display: none;" id="download-button-cy-preview">download</small> <small style="font-size:14px; color:black;" id="cy-preview-title"></small></span>
+                    </div>
+                    <span class="cy-close">&times;</span>
+                    <div id="previewcy">Loading...</div>
+                </div>
+            </div>
+                <link rel="stylesheet" href="<?= RESOURCES('cdn/cy_preview.css') ?>">
+                <script src="<?= RESOURCES('cdn/mammoth.browser.min.js') ?>"></script>
+                <script src="<?= RESOURCES('cdn/papaparse.min.js') ?>"></script>
+                <script src="<?= RESOURCES('cdn/xlsx.full.min.js') ?>"></script>
+                <script src="<?= RESOURCES('cdn/cy_preview.js') ?>"></script>
         <?php endif; ?>
 
         <?php ADD_JQUERY_SCRIPTS($arr); ?>
@@ -111,10 +127,8 @@ if(! function_exists("ADD_ALL_SCRIPTS")){
 
         <script src="<?= RESOURCES('customs/customjs.js') ?>"></script>
         <?php
-        if(isset($arr['CY_TABLE'])){
-            if($arr['CY_TABLE']=="TRUE"){
+        if(in_array("CY_TABLE", $arr) || in_array("cy_table", $arr)){
                 ADD_CY_TABLE();
-            }
         }
     }
 }
