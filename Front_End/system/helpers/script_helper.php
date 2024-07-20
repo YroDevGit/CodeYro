@@ -124,7 +124,7 @@ if(! function_exists("ADD_ALL_SCRIPTS")){
         <?php ADD_JQUERY_SCRIPTS($arr); ?>
 
         <script src="<?= SECURITY() ?>"></script>
-
+        <script src="<?= RESOURCES('customs/advance.js') ?>"></script>
         <script src="<?= RESOURCES('customs/customjs.js') ?>"></script>
         <?php
         if(in_array("CY_TABLE", $arr) || in_array("cy_table", $arr)){
