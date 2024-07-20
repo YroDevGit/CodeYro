@@ -1549,6 +1549,23 @@ if(! function_exists("CY_GET_LAST_ERROR")){
     }
 }
 
+if(! function_exists("DATE_TRANSLATE")){
+    function DATE_TRANSLATE($date, $withTime = false){
+        /** Date string
+         * date to date string format (October 5 1998 12:32:34)
+         */
+        $date = new DateTime($date);
+        $formattedDate = null;
+        if($withTime){
+            $formattedDate = $date->format('F j Y h:i:s A');
+        }
+        else{
+            $formattedDate = $date->format('F j Y');
+        }
+        return $formattedDate;
+    }
+}
+
 
 
 

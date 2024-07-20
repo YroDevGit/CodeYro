@@ -10,6 +10,15 @@ include_once "..\IgniteData\ForCommand\command.php";
  * CodeYro
  * 
  */
+
+ if (PHP_SAPI !== 'cli') {
+    echo "This script should only be run from the command line.";
+    exit(1);
+}
+
+$arguments = $argv;
+$route = isset($arguments[1]) ? $arguments[1] : '';
+
 function findProjectRoot($currentDir) {
     $maxDepth = 10;
     $depth = 0;
@@ -38,8 +47,12 @@ if ($projectRoot === false) {
 chdir($projectRoot);
 
 $command = $php_command;
-echo $print_data;
-
+if($route){
+    echo  getCommand($route);
+}
+else{
+    echo $print_data;
+}
 passthru($command);
 
 /**
