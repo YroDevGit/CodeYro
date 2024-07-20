@@ -73,11 +73,11 @@
 
  if(! function_exists("AUTO_RENAME_FILE")){
     function AUTO_RENAME_FILE($inputfile){
-        $arr = ["A","B","C","D","F","G","H","I","J","K","L","M"];
+        $arr = ["A","B","C","D","F","G","H","I","J","K","L","M","Z","X","Y","V"];
         shuffle($arr);
-        $arr1 = ["T","Y","R","O","N","E"];
+        $arr1 = ["T","Y","R","O","N","E","U","W","5","Q","P"];
         shuffle($arr1);
-        $dt = date('Y-m-d');
+        $dt = date('Y-m-d-H-i-s');
         return $arr[0].$arr[1].$arr[2].$arr[3].$arr[4].$dt.$arr1[0].$arr1[1].$arr1[2].".".GET_FILE_TYPE($inputfile);
     }
  }

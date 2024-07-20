@@ -1379,6 +1379,21 @@ if(! function_exists("HAS_FILE_SUBMITTED")){
     }
 }
 
+if(! function_exists("SET_FILE_VALIDATION")){
+    function SET_FILE_VALIDATION($fieldname, $label, $rules=""){
+        /** ==> Void
+         * set file validation.
+         * only works in input type = file
+         */
+        if(HAS_FILE_SUBMITTED($fieldname)){
+
+        }
+        else{
+            VALIDATION_SET_INPUT_ERROR($fieldname, $label." is required.!");
+        }
+    }
+}
+
 if(! function_exists("ARRAY_APPEND_ELEMENT")){
     function ARRAY_APPEND_ELEMENT(array &$array, string $key, $value):void{
         /** ==> Void
