@@ -7,7 +7,7 @@
          * send email.
          * Return result array
          */
-        include_once "Front_End\SystemData\Email_config.php";
+        include_once SYSTEM_DATA."Email_config.php";
         $ret = [];
         $CY =& get_instance();
     

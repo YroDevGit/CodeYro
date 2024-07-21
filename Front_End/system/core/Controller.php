@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 define("CY_SUCCESS", 200);
 define("CY_SUCCESS_CODE", CY_SUCCESS);
 define("SUCCESS_CODE", CY_SUCCESS);
-include_once "Front_End\SystemData\FE_DATA.php";
+include_once SYSTEM_DATA."FE_DATA.php";
 
 #[\AllowDynamicProperties]
 class CY_Controller {

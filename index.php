@@ -43,12 +43,13 @@ if ($is_backend) {
     define('APPPATH', $front_end_path . 'application/');
     define('AUTHPATH', $front_end_path . 'application/auth/');
     define('VIEWPATH', $front_end_path . 'application/views/');
-    define('SRC', $front_end_path . 'application/src/');
+    define('SRC', $front_end_path . 'public/src/');
     define('PUBLICPATH', $front_end_path . 'public/');
     define('STORAGE', $front_end_path . 'public/storage/');
     define('ASSETS', $front_end_path . 'public/assets/');
-    define('RESOURCES', $front_end_path . 'public/resources/');
-    define('SECURITY', $front_end_path . 'public/resources/secure/securejs.js');
+    define('RESOURCES', $front_end_path . 'public/codeyro/private/resources/');
+    define('SECURITY', $front_end_path . 'public/codeyro/private/resources/secure/securejs.js');
+    define("SYSTEM_DATA", $front_end_path."system/SystemData/");
 
     define('APP_TITLE', $APP_TITLE);
     define('APP_DESCRIPTION', $APP_DESCRIPTION);

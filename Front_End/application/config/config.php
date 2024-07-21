@@ -227,7 +227,7 @@ $config['allow_get_array'] = TRUE;
 | your log files will fill up very fast.
 |
 */
-include_once "Front_End/SystemData/fe_config.php";
+include_once SYSTEM_DATA."fe_config.php";
 $config['log_threshold'] = $CY_enable_error_log == TRUE ? 1 : 0;
 
 /*
