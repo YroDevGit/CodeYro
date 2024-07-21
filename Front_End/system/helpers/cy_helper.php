@@ -1632,6 +1632,50 @@ if(! function_exists("STRING_SEPARATE_BY")){
 
 
 
+if(! function_exists("FILES")){
+    function FILES(string $inputname = "", string $attr=""){
+        /**  Array / File string
+         * 
+         */
+        if(! empty($_FILES)){
+            if($inputname=="" || $inputname == null){
+                return $_FILES; //👈 Array
+            }
+            else{
+                if($_FILES[$inputname]){
+                    if($attr == "" || $attr == null){
+                        return $_FILES[$inputname]; //👈 Array
+                    }
+                    else{
+                        return $_FILES[$inputname][$attr]; //👈 String
+                    }
+                }
+                else{
+                    die("No ".$inputname." file submitted.!");
+                }
+            }
+        }
+        else{
+           die("No files submitted.!"); 
+        }
+    }
+}
+
+if(! function_exists("FILE_NAME")){
+    function FILE_NAME(string $inputname){
+        /**  String
+         * return the filename.
+         */
+        if($inputname == "" || $inputname == null){
+            die("Please put inputname for file input.!");
+        }
+        else{
+            return FILES($inputname,"name");
+        }
+    }
+}
+
+
 
 
 

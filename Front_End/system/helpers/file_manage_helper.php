@@ -1,7 +1,7 @@
 <?php
  
  if(! function_exists("UPLOAD_FILE")){
-    function UPLOAD_FILE($inputname, $rename = "FALSE"){
+    function UPLOAD_FILE(string $inputname, $rename = "FALSE"){
         $filename = "";
         switch(strtoupper($rename)){
             case "FALSE": $filename = basename($_FILES[$inputname]["name"]);break;
@@ -24,25 +24,25 @@
  }
 
  if(! function_exists("GET_FILE_NAME")){
-    function GET_FILE_NAME($input){
+    function GET_FILE_NAME(string $input){
         return basename($_FILES[$input]["name"]);
     }
  }
 
  if(! function_exists("GET_FILE_PATH")){
-    function GET_FILE_PATH($input){
+    function GET_FILE_PATH(string $input){
         return $_FILES[$input]["tmp_name"];
     }
  }
 
  if(! function_exists("GET_FILE")){
-    function GET_FILE($inputname){
+    function GET_FILE(string $inputname){
         return $_FILES[$inputname];
     }
  }
 
  if(! function_exists("GET_FILE_TYPE")){
-    function GET_FILE_TYPE($inputname){
+    function GET_FILE_TYPE(string $inputname){
         $filename = $_FILES[$inputname]['name'];
         $fileExtension = pathinfo($filename, PATHINFO_EXTENSION);
         return $fileExtension;
@@ -50,13 +50,13 @@
  }
 
  if(! function_exists("GET_FILE_SIZE")){
-    function GET_FILE_SIZE($inputname){
+    function GET_FILE_SIZE(string $inputname){
         return $_FILES[$inputname]["size"];
     }
  }
 
  if(! function_exists("FILE_VALIDATE")){
-    function FILE_VALIDATE($inputfile, $accept = []){
+    function FILE_VALIDATE(string $inputfile, $accept = []){
         $ret = false;
         if(empty($accept)){
             $ret = false;
@@ -72,7 +72,7 @@
  }
 
  if(! function_exists("AUTO_RENAME_FILE")){
-    function AUTO_RENAME_FILE($inputfile){
+    function AUTO_RENAME_FILE(string $inputfile){
         $arr = ["A","B","C","D","F","G","H","I","J","K","L","M","Z","X","Y","V"];
         shuffle($arr);
         $arr1 = ["T","Y","R","O","N","E","U","W","5","Q","P"];
