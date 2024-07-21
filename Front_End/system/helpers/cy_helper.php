@@ -1380,13 +1380,30 @@ if(! function_exists("HAS_FILE_SUBMITTED")){
 }
 
 if(! function_exists("SET_FILE_VALIDATION")){
-    function SET_FILE_VALIDATION($fieldname, $label, $rules=""){
+    function SET_FILE_VALIDATION($fieldname, $label, $rules="", $rulesname = ""){
         /** ==> Void
          * set file validation.
          * only works in input type = file
+         * Don't forget the enctype="multipart/form-data" in <form>
          */
         if(HAS_FILE_SUBMITTED($fieldname)){
+            $filename = $_FILES[$fieldname]['name'];
+            $file_info = pathinfo($filename);
+            $name = $file_info['filename'];  
+            $extension = $file_info['extension']; 
+            if($rules != null && $rules != ""){
+                if(STRING_CONTAINS($rules, $extension)){
 
+                }
+                else{
+                    if($rulesname == "" || $rulesname == null){
+                        VALIDATION_SET_INPUT_ERROR($fieldname, $label." file type should only ".STRING_SEPARATE_BY($rules, "|"));
+                    }
+                    else{
+                        VALIDATION_SET_INPUT_ERROR($fieldname, $label." file type should only ".$rulesname);
+                    }
+                }
+            }
         }
         else{
             VALIDATION_SET_INPUT_ERROR($fieldname, $label." is required.!");
@@ -1563,6 +1580,53 @@ if(! function_exists("DATE_TRANSLATE")){
             $formattedDate = $date->format('F j Y');
         }
         return $formattedDate;
+    }
+}
+
+if(! function_exists("STRING_CONTAINS")){
+    function STRING_CONTAINS(string $parent, $sub){
+        /** ==> Boolean
+         * check if the parent string contains sub string/array
+         * sub may be string or array only
+         */
+        $ret = false;
+        if(is_array($sub)){
+            foreach($sub as $s){
+                if(strpos($parent, $s) !== false){
+                    $ret = true;
+                }
+            }
+        }
+        else{
+           if(!is_string($sub)){
+            die("sub value must be only string or array");
+           } 
+           else{
+            if (strpos($parent, $sub) !== false) {
+                $ret = true;
+             }
+           }
+        }
+        return $ret;
+    }
+}
+
+if(! function_exists("STRING_SEPARATE_BY")){
+    function STRING_SEPARATE_BY(string $string, string $separator, bool $isArray = false){
+        /** ==> String/Array
+         * seprated the string with characters
+         */
+        if($isArray == true){
+            return explode($separator, $string);
+        }
+        else{
+            $parts = explode($separator, $string);
+            $text = "";
+            foreach($parts as $p){
+                $text .= $p." ";
+            }
+            return $text;
+        }
     }
 }
 
