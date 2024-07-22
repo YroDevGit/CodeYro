@@ -5,6 +5,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 define("CY_SUCCESS", 200);
 define("CY_SUCCESS_CODE", CY_SUCCESS);
 define("SUCCESS_CODE", CY_SUCCESS);
+if(! defined("YES")){
+	define("YES", true);
+}
+if(! defined("NO")){
+	define("NO", false);
+}
 include_once SYSTEM_DATA."FE_DATA.php";
 
 #[\AllowDynamicProperties]

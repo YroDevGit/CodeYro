@@ -331,8 +331,8 @@ if(! function_exists("GET_DATA")){
 }
 
 
-if (!function_exists('VALIDATION_FAILED')) {
-    function VALIDATION_FAILED() {
+if (!function_exists('IS_VALIDATION_FAILED')) {
+    function IS_VALIDATION_FAILED() {
         /** => Boolean
          * Check if there is input validation that fails
          * Required SET_VALIDATION function
@@ -657,45 +657,83 @@ if(! function_exists("GET_FLASHDATA")){
 
 
 if (!function_exists("CY_STRING_VALUE")) {
-    function CY_STRING_VALUE(&$val, $default="") {
+    function CY_STRING_VALUE(string $val, string $default="") {
         /** => String
          * if the $val is not set or exist then display the default value of "" or null.
          * [Using isset]
          */
-        return (isset($val) ? $val : $default);
+        if($val){
+            return $val;
+        }
+        else{
+            return $default;
+        }
     }
 }
 
+if (!function_exists("CY_OBJECT_VALUE")) {
+    function CY_OBJECT_VALUE($val, $default) {
+        /** => Object
+         * if the $val object is not exist then display default
+         * [Using isset]
+         */
+        if($val){
+            return $val;
+        }
+        else{
+            return $default;
+        }
+    }
+}
+
+
 if (!function_exists("CY_INT_VALUE")) {
-    function CY_INT_VALUE(&$val, $default=0) {
+    function CY_INT_VALUE(int $val, int $default=0) {
         /** => Int / Integer
          * if the $val is not set or exist then display the default value of 0 or null.
          * [Using isset]
          */
-        return (isset($val) ? intval($val) : $default);
+        if($val){
+            return $val;
+        }
+        else{
+            return $default;
+        }
     }
 }
 
 if (!function_exists("CY_FLOAT_VALUE")) {
-    function CY_FLOAT_VALUE(&$val, $default=0) {
+    function CY_FLOAT_VALUE(float $val, float $default=0) {
         /** => Float
          * if the $val is not set or exist then display the default value of 0 or null.
          * [Using isset]
          */
-        return (isset($val) ? floatval($val) : $default);
+        if($val){
+            return $val;
+        }
+        else{
+            return $default;
+        }
     }
 }
 
 if(! function_exists("IS_EXIST")){
-    function IS_EXIST(&$val){
+    function IS_EXIST($val){
         /** ==> Boolean
          * check if $value is existing.
          * TRUE if existing, False if not.
          * [Using isset]
          */
-        return isset($val);
+        if($val){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
+
+
 if(! function_exists("IS_SET")){
     function IS_SET(&$val){
         /** ==> Boolean
@@ -1080,7 +1118,7 @@ if(! function_exists("CY_JSON_RESPONSE")){
 }
 
 if(! function_exists("JSON_RESPONSE")){
-    function JSON_RESPONSE($value, bool $direct=true){
+    function JSON_RESPONSE(array $value, bool $direct=true){
         /** => Json / js array
          * convert php array to  js / json array.
          */
@@ -1088,7 +1126,7 @@ if(! function_exists("JSON_RESPONSE")){
             return json_encode($value);
         }
         else{
-            echo json_encode($value);
+            echo json_encode($value); exit;
         }
     }
 }
@@ -1675,6 +1713,32 @@ if(! function_exists("FILE_NAME")){
     }
 }
 
+if(! function_exists("STRING_UPPERCASE")){
+    function STRING_UPPERCASE(string $string):string{
+        /** ==> String
+         * make string in uppercase
+         */
+        return strtoupper($string);
+    }
+}
+
+if(! function_exists("STRING_LOWERCASE")){
+    function STRING_LOWERCASE(string $string):string{
+        /** ==> String
+         * make string in uppercase
+         */
+        return strtolower($string);
+    }
+}
+
+if(! function_exists("STRING_CAPITAL_FIRST")){
+    function STRING_CAPITAL_FIRST(string $string):string{
+        /** ==> String
+         * make first letter a capital letter
+         */
+        return ucfirst($string);
+    }
+}
 
 
 

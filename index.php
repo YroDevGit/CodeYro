@@ -69,6 +69,10 @@ if ($is_backend) {
 
     $APP_LINK = get_cy_base_url($CY_APP_BASE_PATH); 
     define("APP_LINK", $APP_LINK."/");
+
+
+    define("YES", true);
+    define("NO", false);
     
     require_once BASEPATH . 'core/CodeIgniter.php';
 }

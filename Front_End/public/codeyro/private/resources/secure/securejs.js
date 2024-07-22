@@ -44,10 +44,10 @@ function DECODE(value) {
 function UCODE(num) {
     let ret = [];
     if (num === 1) {
-        ret = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', "'", "!", "?", "@", '"', " ", ",", ".", "-", "=", "/", ";", ":", "^", "?", "*", "^", '_'];
+        ret = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', "'", "!", "?", "@", '"', " ", ",", ".", "-", "=", "/", ";", ":", "^", "?", "*", "^", '_', '+'];
     }
     if (num === 2) {
-         ret = [
+        ret = [
             "XaB*", "QdS*", "JkO*", "QrS*", "sTu*", "PdS*", "ZaB*", "JmL*", "WnY*", "AbC*",
             "KlO*", "MnQ*", "aBc*", "NpL*", "OpR*", "TuV*", "HjK*", "UvW*", "JmK*", "PqS*",
             "CeF*", "QrT*", "GfK*", "aBd*", "XaC*", "BeG*", "TqV*", "TsV*", "DeF*", "ZaF*",
@@ -55,7 +55,7 @@ function UCODE(num) {
             "aBe*", "KjL*", "BdH*", "WnX*", "KlM*", "GfJ*", "CdA*", "UtV*", "TuW*",
             "XyD*", "TsU*", "PrQ*", "LmN*", "XaY*", "HiJ*", "FgI*", "KpL*", "MqR*",
             "aBc*", "XyZ*", "WnZ*", "XaJ*", "XyQ*", "CdG*", "dEg*", "EfG*", "AbD*", "KlN*",
-            "ZaB*", "JmL*", "NpQ*", "GhI*", "RsT*", "GfJ*", "NoP*", "WzY*", "PiS*",
+            "ZaB*", "JmT*", "NpQ*", "GhI*", "RsT*", "GfJ*", "NoP*", "WzY*", "PiS*",
             "HiK*", "CdM*", "IjK*", "QrU*", "JkL*", "BcD*", "pQr*", "KpM*", "FgH*", "DeG*",
             "TuV*", "EfG*", "aBc*", "CeH*", "QrV*", "VwX*", "JmK*", "KjM*", "WnX*", "XyZ*"
         ];

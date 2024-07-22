@@ -67,7 +67,7 @@ if ( ! function_exists('valid_email'))
 
 // ------------------------------------------------------------------------
 
-if ( ! function_exists('send_email'))
+if ( ! function_exists('send_CI_email'))
 {
 	/**
 	 * Send an email
@@ -78,7 +78,7 @@ if ( ! function_exists('send_email'))
 	 * @param	string	$message
 	 * @return	bool
 	 */
-	function send_email($recipient, $subject, $message)
+	function send_CI_email($recipient, $subject, $message)
 	{
 		return mail($recipient, $subject, $message);
 	}

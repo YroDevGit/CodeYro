@@ -43,6 +43,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //Back_End\system\core\Controller.php
 define("API_KEY", YRO_API_KEY);
 define("CY_SUCCESS", 200);
+if(! defined("YES")){
+	define("YES", true);
+}
+if(! defined("NO")){
+	define("NO", false);
+}
 
 
 /**
