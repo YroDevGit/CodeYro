@@ -1450,7 +1450,7 @@ if(! function_exists("SET_FILE_VALIDATION")){
 }
 
 if(! function_exists("ARRAY_APPEND_ELEMENT")){
-    function ARRAY_APPEND_ELEMENT(array &$array, string $key, $value):void{
+    function ARRAY_APPEND_ELEMENT(array &$array, string $key, $value = null):void{
         /** ==> Void
          * add element to the array
          * $array = specific array
@@ -1458,12 +1458,17 @@ if(! function_exists("ARRAY_APPEND_ELEMENT")){
          * $value of the element to be added.
          * Same to ARRAY_ADD_ELEMENT(array $array, string $key, $value)
          */
-        $array[$key] = $value;
+        if($value==null){
+            array_push($array, $key);
+        }
+        else{
+            $array[$key] = $value;
+        }
     }
 }
 
 if(! function_exists("ARRAY_ADD_ELEMENT")){
-    function ARRAY_ADD_ELEMENT(array &$array, string $key, $value):void{
+    function ARRAY_ADD_ELEMENT(array &$array, string $key, $value=null):void{
         /** ==> Void
          * add element to the array
          * $array = specific array
@@ -1471,7 +1476,12 @@ if(! function_exists("ARRAY_ADD_ELEMENT")){
          * $value of the element to be added.
          * Same to ARRAY_APPEND_DATA(array $array, string $key, $value)
          */
-        $array[$key] = $value;
+        if($value==null){
+            array_push($array, $key);
+        }
+        else{
+            $array[$key] = $value;
+        }
     }
 }
 
