@@ -110,7 +110,7 @@ class CY_Controller {
         $apiKey = isset($headersTR['API_KEY']) ? $headersTR['API_KEY'] : null;
         if ($apiKey !== API_KEY) {
             http_response_code(401);
-            echo json_response("NOTUSER");
+            echo STATUS_RESPONSE("NOTUSER");
             exit;
         }
 		}
