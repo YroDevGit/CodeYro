@@ -912,7 +912,7 @@ if(! function_exists("REMOVE_ALL_COOKIES")){
 }
 
 if(! function_exists("SET_LOGIN")){
-    function SET_LOGIN($status = true , $data = []){
+    function SET_LOGIN($status = true , array $data, array $data2 = [], array $data3 = [], array $data4 = [], array $data5 = []){
         /** ==> Void
          * param: $status is boolean and $data is array.
          * $data can be use in User athentication and roles.
@@ -928,11 +928,11 @@ if(! function_exists("SET_LOGIN")){
         }
         else{
             if($status == false || $status == FALSE){
-                REMOVE_LOGIN_DATA(true); 
+                //REMOVE_LOGIN_DATA(true); 
             }
             else{
                if(! empty($data)){
-                SET_LOGIN_DATA($data);
+                SET_LOGIN_DATA($data, $data2, $data3, $data4, $data5);
                }
             }  
         }
@@ -941,7 +941,7 @@ if(! function_exists("SET_LOGIN")){
 
 
 if(! function_exists("REMOVE_LOGIN_DATA")){
-    function REMOVE_LOGIN_DATA($delete_sessions=false){
+    function REMOVE_LOGIN_DATA($delete_sessions=true){
         /** ==> Void
          * $delete_sessions: if sessions will also be removed.
          */
@@ -956,31 +956,41 @@ if(! function_exists("REMOVE_LOGIN_DATA")){
 }
 
 if(! function_exists("SET_LOGIN_DATA")){
-    function SET_LOGIN_DATA($data){
+    function SET_LOGIN_DATA(array $data, array $data2 = [], array $data3 = [], array $data4 = [], array $data5 = []){
         /** ==> Void
          * Set Login data, can be use in User athentication and roles.
          */
         $login_data = [
             "status" => true,
-            "data" => $data
+            "data" => $data,
+            "data2" => $data2,
+            "data3" => $data3,
+            "data4" => $data4,
+            "data5" => $data5
         ];
         SET_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ", $login_data);
     }
 }
 
 if(! function_exists("LOG_OUT")){
-    function LOG_OUT(){
+    function LOG_OUT(bool $remove_sessions = true){
         /** ==> Void
          * set login to false. then remove all session data.
          * Using cookies.
          * same to: SET_LOGIN(false);
          */
-        SET_LOGIN(false);
+        if($remove_sessions){
+            REMOVE_LOGIN_DATA(true);
+        }
+        else{
+            REMOVE_LOGIN_DATA(false);
+        }
+        SET_LOGIN(false,[]);
     }
 }
 
 if(! function_exists("GET_LOGIN_DATA")){
-    function GET_LOGIN_DATA($key=""){
+    function GET_LOGIN_DATA(string $key=""){
         /** => Array / String
          * Get Login data.
          * When key is not set = returns array.
@@ -1005,6 +1015,65 @@ if(! function_exists("GET_LOGIN_DATA")){
         }
         else{
             die("Error: No login cookie found.! login cookie might not set.");
+        }
+        return $ret;
+    }
+}
+
+if(! function_exists("GET_LOGIN_INDEX_DATA")){
+    function GET_LOGIN_INDEX_DATA(string $data, string $key=""){
+        /** => Array / String
+         * Get Login data.
+         * When key is not set = returns array.
+         * When key is set = returns any.
+         * Using cookies.
+         */
+        $ret = null;
+        $l_cookie = GET_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ");
+        if($l_cookie){
+            $login_cookie = $l_cookie;
+            if($key == null || $key == NULL || $key == ""){
+                $ret = $login_cookie[$data];
+            }
+            else{
+                if(isset($login_cookie[$data][$key])){
+                    $ret = $login_cookie[$data][$key];
+                }
+                else{
+                    die("Error: No key '".$key."' found in login cookie data");
+                } 
+            } 
+        }
+        else{
+            die("Error: No login cookie found.! login cookie might not set.");
+        }
+        return $ret;
+    }
+}
+
+if(! function_exists("HAS_LOGIN_DATA")){
+    function HAS_LOGIN_DATA(){
+        /** ==> Boolean
+         * check if user is logged in and login data has set.
+         */
+        $ret = null;
+        $l_cookie = GET_COOKIE("CY_LOGIN_1005_COOKIE_CODEYRO_05_YROLEEEMZ");
+        if($l_cookie){
+            $login_cookie = $l_cookie;
+            if(in_array("data", $login_cookie)){
+                if(empty($login_cookie['data'])){
+                    $ret = false;
+                }
+                else{
+                    $ret = true;
+                }
+            }
+            else{
+                $ret = false;
+            }  
+        }
+        else{
+            $ret = false;
         }
         return $ret;
     }

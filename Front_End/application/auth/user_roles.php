@@ -1,42 +1,21 @@
 <?php
+if(! function_exists("CY_ASSIGNED_ROLES")){
+   function CY_ASSIGNED_ROLES(array $roles){//==>Void
+      if(HAS_LOGIN_DATA()){
+         /** ==> Void
+          * User roles filtering.
+          */
+         //Get the logged in user role
+         $user_role = GET_LOGIN_DATA("role");// data is set when you SET_LOGIN(true, array $data);
+         //replace role with your user role label/column.
 
-$CY_ACTIVATE_USER_ROLES = FALSE; //👈Set to true when you want to use user roles filtering.
+         if(! in_array($user_role, $roles)){
 
-if(! function_exists("CY_ASSIGN_USER")){
-    function CY_ASSIGN_USER($roles = ["id"=>null, "type" => null, "role" => null]){ 
-        if(! is_array($roles)){die("Roles should be an array");}
-        //👆Heading condtions is sensitive, can cause errors when modified.
-        /** CodeYRO assign user.. Required: SET_LOGIN(true, $data); or SET_LOGIN_DATA($data)
-         * $roles value is depends on what you put in SET_LOGIN(true, $data); or SET_LOGIN_DATA($data);
-         */
-        
-        //Conditions below 👇, you can remove and add your own condtions, codes below is just a reference but you can use it too.
-         
-         /** When using id to assign*/
-         
-         // when user id is not 1
-         if(isset($roles['id']) && $roles['id']!=1){
-            //CY_REDIRECT("");  //👈 when user id is NOT 1, redirect to controller[parameter].
+            die("You are not able to access this page.!"); // You can also replace this with CY_REDIRECT// redirect to error page.
+            
          }
-
-
-         /** When using id to assign*/
-
-         // when user role is not "ADMIN"
-         if(isset($roles['role']) && $roles["role"] != "ADMIN"){
-            //CY_REDIRECT("");  //👈 when user id is NOT 2, redirect to controller[parameter].
-         }
-
-         //You can add more condtion or configure conditions above.
-
-
-
-
-
-
-
-    }
+      }
+   }
 }
-//Don't modify code definitions here👇
-if(! defined("CY_USER_ROLES_ACTIVATE_1005_YRO")){define("CY_USER_ROLES_ACTIVATE_1005_YRO", $CY_ACTIVATE_USER_ROLES);} 
+
 ?>

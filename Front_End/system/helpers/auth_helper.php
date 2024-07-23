@@ -17,18 +17,10 @@ if(! function_exists("AUTHENTICATE_CY_USER")){
          */
         if($bool == true || $bool == TRUE){
             CODEYRO_AUTH_SETTINGS_1005_YROLEEEMZ_CY();
-            CODEYRO_ASSIGN_USER_1005_YRO_EMZ();
         }
     }
 }
+include_once AUTHPATH."user_roles.php";
 
-if(!function_exists("CODEYRO_ASSIGN_USER_1005_YRO_EMZ")){
-    function CODEYRO_ASSIGN_USER_1005_YRO_EMZ(){
-        include_once AUTHPATH."user_roles.php";
-        if(CY_USER_ROLES_ACTIVATE_1005_YRO == true || CY_USER_ROLES_ACTIVATE_1005_YRO == TRUE){
-            CY_ASSIGN_USER(GET_LOGIN_DATA());
-        }
-    }
-}
 
 ?>
