@@ -11,7 +11,7 @@ if(! function_exists("CY_ASSIGNED_ROLES")){
 
          if(! in_array($user_role, $roles)){
 
-            die("You are not able to access this page.!"); // You can also replace this with CY_REDIRECT// redirect to error page.
+            CY_REDIRECT("codeyro/RestrictUserRoles"); //You modify and put redirect to your error page.
             
          }
       }

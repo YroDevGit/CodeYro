@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
  // Modify homepage here.
 
-$CY_MAIN_PAGE = "Welcome"; // <== Put the controller name here.
+$CY_MAIN_PAGE = "codeyro"; // <== Put the controller name here.
 
 /**
  *  "Welcome" :means it will find controller name Welcome and function name index()

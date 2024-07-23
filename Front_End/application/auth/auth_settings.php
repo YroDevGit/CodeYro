@@ -17,17 +17,21 @@ if(! function_exists("CY_LOGIN_STATUS_1005_CHECKER_CODEYRO")){
 
     //When user's athentication failed or not logged in, please add code here...
 
-    P("<span style='color:red;font-size:18px;'>User is not authenticated.!</span> <br><br><a href='/'>Back to homepage</a>");
+    CY_REDIRECT("codeyro/NotAuthenticated"); // You can modify and put your own error page.
+
+
+
+
+
+
+
+
+
+
+
+
 
     
-    //CY_REDIRECT(""); // You can also redirect to controller that is NOT Authenticated to avoid redirects error.
-
-
-
-
-
-
-
 
     
 

@@ -1,4 +1,4 @@
-function showFile(filePath, filetitle="", download=true) {
+function showFile(filePath, filetitle="", download=true, filenumber = null, filecode = null, filedetails=null) {
     if (filetitle === "") {
         document.getElementById('cy-preview-title').innerHTML = "";
     } else {
@@ -13,7 +13,15 @@ function showFile(filePath, filetitle="", download=true) {
 
     currentFileUrl = filePath; // Save the current file URL for downloading
     const fileExtension = filePath.split('.').pop().toLowerCase();
-
+    if(filenumber!=null){
+        document.getElementById("download-button-cy-preview").setAttribute("filenumber", filenumber);
+    }
+    if(filecode!=null){
+        document.getElementById("download-button-cy-preview").setAttribute("filecode", filecode);
+    }
+    if(filedetails!=null){
+        document.getElementById("download-button-cy-preview").setAttribute("filedetailes", filedetails);
+    }
     document.getElementById('cy-preview-modal').style.display = "block";
     document.getElementById('previewcy').innerText = "Loading...";
 
@@ -112,12 +120,12 @@ document.querySelector('.cy-close').onclick = function() {
     document.getElementById('cy-preview-modal').style.display = "none";
 }
 
-// Download the file when the user clicks the download button
-document.getElementById('download-button-cy-preview').onclick = function() {
+
+document.getElementById("download-button-cy-preview").addEventListener("click", function(){
     const link = document.createElement('a');
     link.href = currentFileUrl;
     link.download = ''; // Filename can be set if needed
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-}
+});
