@@ -752,7 +752,7 @@ if ( ! function_exists('redirect'))
 }
 
 if(! function_exists("CY_REDIRECT")){
-	function CY_REDIRECT($controller = '', $data = [], $inputOldValue = false, $delay = 0 ,$method = 'auto', $code = NULL){
+	function CY_REDIRECT(string $controller = '', array $data = [], bool $inputOldValue = false, int $delay = 0 ,$method = 'auto', $code = NULL){
 		/** => Void
 		 * Example use: controller classname: cycontrol
 		 * index function => CY_REDIRECT('cycontrol');

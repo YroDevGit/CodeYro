@@ -1819,6 +1819,68 @@ if(! function_exists("STRING_CAPITAL_FIRST")){
     }
 }
 
+if(! function_exists("GET_PREVIOUS_PAGE")){
+    function GET_PREVIOUS_PAGE(){
+        /** ==> String
+         * get the previous page controller name
+         */
+        $CY =& get_instance();
+        $referer_url = $CY->input->server('HTTP_REFERER');
+        
+        if ($referer_url) {
+            $parsed_url = parse_url($referer_url);
+            $path = $parsed_url['path'];
+    
+            $base_url_path = rtrim(parse_url(base_url(), PHP_URL_PATH), '/');
+            $controller_method = trim(substr($path, strlen($base_url_path)), '/');
+        
+            $parts = explode('/', $controller_method);
+        
+            if (count($parts) == 1) {
+                $previous_controller = $parts[0];
+                $previous_method = ''; 
+                return $previous_controller;
+            } elseif (count($parts) >= 2) {
+                $previous_controller = $parts[0];
+                $previous_method = $parts[1];
+                return $previous_controller . "/" . $previous_method;
+            } else {
+                return "";
+            }
+        } else {
+            return "";
+        } 
+    }
+}
+
+if(! function_exists("VALIDATION_FAILED_BACK")){
+    function VALIDATION_FAILED_BACK(){
+        /** ==> Void
+         *  ==> Redirect to previous page with error message
+         * Redirect with error messages
+         */
+        $CY =& get_instance();
+        if ($CY->form_validation->run() == false) {
+            $CY->session->set_flashdata('cy_validation_error_1005CodeYro05', VALIDATION_ERROR_LIST());
+            CY_REDIRECT(GET_PREVIOUS_PAGE(), [], true);
+        }
+        else{
+            P(["code"=>-1, "status"=>"Error","message"=>"Invalid call, there no failed validation found.!, you can call this function if validation is failed."]);
+        }
+    }
+}
+
+if(! function_exists("CY_BACK_TO_PREVIOUS_PAGE")){
+    function CY_BACK_TO_PREVIOUS_PAGE(array $data=[], bool $oldvalue =false, int $delay=0){
+        /** ==> Void
+         *  Redirect to previous page
+         */
+        CY_REDIRECT(GET_PREVIOUS_PAGE(),$data, $oldvalue, $delay);
+    }
+}
+
+
+
 
 
 
